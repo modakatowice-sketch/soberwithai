@@ -37,11 +37,46 @@
 
     *{box-sizing:border-box}
     html,body{height:100%}
+    body{<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Trzeźwa z AI (Sober with AI) — Strona główna</title>
+
+  <!-- Meta -->
+  <meta name="theme-color" content="#0f172a" id="theme-color-meta">
+  <meta property="og:title" content="Trzeźwa z AI (Sober with AI) — Strona główna">
+  <meta property="og:description" content="Wsparcie trzeźwości dzięki AI. Zero moralizowania — konkretne narzędzia, struktura i społeczność.">
+  <meta property="og:type" content="website">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Favicon (neon SVG inline) -->
+  <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="%230ea5e9"/><stop offset="1" stop-color="%238b5cf6"/></linearGradient></defs><rect width="128" height="128" rx="24" fill="%230b1020"/><path d="M32 92c18-6 28-24 28-44v0c0-6 5-10 10-10s10 4 10 10v0c0 26-12 48-32 56" fill="none" stroke="url(%23g)" stroke-width="10" stroke-linecap="round"/></svg>' />
+
+  <style>
+    :root{
+      --bg-from:#0b1020; --bg-to:#05070e;
+      --glass:#0f172a; --glass-2:#0b1224;
+      --text:#e6eef7; --muted:#9fb3c8;
+      --brand-1:#0ea5e9; --brand-2:#8b5cf6;
+      --ring: rgba(14,165,233,.45);
+      --shadow: 0 10px 25px rgba(3,8,20,.6), 0 6px 12px rgba(2,6,23,.4);
+      --radius-2xl: 1.25rem; --radius-3xl: 1.75rem;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
     body{
       margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      color:var(--text); background:radial-gradient(1200px 800px at 20% -10%, #13203d 0%, rgba(19,32,61,0) 55%),
-                         radial-gradient(900px 600px at 120% 10%, rgba(139,92,246,.20) 0%, rgba(139,92,246,0) 60%),
-                         linear-gradient(180deg, var(--bg-from) 0%, var(--bg-to) 100%);
+      color:var(--text); background:
+        radial-gradient(1200px 800px at 20% -10%, #13203d 0%, rgba(19,32,61,0) 55%),
+        radial-gradient(900px 600px at 120% 10%, rgba(139,92,246,.20) 0%, rgba(139,92,246,0) 60%),
+        linear-gradient(180deg, var(--bg-from) 0%, var(--bg-to) 100%);
       min-height:100%;
     }
 
@@ -83,12 +118,13 @@
     }
     .eyebrow{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; font-size:12px; background:rgba(14,165,233,.12); color:#bfe7fb}
 
-    h1{font-family:"Space Grotesk",Inter,sans-serif; font-size:clamp(30px, 5vw, 56px); margin:14px 0 12px}
+    h1{font-family:"Space Grotesk",Inter,sans-serif; font-size:clamp(30px, 5vw, 56px); margin:14px 0 12px; line-height:1.05}
     .lead{font-size:clamp(15px, 2.2vw, 18px); color:var(--muted); margin:0 0 18px}
 
     .split{display:grid; grid-template-columns:1fr; gap:14px}
     .cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:18px}
 
+    /* panel (cytaty) */
     .media{position:relative}
     .panel{
       aspect-ratio: 16/10;
@@ -99,13 +135,24 @@
       border-radius:var(--radius-3xl);
       box-shadow:var(--shadow);
       overflow:hidden;
+      position:relative;
+      cursor:pointer; /* klik = następny cytat */
     }
-    .glow{position:absolute; inset:0; background:radial-gradient(40% 60% at 50% 0%, rgba(255,255,255,.08), transparent 60%)}
     .ring{position:absolute; inset:-1px; border-radius:inherit; border:1px solid rgba(14,165,233,.28); mask: linear-gradient(#000, transparent 65%);}
     .panel-inner{position:absolute; inset:0; display:grid; place-items:center; padding:18px}
-    .panel h3{font-family:"Space Grotesk"; margin:0; font-size:clamp(18px,2.6vw,28px)}
-    .panel p{margin:6px 0 0; color:var(--muted); font-size:14px; text-align:center}
+    .quote{max-width:520px; margin:0; text-align:left}
+    .quote blockquote{
+      margin:0; font-family:"Space Grotesk",Inter,sans-serif;
+      font-size:clamp(18px,2.6vw,24px); line-height:1.25; letter-spacing:.2px;
+      text-wrap:balance; hyphens:auto;
+    }
+    .quote figcaption{margin-top:8px; color:var(--muted); font-size:14px}
 
+    /* animacja fade */
+    .fade-in{animation:fade .6s ease both}
+    @keyframes fade{from{opacity:.001; transform:translateY(4px)} to{opacity:1; transform:translateY(0)}}
+
+    /* sekcja features */
     .features{display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin-top:34px}
     .feat{background:linear-gradient(180deg, rgba(21,31,55,.7), rgba(11,18,36,.7)); border:1px solid rgba(148,163,184,.12); border-radius:var(--radius-2xl); padding:18px}
     .feat h4{margin:4px 0 8px; font-family:"Space Grotesk"}
@@ -114,7 +161,7 @@
     footer{border-top:1px solid rgba(148,163,184,.08); margin-top:48px}
     .foot{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:22px 0; color:var(--muted); font-size:14px; flex-wrap:wrap}
 
-    /* === ŁATKA MOBILE === */
+    /* Mobile tweak */
     @media (max-width:960px){
       .container{padding:0 14px}
       .hero{grid-template-columns:1fr; gap:20px}
@@ -130,7 +177,10 @@
       .cta .btn{flex:1 1 auto; justify-content:center}
     }
 
-    /* mikro-doszlifowanie */
+    /* accessibility */
+    @media (prefers-reduced-motion: reduce){
+      *, *::before, *::after{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important}
+    }
     body { overflow-x: hidden; -webkit-text-size-adjust: 100%; }
   </style>
 </head>
@@ -176,14 +226,13 @@
       </div>
 
       <div class="media">
-        <div class="panel">
-          <div class="glow"></div>
-          <div class="ring"></div>
+        <div class="panel" id="quotePanel" title="Kliknij, aby zmienić cytat">
+          <div class="ring" aria-hidden="true"></div>
           <div class="panel-inner">
-            <div>
-              <h3>„Sztab” AI do trzeźwości</h3>
-              <p>Minimalny hałas. Maksimum użyteczności: dziennik, check‑listy, protokoły.</p>
-            </div>
+            <figure class="quote fade-in" aria-live="polite">
+              <blockquote id="qText">„Sztab” AI do trzeźwości. Minimalny hałas. Maksimum użyteczności: dziennik, check‑listy, protokoły.</blockquote>
+              <figcaption id="qMeta">— Trzeźwa z AI</figcaption>
+            </figure>
           </div>
         </div>
       </div>
@@ -213,7 +262,77 @@
   </footer>
 
   <script>
+    // Rok w stopce
     document.getElementById('y').textContent = new Date().getFullYear();
+
+    // ===== Rotator cytatów =====
+    const QUOTES = [
+      { text: '„Sztab” AI do trzeźwości. Minimalny hałas. Maksimum użyteczności: dziennik, check‑listy, protokoły.', meta: '— Trzeźwa z AI' },
+      { text: 'Nie chodzi o idealną motywację. Chodzi o najbliższy rozsądny krok — teraz.', meta: '— zasada „Next best step”' },
+      { text: 'Struktura wygrywa z siłą woli. Zawsze.', meta: '— ramy działania' },
+      { text: 'Małe zwycięstwa, duże konsekwencje. 24 godziny na raz.', meta: '' },
+      { text: 'Zero wstydu. Zero moralizowania. 100% narzędzi.', meta: '' },
+      { text: 'Dziennik to nie pamiętnik. To mapa decyzji.', meta: '' },
+      { text: 'Najpierw regulacja, potem ambicje. Najpierw sen, potem sprint.', meta: '' },
+      { text: 'Nie musisz chcieć. Wystarczy, że wiesz co zrobić przez 10 minut.', meta: '' },
+      { text: '„Nie mam siły” często znaczy „nie mam planu”. Plan da się zrobić.', meta: '' },
+      { text: 'Jeśli coś jest ważne — uprość to tak, by dało się zrobić dziś.', meta: '' },
+    ];
+
+    // wybieramy 5 losowych cytatów (bez powtórek) na bieżącą sesję
+    function pickNRandom(arr, n) {
+      const copy = arr.slice();
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy.slice(0, n);
+    }
+
+    const rotation = pickNRandom(QUOTES, 5);
+    let current = 0;
+
+    const qText = document.getElementById('qText');
+    const qMeta = document.getElementById('qMeta');
+    const panel = document.getElementById('quotePanel');
+    const figure = panel.querySelector('.quote');
+
+    function show(i){
+      const q = rotation[i];
+      // reset klasy do animacji
+      figure.classList.remove('fade-in');
+      // wymuszenie reflow, by animacja mogła się ponownie uruchomić
+      void figure.offsetWidth;
+      qText.textContent = q.text;
+      qMeta.textContent = q.meta || '';
+      figure.classList.add('fade-in');
+    }
+
+    // start od pierwszego z rotacji
+    show(current);
+
+    // co 10 sekund następny
+    let timer = setInterval(() => {
+      current = (current + 1) % rotation.length;
+      show(current);
+    }, 10000);
+
+    // klik w panel = następny cytat + reset czasu
+    panel.addEventListener('click', () => {
+      current = (current + 1) % rotation.length;
+      show(current);
+      clearInterval(timer);
+      timer = setInterval(() => {
+        current = (current + 1) % rotation.length;
+        show(current);
+      }, 10000);
+    });
+
+    // bezpieczeństwo: jeśli użytkownik woli mniej animacji
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      figure.classList.remove('fade-in');
+      clearInterval(timer);
+    }
   </script>
 </body>
 </html>

@@ -46,9 +46,7 @@
     }
 
     /* dekoracyjne bloby */
-    .bg-blur{
-      position:fixed; inset:0; pointer-events:none; z-index:-1; filter:blur(60px) saturate(140%);
-    }
+    .bg-blur{position:fixed; inset:0; pointer-events:none; z-index:-1; filter:blur(60px) saturate(140%);} 
     .blob{position:absolute; width:38vw; height:38vw; border-radius:9999px; opacity:.18; mix-blend:screen;}
     .blob.one{left:-10vw; top:-6vw; background:radial-gradient(circle at 30% 30%, var(--brand-1), transparent 60%)}
     .blob.two{right:-8vw; top:-4vw; background:radial-gradient(circle at 70% 40%, var(--brand-2), transparent 60%)}
@@ -61,22 +59,17 @@
       z-index:40;
     }
     .container{max-width:1100px; margin:0 auto; padding:0 20px}
-    .nav{display:flex; align-items:center; justify-content:space-between; gap:14px; height:64px}
+    .nav{display:flex; align-items:center; justify-content:space-between; gap:14px; min-height:64px; flex-wrap:wrap}
     .brand{display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.2px}
     .logo{width:28px; height:28px; border-radius:8px; background:linear-gradient(135deg,var(--brand-1),var(--brand-2)); box-shadow:0 6px 18px rgba(14,165,233,.35)}
     .brand span{font-family:"Space Grotesk",Inter,sans-serif}
 
-    nav a{color:var(--muted); text-decoration:none; margin-left:18px; font-weight:500}
+    nav{display:flex; flex-wrap:wrap; align-items:center; gap:12px}
+    nav a{color:var(--muted); text-decoration:none; font-weight:500}
     nav a:hover{color:var(--text)}
-
-    .btn{display:inline-flex; align-items:center; gap:10px; padding:12px 18px; border-radius:999px; text-decoration:none; font-weight:600; transition:transform .15s ease, box-shadow .2s ease, background .2s ease;}
-    .btn.primary{background:linear-gradient(135deg, var(--brand-1), var(--brand-2)); color:white; box-shadow:0 8px 24px rgba(14,165,233,.25), inset 0 0 0 1px rgba(255,255,255,.08)}
-    .btn.primary:hover{transform:translateY(-1px)}
-    .btn.ghost{background:rgba(148,163,184,.10); color:var(--text); border:1px solid rgba(148,163,184,.18)}
 
     main{padding:48px 0 64px}
     .hero{display:grid; grid-template-columns:1.1fr .9fr; gap:34px; align-items:center}
-    @media (max-width:960px){.hero{grid-template-columns:1fr; gap:26px}}
 
     .card{
       background:linear-gradient(180deg, rgba(21,31,55,.85), rgba(12,17,34,.85));
@@ -117,15 +110,29 @@
 
     /* sekcja features */
     .features{display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin-top:34px}
-    @media (max-width:900px){.features{grid-template-columns:1fr}}
     .feat{background:linear-gradient(180deg, rgba(21,31,55,.7), rgba(11,18,36,.7)); border:1px solid rgba(148,163,184,.12); border-radius:var(--radius-2xl); padding:18px}
     .feat h4{margin:4px 0 8px; font-family:"Space Grotesk"}
     .feat p{margin:0; color:var(--muted); font-size:14px}
 
     footer{border-top:1px solid rgba(148,163,184,.08); margin-top:48px}
-    .foot{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:22px 0; color:var(--muted); font-size:14px}
+    .foot{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:22px 0; color:var(--muted); font-size:14px; flex-wrap:wrap}
 
-    /* accessibility */
+    /* ======= Mobile polishments ======= */
+    @media (max-width:960px){
+      .container{padding:0 14px}
+      .hero{grid-template-columns:1fr; gap:20px}
+      .nav{min-height:56px}
+      nav{gap:10px}
+      .panel{aspect-ratio: 16/11}
+    }
+    @media (max-width:560px){
+      main{padding:34px 0 48px}
+      .card{padding:18px}
+      .features{grid-template-columns:1fr; gap:12px}
+      .panel{aspect-ratio: 16/12}
+      .cta .btn{flex:1 1 auto; justify-content:center}
+    }
+
     @media (prefers-reduced-motion: reduce){
       *, *::before, *::after{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important}
     }

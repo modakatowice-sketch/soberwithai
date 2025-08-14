@@ -10,6 +10,7 @@
   <meta property="og:description" content="Wsparcie trzeźwości dzięki AI.">
   <meta property="og:type" content="website">
 
+  <!-- Favicon (neon SVG inline) -->
   <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="%2322d3ee"/><stop offset="1" stop-color="%238b5cf6"/></linearGradient></defs><rect width="128" height="128" rx="28" fill="%230f172a"/><circle cx="44" cy="44" r="26" fill="url(%23g)" opacity=".9"/><circle cx="84" cy="84" r="26" fill="url(%23g)" opacity=".65"/></svg>' />
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -51,6 +52,7 @@
       position: relative;
     }
 
+    /* BACKGROUND */
     .bg {
       position: fixed; inset: 0; z-index: 0; pointer-events: none;
       background:
@@ -62,17 +64,13 @@
       will-change: background-position;
       transform: translateZ(0);
     }
-
     @keyframes bgShift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-
     .bg::before,
-    .bg::after {
-      content: ""; position: absolute; inset: 0; pointer-events: none;
-    }
+    .bg::after { content:""; position:absolute; inset:0; pointer-events:none }
     .bg::before {
       background-image:
         linear-gradient(transparent 0, transparent 31px, rgba(255,255,255,.05) 32px),
@@ -89,56 +87,120 @@
     }
 
     .shell {
-      max-width: 900px;
+      max-width: 1040px;
       margin: 0 auto;
       padding: 24px;
       position: relative;
       z-index: 1;
     }
 
-    .glass {
+    /* HERO CARD */
+    .hero {
+      position: relative;
       background: var(--glass);
       border: 1px solid var(--stroke);
       border-radius: var(--radius);
       backdrop-filter: blur(10px);
       box-shadow: var(--shadow);
-      padding: 32px;
+      padding: clamp(24px, 6vw, 48px);
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "";
+      position: absolute; inset: -20%;
+      background:
+        radial-gradient(40% 30% at 80% 10%, rgba(34,211,238,.12), transparent 60%),
+        radial-gradient(35% 28% at 20% 90%, rgba(139,92,246,.12), transparent 60%);
+      filter: blur(30px) saturate(140%);
+      pointer-events: none;
+      z-index: 0;
     }
 
-    h1 {
-      font-size: 2.4rem;
-      margin-bottom: 0.5rem;
-      background: linear-gradient(90deg, var(--neon-2), var(--neon-1), var(--neon-3));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+    .eyebrow {
+      display:inline-flex; align-items:center; gap:8px;
+      font-size:.9rem; letter-spacing:.08em; text-transform:uppercase;
+      color: var(--muted);
+      background: rgba(255,255,255,.05);
+      border: 1px solid var(--stroke);
+      border-radius: 999px;
+      padding: 6px 10px;
+    }
+
+    h1.hero-title {
+      margin: 12px 0 10px;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.1;
       font-weight: 800;
+      background: linear-gradient(90deg, var(--neon-2), var(--neon-1), var(--neon-3));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
     }
 
-    h2 {
-      font-size: 1.4rem;
-      font-weight: 600;
-      margin-top: 2rem;
-      margin-bottom: 1rem;
-      color: var(--neon-2);
+    p.hero-kicker {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: clamp(1rem, 2.2vw, 1.15rem);
     }
 
-    p {
-      margin-bottom: 1rem;
+    .cta-row {
+      display:flex; flex-wrap:wrap; gap:12px; margin: 18px 0 22px;
+    }
+    .btn {
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      border-radius: 12px; padding: 12px 16px; font-weight: 800; text-decoration:none; cursor:pointer;
+      border:1px solid var(--stroke); background: var(--glass); color: var(--txt);
+      transition: transform .12s ease, box-shadow .12s ease, background .2s ease;
+    }
+    .btn:hover { transform: translateY(-1px) }
+    .btn:active { transform: translateY(0) }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--neon-1), var(--neon-2));
+      color: #0b1020; border: 0; box-shadow: var(--shadow);
+    }
+    .btn-ghost { background: rgba(255,255,255,.05) }
+
+    /* QUICK BENEFITS */
+    .benefits {
+      display:grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 8px;
+    }
+    @media (max-width: 820px){ .benefits { grid-template-columns: 1fr; } }
+    .benefit {
+      display:flex; align-items:flex-start; gap:12px;
+      padding:12px 14px; border:1px solid var(--stroke); border-radius:12px; background: rgba(0,0,0,.08);
+    }
+    .icon {
+      width:36px; height:36px; border-radius:10px; border:1px solid var(--stroke);
+      background:
+        radial-gradient(120% 120% at 30% 20%, var(--neon-2), transparent 55%),
+        radial-gradient(120% 120% at 70% 80%, var(--neon-1), transparent 55%),
+        var(--card);
+      box-shadow: inset 0 0 10px rgba(255,255,255,.06), 0 0 30px rgba(102,252,241,.18);
+      flex:0 0 36px;
+    }
+    .benefit h3 {
+      margin:0; font-size:1.02rem; font-weight:800;
+    }
+    .benefit p {
+      margin:.15rem 0 0; color: var(--muted); font-size:.98rem;
     }
 
-    a {
-      color: var(--neon-2);
-      font-weight: bold;
-      text-decoration: none;
+    /* CONTENT (PL + EN intro as before) */
+    .content {
+      margin-top: 28px;
+      background: var(--glass);
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      padding: 24px;
     }
 
-    a:hover {
-      text-decoration: underline;
-    }
+    h2 { font-size: 1.4rem; font-weight: 600; margin-top: 1.2rem; margin-bottom: .6rem; color: var(--neon-2); }
+    p { margin-bottom: 1rem; }
+    a { color: var(--neon-2); font-weight: bold; text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
     footer {
-      margin-top: 3rem;
+      margin-top: 26px;
       text-align: center;
       color: var(--muted);
       font-size: 0.9rem;
@@ -153,7 +215,7 @@
       cursor: pointer;
       backdrop-filter: blur(8px);
       font-weight: 700;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
     .theme-toggle:hover { transform: translateY(-1px) }
     .theme-toggle:active { transform: translateY(0) }
@@ -165,9 +227,48 @@
   <div class="shell">
     <button class="theme-toggle" id="themeBtn" aria-label="Przełącz motyw">Light / Dark</button>
 
-    <div class="glass">
-      <h1>Trzeźwa z AI</h1>
-      <h2>Technologia w służbie trzeźwości</h2>
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <span class="eyebrow">Trzeźwość • Technologia • Wsparcie</span>
+      <h1 id="hero-title" class="hero-title">Trzeźwość w erze sztucznej inteligencji</h1>
+      <p class="hero-kicker">
+        Praktyczne narzędzia, codzienna motywacja i spersonalizowane wsparcie – tworzone z myślą o Twojej drodze do równowagi.
+      </p>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#o-projekcie">Zacznij swoją podróż</a>
+        <a class="btn btn-ghost" href="policy.html#pl" rel="noopener">📜 Polityka prywatności (PL)</a>
+        <a class="btn btn-ghost" href="policy.html#en" rel="noopener">📜 Privacy Policy (EN)</a>
+      </div>
+
+      <div class="benefits" aria-label="Korzyści">
+        <div class="benefit">
+          <div class="icon" aria-hidden="true"></div>
+          <div>
+            <h3>Świadomość</h3>
+            <p>Naucz się rozpoznawać myśli, emocje i schematy – krok po kroku.</p>
+          </div>
+        </div>
+        <div class="benefit">
+          <div class="icon" aria-hidden="true"></div>
+          <div>
+            <h3>Motywacja</h3>
+            <p>Wsparcie wtedy, gdy jest najtrudniej – mikro‑cele i rytuały dnia.</p>
+          </div>
+        </div>
+        <div class="benefit">
+          <div class="icon" aria-hidden="true"></div>
+          <div>
+            <h3>Narzędzia AI</h3>
+            <p>Ćwiczenia, dziennik i prompt‑przewodniki – prosto do użycia.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTENT -->
+    <section class="content" id="o-projekcie" aria-labelledby="about-title">
+      <h2 id="about-title">Technologia w służbie trzeźwości</h2>
       <p>
         Witaj na stronie <strong>Trzeźwa z AI</strong> – to miejsce, w którym sztuczna inteligencja wspiera drogę do trzeźwości, rozwoju osobistego i głębokiego poznania siebie.
       </p>
@@ -177,20 +278,18 @@
       <p>
         Naszą misją jest prosta idea: wykorzystać AI jako wspierającego towarzysza w drodze do trzeźwości, równowagi psychicznej i wewnętrznej mocy.
       </p>
-      <p>📜 <a href="policy.html">Przeczytaj naszą politykę prywatności</a></p>
 
       <h2>Empowering Sobriety Through Technology</h2>
       <p>
-        Welcome to <strong>Sober with AI</strong> – a place where artificial intelligence meets the journey of self-discovery, recovery, and personal growth.
+        Welcome to <strong>Sober with AI</strong> – a place where artificial intelligence meets the journey of self‑discovery, recovery, and personal growth.
       </p>
       <p>
         Here, we explore tools, techniques, and inspiring stories that help us stay focused, resilient, and mindful every day.
       </p>
       <p>
-        Our mission is simple: to use AI as a supportive companion in the path to sobriety, mental clarity, and self-empowerment.
+        Our mission is simple: to use AI as a supportive companion on the path to sobriety, mental clarity, and self‑empowerment.
       </p>
-      <p>📜 <a href="policy.html">Read our Privacy Policy</a></p>
-    </div>
+    </section>
 
     <footer>
       © 2025 Trzeźwa z AI (Sober with AI) • Host: GitHub Pages

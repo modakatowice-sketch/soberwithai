@@ -88,7 +88,23 @@
     details+details{margin-top:10px}
     summary{cursor:pointer; font-weight:600}
 
-    /* stopka kontaktowa */
+    /* przyciski dla bloku kontaktowego */
+    .btn{display:inline-flex; align-items:center; gap:10px; padding:10px 14px; border-radius:999px; text-decoration:none; font-weight:700; border:1px solid rgba(148,163,184,.18); background:rgba(148,163,184,.10); color:var(--text); transition:transform .12s ease, border-color .12s ease}
+    .btn:hover{transform:translateY(-1px); border-color:rgba(255,255,255,.25)}
+    .btn.primary{background:linear-gradient(135deg, var(--brand-1), var(--brand-2)); color:#fff; border-color:transparent}
+    .btn.ghost{background:rgba(148,163,184,.10)}
+    .cta{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px}
+
+    /* umieszczenie dodatkowej sekcji w PRAWEJ kolumnie siatki */
+    .span-right{grid-column:2}
+    @media (max-width:980px){
+      .grid{grid-template-columns:1fr}
+      .features{grid-template-columns:1fr; gap:12px}
+      .contact .wrap{justify-content:center; text-align:center}
+      .span-right{grid-column:1} /* na mobile jedna kolumna */
+    }
+
+    /* stopka kontaktowa (globalna) */
     .contact{background: rgba(2,6,23,.6); backdrop-filter: blur(6px); border-top:1px solid rgba(255,255,255,.08); margin-top: 56px;}
     .contact .wrap{max-width:1000px; margin:0 auto; padding:20px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;}
     .contact .links{display:flex; gap:12px; flex-wrap:wrap}
@@ -98,12 +114,6 @@
 
     footer{border-top:1px solid rgba(148,163,184,.08)}
     .foot{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:22px 0; color:#9fb3c8; font-size:14px}
-
-    @media (max-width:980px){
-      .grid{grid-template-columns:1fr}
-      .features{grid-template-columns:1fr; gap:12px}
-      .contact .wrap{justify-content:center; text-align:center}
-    }
   </style>
 </head>
 <body>
@@ -200,6 +210,17 @@
           </div>
           <p class="note" style="margin-top:12px">Pro tip: przypnij dziennik do paska zadań w telefonie/kompie. 2–3 krótkie wejścia dziennie wystarczą.</p>
         </div>
+
+        <!-- NOWY BLOK: Napisz do mnie (w prawej kolumnie) -->
+        <div class="section span-right">
+          <h2>Napisz do mnie, jeśli masz problem</h2>
+          <p class="muted">Masz gorszy moment? Coś Cię przytłacza i chcesz się wygadać? Napisz. Nie jestem sztabem antykryzysowym i nie odpowiadam 24/7 — ale każda wiadomość trafi do mnie i <strong>nie zostanie bez odpowiedzi</strong>.</p>
+          <div class="cta" role="group" aria-label="Szybki kontakt">
+            <a class="btn primary" href="mailto:soberwithai@gmail.com" aria-label="Wyślij maila na soberwithai@gmail.com">Wyślij maila</a>
+            <a class="btn ghost" href="https://www.facebook.com/profile.php?id=61579408678645" target="_blank" rel="noopener">Facebook</a>
+          </div>
+          <p class="muted" style="margin-top:8px; font-size:13.5px">Jeśli to nagły kryzys lub zagrożenie — skontaktuj się z lokalnymi numerami alarmowymi / pogotowiem kryzysowym.</p>
+        </div>
       </div>
 
       <!-- DZIENNIK -->
@@ -267,42 +288,74 @@
         </div>
       </div>
 
-     <!-- FAQ -->
-<div class="section" style="margin-top:18px">
-  <h2>FAQ – krótkie odpowiedzi</h2>
+      <!-- FAQ -->
+      <div class="section" style="margin-top:18px">
+        <h2>FAQ – krótkie odpowiedzi</h2>
 
-  <details>
-    <summary>Czy potrzebuję „silnej woli”, żeby zacząć?</summary>
-    <p class="muted">Nie. Potrzebujesz struktury na najbliższe 10 minut i bezpiecznego wsparcia. Dlatego stawiamy na dziennik, checklisty i małe kroki.</p>
-  </details>
+        <details>
+          <summary>Czy potrzebuję „silnej woli”, żeby zacząć?</summary>
+          <p class="muted">Nie. Potrzebujesz struktury na najbliższe 10 minut i bezpiecznego wsparcia. Dlatego stawiamy na dziennik, checklisty i małe kroki.</p>
+        </details>
 
-  <details>
-    <summary>Co jeśli „zawalę” dzień?</summary>
-    <p class="muted">Wracasz do dziennika następnego dnia. Bez kar i nadrabiania. Jeden krok do przodu > perfekcja.</p>
-  </details>
+        <details>
+          <summary>Co jeśli „zawalę” dzień?</summary>
+          <p class="muted">Wracasz do dziennika następnego dnia. Bez kar i nadrabiania. Jeden krok do przodu > perfekcja.</p>
+        </details>
 
-  <details>
-    <summary>Jak łączyć to z terapią / grupą wsparcia?</summary>
-    <p class="muted">Traktuj projekt jako <em>narzędzia dnia codziennego</em> – dziennik, protokoły, ramy decyzji. To może <strong>uzupełniać</strong> terapię lub grupę wsparcia, ale jej nie zastępuje.</p>
-  </details>
+        <details>
+          <summary>Jak łączyć to z terapią / grupą wsparcia?</summary>
+          <p class="muted">Traktuj projekt jako <em>narzędzia dnia codziennego</em> – dziennik, protokoły, ramy decyzji. To może <strong>uzupełniać</strong> terapię lub grupę wsparcia, ale jej nie zastępuje.</p>
+        </details>
 
-  <details>
-    <summary>Czy to jest pomoc kryzysowa 24/7?</summary>
-    <p class="muted">Nie. To nie jest linia interwencyjna. Jeśli jesteś w nagłym kryzysie lub zagrożeniu – skontaktuj się z lokalnymi numerami alarmowymi / pogotowiem kryzysowym. Możesz też napisać na <a href="mailto:soberwithai@gmail.com">soberwithai@gmail.com</a> – wiadomość zostanie przeczytana, ale odpowiedź nie jest natychmiastowa.</p>
-  </details>
+        <details>
+          <summary>Czy to jest pomoc kryzysowa 24/7?</summary>
+          <p class="muted">Nie. To nie jest linia interwencyjna. Jeśli jesteś w nagłym kryzysie lub zagrożeniu – skontaktuj się z lokalnymi numerami alarmowymi / pogotowiem kryzysowym. Możesz też napisać na <a href="mailto:soberwithai@gmail.com">soberwithai@gmail.com</a> – wiadomość zostanie przeczytana, ale odpowiedź nie jest natychmiastowa.</p>
+        </details>
 
-  <details>
-    <summary>Jak często prowadzić dziennik?</summary>
-    <p class="muted">Wystarczy 2–3 krótkie wejścia dziennie (rano / w połowie dnia / wieczorem). Po 7 dniach zobaczysz pierwsze wzorce.</p>
-  </details>
+        <details>
+          <summary>Jak często prowadzić dziennik?</summary>
+          <p class="muted">Wystarczy 2–3 krótkie wejścia dziennie (rano / w połowie dnia / wieczorem). Po 7 dniach zobaczysz pierwsze wzorce.</p>
+        </details>
 
-  <details>
-    <summary>Czy projekt jest płatny?</summary>
-    <p class="muted">Nie – to oddolna inicjatywa społeczna. Materiały są dostępne dla wszystkich.</p>
-  </details>
+        <details>
+          <summary>Czy projekt jest płatny?</summary>
+          <p class="muted">Nie – to oddolna inicjatywa społeczna. Materiały są dostępne dla wszystkich.</p>
+        </details>
 
-  <details>
-    <summary>Co z prywatnością, gdy piszę maila?</summary>
-    <p class="muted">Szanujemy prywatność. Mail trafia na skrzynkę <a href="mailto:soberwithai@gmail.com">soberwithai@gmail.com</a> i nie jest nigdzie publikowany. Nie używamy trackerów ani newslettera.</p>
-  </details>
-</div>
+        <details>
+          <summary>Co z prywatnością, gdy piszę maila?</summary>
+          <p class="muted">Szanujemy prywatność. Mail trafia na skrzynkę <a href="mailto:soberwithai@gmail.com">soberwithai@gmail.com</a> i nie jest nigdzie publikowany. Nie używamy trackerów ani newslettera.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <!-- stopka kontaktowa (spójna z resztą) -->
+  <section class="contact" aria-label="Kontakt i społeczność">
+    <div class="wrap">
+      <div class="brand"><strong>Trzeźwa z AI</strong> <small>(Sober with AI)</small></div>
+      <div class="links">
+        <a class="link" href="mailto:soberwithai@gmail.com" aria-label="Wyślij e‑mail">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z"/></svg>
+          <span>soberwithai@gmail.com</span>
+        </a>
+        <a class="link" href="https://www.facebook.com/profile.php?id=61579408678645" target="_blank" rel="noopener" aria-label="Profil na Facebooku">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M2 10h4v10H2V10zm6 10h7.5a3 3 0 0 0 2.95-2.5l.9-6A3 3 0 0 0 16.4 8H13V6a3 3 0 0 0-3-3h-.2a1 1 0 0 0-1 1l-.3 3.2A3 3 0 0 1 6.5 9H6v9a2 2 0 0 0 2 2Z"/></svg>
+          <span>Facebook</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot container">
+      <span>© <span id="y"></span> Trzeźwa z AI — oddolna inicjatywa społeczna.</span>
+      <span><a href="policy.html#pl" style="color:inherit">Polityka prywatności</a></span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

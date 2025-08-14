@@ -21,45 +21,6 @@
 
   <style>
     :root{
-      --bg-from:#0b1020; /* ciemny granat */
-      --bg-to:#05070e;   /* prawie czarny */
-      --glass:#0f172a;   /* slate-900 */
-      --glass-2:#0b1224; /* ciemniejsza szyba */
-      --text:#e6eef7;    /* jasny */
-      --muted:#9fb3c8;   /* opis */
-      --brand-1:#0ea5e9; /* cyan */
-      --brand-2:#8b5cf6; /* violet */
-      --ring: rgba(14,165,233,.45);
-      --shadow: 0 10px 25px rgba(3,8,20,.6), 0 6px 12px rgba(2,6,23,.4);
-      --radius-2xl: 1.25rem;
-      --radius-3xl: 1.75rem;
-    }
-
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{<!DOCTYPE html>
-<html lang="pl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Trzeźwa z AI (Sober with AI) — Strona główna</title>
-
-  <!-- Meta -->
-  <meta name="theme-color" content="#0f172a" id="theme-color-meta">
-  <meta property="og:title" content="Trzeźwa z AI (Sober with AI) — Strona główna">
-  <meta property="og:description" content="Wsparcie trzeźwości dzięki AI. Zero moralizowania — konkretne narzędzia, struktura i społeczność.">
-  <meta property="og:type" content="website">
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <!-- Favicon (neon SVG inline) -->
-  <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="%230ea5e9"/><stop offset="1" stop-color="%238b5cf6"/></linearGradient></defs><rect width="128" height="128" rx="24" fill="%230b1020"/><path d="M32 92c18-6 28-24 28-44v0c0-6 5-10 10-10s10 4 10 10v0c0 26-12 48-32 56" fill="none" stroke="url(%23g)" stroke-width="10" stroke-linecap="round"/></svg>' />
-
-  <style>
-    :root{
       --bg-from:#0b1020; --bg-to:#05070e;
       --glass:#0f172a; --glass-2:#0b1224;
       --text:#e6eef7; --muted:#9fb3c8;
@@ -136,7 +97,7 @@
       box-shadow:var(--shadow);
       overflow:hidden;
       position:relative;
-      cursor:pointer; /* klik = następny cytat */
+      cursor:pointer;
     }
     .ring{position:absolute; inset:-1px; border-radius:inherit; border:1px solid rgba(14,165,233,.28); mask: linear-gradient(#000, transparent 65%);}
     .panel-inner{position:absolute; inset:0; display:grid; place-items:center; padding:18px}
@@ -177,7 +138,7 @@
       .cta .btn{flex:1 1 auto; justify-content:center}
     }
 
-    /* accessibility */
+    /* accessibility + fixy mikroskopijne */
     @media (prefers-reduced-motion: reduce){
       *, *::before, *::after{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important}
     }
@@ -279,7 +240,6 @@
       { text: 'Jeśli coś jest ważne — uprość to tak, by dało się zrobić dziś.', meta: '' },
     ];
 
-    // wybieramy 5 losowych cytatów (bez powtórek) na bieżącą sesję
     function pickNRandom(arr, n) {
       const copy = arr.slice();
       for (let i = copy.length - 1; i > 0; i--) {
@@ -299,25 +259,20 @@
 
     function show(i){
       const q = rotation[i];
-      // reset klasy do animacji
       figure.classList.remove('fade-in');
-      // wymuszenie reflow, by animacja mogła się ponownie uruchomić
-      void figure.offsetWidth;
+      void figure.offsetWidth; // restart animacji
       qText.textContent = q.text;
       qMeta.textContent = q.meta || '';
       figure.classList.add('fade-in');
     }
 
-    // start od pierwszego z rotacji
     show(current);
 
-    // co 10 sekund następny
     let timer = setInterval(() => {
       current = (current + 1) % rotation.length;
       show(current);
     }, 10000);
 
-    // klik w panel = następny cytat + reset czasu
     panel.addEventListener('click', () => {
       current = (current + 1) % rotation.length;
       show(current);
@@ -328,7 +283,6 @@
       }, 10000);
     });
 
-    // bezpieczeństwo: jeśli użytkownik woli mniej animacji
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){
       figure.classList.remove('fade-in');
       clearInterval(timer);

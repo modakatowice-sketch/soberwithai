@@ -2,96 +2,221 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sober with AI – Start</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Trzeźwa z AI (Sober with AI) – Strona główna</title>
+
+  <meta name="theme-color" content="#0f172a" id="theme-color-meta">
+  <meta property="og:title" content="Trzeźwa z AI (Sober with AI) – Strona główna">
+  <meta property="og:description" content="Wsparcie trzeźwości dzięki AI.">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="%2322d3ee"/><stop offset="1" stop-color="%238b5cf6"/></linearGradient></defs><rect width="128" height="128" rx="28" fill="%230f172a"/><circle cx="44" cy="44" r="26" fill="url(%23g)" opacity=".9"/><circle cx="84" cy="84" r="26" fill="url(%23g)" opacity=".65"/></svg>' />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
   <style>
+    :root {
+      --bg-a:#0a0f2a; --bg-b:#131b3c; --bg-c:#0b3b6f;
+      --neon-1:#8b5cf6; --neon-2:#22d3ee; --neon-3:#60a5fa;
+      --txt:#e6eef7; --muted:#9fb0c7;
+      --glass:rgba(255,255,255,.06);
+      --stroke:rgba(255,255,255,.12);
+      --card:#0f172a;
+      --shadow:0 20px 40px rgba(0,0,0,.35);
+      --radius:18px;
+      --pageBG:#0b122e;
+    }
+
+    body.light {
+      --bg-a:#eef4ff; --bg-b:#e7ecff; --bg-c:#dfe7ff;
+      --txt:#0f172a; --muted:#5b667b;
+      --glass:rgba(0,0,0,.04);
+      --stroke:rgba(0,0,0,.08);
+      --card:#ffffff;
+      --shadow:0 18px 32px rgba(0,0,0,.08);
+      --pageBG:#ffffff;
+    }
+
+    * { box-sizing: border-box }
+    html, body { height: 100% }
+    html { scroll-behavior: smooth }
+
     body {
       margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #0d1b2a, #1b263b);
-      color: #e0e6ed;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      min-height: 100vh;
-      padding: 2rem;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.65;
+      color: var(--txt);
+      background: var(--pageBG);
+      overflow-x: hidden;
+      position: relative;
     }
-    main {
-      max-width: 800px;
+
+    .bg {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(139,92,246,.18), transparent 60%),
+        radial-gradient(900px 600px at 110% 20%, rgba(34,211,238,.16), transparent 60%),
+        linear-gradient(135deg, var(--bg-a), var(--bg-b), var(--bg-c), #0e1b3f);
+      background-size: 220% 220%;
+      animation: bgShift 18s ease-in-out infinite;
+      will-change: background-position;
+      transform: translateZ(0);
     }
+
+    @keyframes bgShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .bg::before,
+    .bg::after {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+    }
+    .bg::before {
+      background-image:
+        linear-gradient(transparent 0, transparent 31px, rgba(255,255,255,.05) 32px),
+        linear-gradient(90deg, transparent 0, transparent 31px, rgba(255,255,255,.05) 32px);
+      background-size: 32px 32px, 32px 32px;
+      opacity: .55;
+    }
+    .bg::after {
+      background:
+        radial-gradient(600px 380px at 12% 10%, rgba(139,92,246,.28), transparent 60%),
+        radial-gradient(520px 340px at 90% 20%, rgba(34,211,238,.22), transparent 65%),
+        radial-gradient(620px 420px at 85% 92%, rgba(96,165,250,.22), transparent 65%);
+      filter: saturate(120%) blur(.2px);
+    }
+
+    .shell {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .glass {
+      background: var(--glass);
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      padding: 32px;
+    }
+
     h1 {
-      font-size: clamp(2rem, 5vw, 3rem);
-      color: #f4d35e;
+      font-size: 2.4rem;
       margin-bottom: 0.5rem;
+      background: linear-gradient(90deg, var(--neon-2), var(--neon-1), var(--neon-3));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 800;
     }
+
     h2 {
-      font-size: clamp(1.2rem, 3vw, 1.6rem);
-      color: #8ecae6;
-      margin-top: 0;
-      margin-bottom: 1.5rem;
-      font-weight: 400;
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: var(--neon-2);
     }
+
     p {
-      line-height: 1.6;
       margin-bottom: 1rem;
     }
+
     a {
-      color: #90e0ef;
-      text-decoration: none;
+      color: var(--neon-2);
       font-weight: bold;
+      text-decoration: none;
     }
+
     a:hover {
       text-decoration: underline;
     }
+
     footer {
-      margin-top: 2rem;
+      margin-top: 3rem;
+      text-align: center;
+      color: var(--muted);
       font-size: 0.9rem;
-      color: #94a3b8;
     }
-    hr {
-      border: none;
-      border-top: 1px solid #334155;
-      margin: 3rem auto;
-      width: 60%;
+
+    .theme-toggle {
+      border: 1px solid var(--stroke);
+      background: var(--glass);
+      color: var(--txt);
+      padding: 8px 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      font-weight: 700;
+      margin-bottom: 20px;
     }
+    .theme-toggle:hover { transform: translateY(-1px) }
+    .theme-toggle:active { transform: translateY(0) }
   </style>
 </head>
 <body>
-  <main>
-    <h1>Sober with AI</h1>
-    <h2>Technologia w służbie trzeźwości</h2>
-    <p>
-      Witaj na stronie <strong>Sober with AI</strong> – to miejsce, w którym sztuczna inteligencja wspiera drogę do trzeźwości, rozwoju osobistego i głębokiego poznania siebie.
-      Znajdziesz tu narzędzia, techniki oraz inspirujące historie, które pomagają zachować skupienie, odporność i jasność umysłu każdego dnia.
-    </p>
-    <p>
-      Naszą misją jest prosta idea: wykorzystać AI jako wspierającego towarzysza w drodze do trzeźwości, równowagi psychicznej i wewnętrznej mocy.
-    </p>
-    <p>
-      📜 <a href="policy.html">Przeczytaj naszą politykę prywatności</a>
-    </p>
+  <div class="bg" aria-hidden="true"></div>
 
-    <hr />
+  <div class="shell">
+    <button class="theme-toggle" id="themeBtn" aria-label="Przełącz motyw">Light / Dark</button>
 
-    <h2>Empowering Sobriety Through Technology</h2>
-    <p>
-      Welcome to <strong>Sober with AI</strong> – a place where artificial intelligence meets the journey of self-discovery,
-      recovery, and personal growth. Here, we explore tools, techniques, and inspiring stories that help us
-      stay focused, resilient, and mindful every day.
-    </p>
-    <p>
-      Our mission is simple: to use AI as a supportive companion in the path to sobriety, mental clarity, and
-      self-empowerment.
-    </p>
-    <p>
-      📜 <a href="policy.html">Read our Privacy Policy</a>
-    </p>
+    <div class="glass">
+      <h1>Trzeźwa z AI</h1>
+      <h2>Technologia w służbie trzeźwości</h2>
+      <p>
+        Witaj na stronie <strong>Trzeźwa z AI</strong> – to miejsce, w którym sztuczna inteligencja wspiera drogę do trzeźwości, rozwoju osobistego i głębokiego poznania siebie.
+      </p>
+      <p>
+        Znajdziesz tu narzędzia, techniki oraz inspirujące historie, które pomagają zachować skupienie, odporność i jasność umysłu każdego dnia.
+      </p>
+      <p>
+        Naszą misją jest prosta idea: wykorzystać AI jako wspierającego towarzysza w drodze do trzeźwości, równowagi psychicznej i wewnętrznej mocy.
+      </p>
+      <p>📜 <a href="policy.html">Przeczytaj naszą politykę prywatności</a></p>
+
+      <h2>Empowering Sobriety Through Technology</h2>
+      <p>
+        Welcome to <strong>Sober with AI</strong> – a place where artificial intelligence meets the journey of self-discovery, recovery, and personal growth.
+      </p>
+      <p>
+        Here, we explore tools, techniques, and inspiring stories that help us stay focused, resilient, and mindful every day.
+      </p>
+      <p>
+        Our mission is simple: to use AI as a supportive companion in the path to sobriety, mental clarity, and self-empowerment.
+      </p>
+      <p>📜 <a href="policy.html">Read our Privacy Policy</a></p>
+    </div>
 
     <footer>
-      © 2025 Sober with AI. All rights reserved.
+      © 2025 Trzeźwa z AI (Sober with AI) • Host: GitHub Pages
     </footer>
-  </main>
+  </div>
+
+  <script>
+    (function(){
+      const meta = document.getElementById('theme-color-meta');
+      const root = document.body;
+      const btn = document.getElementById('themeBtn');
+
+      function applyTheme(t){
+        if(t === 'light'){ root.classList.add('light'); meta.setAttribute('content', '#ffffff'); }
+        else{ root.classList.remove('light'); meta.setAttribute('content', '#0f172a'); }
+        localStorage.setItem('twai-theme', t);
+      }
+
+      const saved = localStorage.getItem('twai-theme');
+      applyTheme(saved || 'dark');
+
+      btn.addEventListener('click', ()=>{
+        const now = root.classList.contains('light') ? 'dark' : 'light';
+        applyTheme(now);
+      });
+    })();
+  </script>
 </body>
 </html>

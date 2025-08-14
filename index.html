@@ -3,342 +3,220 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Trzeźwa z AI (Sober with AI) – Strona główna</title>
+  <title>Trzeźwa z AI (Sober with AI) — Strona główna</title>
 
+  <!-- Meta -->
   <meta name="theme-color" content="#0f172a" id="theme-color-meta">
-  <meta name="description" content="Trzeźwa z AI — praktyczne narzędzia i wsparcie AI na drodze do trzeźwości, równowagi i rozwoju osobistego.">
-  <meta property="og:title" content="Trzeźwa z AI (Sober with AI) – Strona główna">
-  <meta property="og:description" content="Wsparcie trzeźwości dzięki AI.">
+  <meta property="og:title" content="Trzeźwa z AI (Sober with AI) — Strona główna">
+  <meta property="og:description" content="Wsparcie trzeźwości dzięki AI. Zero moralizowania — konkretne narzędzia, struktura i społeczność.">
   <meta property="og:type" content="website">
 
-  <!-- Favicon (neon SVG inline) -->
-  <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="%2322d3ee"/><stop offset="1" stop-color="%238b5cf6"/></linearGradient></defs><rect width="128" height="128" rx="28" fill="%230f172a"/><circle cx="44" cy="44" r="26" fill="url(%23g)" opacity=".9"/><circle cx="84" cy="84" r="26" fill="url(%23g)" opacity=".65"/></svg>' />
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <!-- Favicon (neon SVG inline) -->
+  <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="%230ea5e9"/><stop offset="1" stop-color="%238b5cf6"/></linearGradient></defs><rect width="128" height="128" rx="24" fill="%230b1020"/><path d="M32 92c18-6 28-24 28-44v0c0-6 5-10 10-10s10 4 10 10v0c0 26-12 48-32 56" fill="none" stroke="url(%23g)" stroke-width="10" stroke-linecap="round"/></svg>' />
 
   <style>
-    :root {
-      --bg-a:#0a0f2a; --bg-b:#131b3c; --bg-c:#0b3b6f;
-      --neon-1:#8b5cf6; --neon-2:#22d3ee; --neon-3:#60a5fa;
-      --txt:#e6eef7; --muted:#9fb0c7;
-      --glass:rgba(255,255,255,.06);
-      --stroke:rgba(255,255,255,.12);
-      --card:#0f172a;
-      --shadow:0 20px 40px rgba(0,0,0,.35);
-      --radius:18px;
-      --pageBG:#0b122e;
+    :root{
+      --bg-from:#0b1020; /* ciemny granat */
+      --bg-to:#05070e;   /* prawie czarny */
+      --glass:#0f172a;   /* slate-900 */
+      --glass-2:#0b1224; /* ciemniejsza szyba */
+      --text:#e6eef7;    /* jasny */
+      --muted:#9fb3c8;   /* opis */
+      --brand-1:#0ea5e9; /* cyan */
+      --brand-2:#8b5cf6; /* violet */
+      --ring: rgba(14,165,233,.45);
+      --shadow: 0 10px 25px rgba(3,8,20,.6), 0 6px 12px rgba(2,6,23,.4);
+      --radius-2xl: 1.25rem;
+      --radius-3xl: 1.75rem;
     }
 
-    body.light {
-      --bg-a:#eef4ff; --bg-b:#e7ecff; --bg-c:#dfe7ff;
-      --txt:#0f172a; --muted:#5b667b;
-      --glass:rgba(0,0,0,.04);
-      --stroke:rgba(0,0,0,.08);
-      --card:#ffffff;
-      --shadow:0 18px 32px rgba(0,0,0,.08);
-      --pageBG:#ffffff;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      color:var(--text); background:radial-gradient(1200px 800px at 20% -10%, #13203d 0%, rgba(19,32,61,0) 55%),
+                         radial-gradient(900px 600px at 120% 10%, rgba(139,92,246,.20) 0%, rgba(139,92,246,0) 60%),
+                         linear-gradient(180deg, var(--bg-from) 0%, var(--bg-to) 100%);
+      min-height:100%;
     }
 
-    * { box-sizing: border-box }
-    html, body { height: 100% }
-    html { scroll-behavior: smooth }
+    /* dekoracyjne bloby */
+    .bg-blur{
+      position:fixed; inset:0; pointer-events:none; z-index:-1; filter:blur(60px) saturate(140%);
+    }
+    .blob{position:absolute; width:38vw; height:38vw; border-radius:9999px; opacity:.18; mix-blend:screen;}
+    .blob.one{left:-10vw; top:-6vw; background:radial-gradient(circle at 30% 30%, var(--brand-1), transparent 60%)}
+    .blob.two{right:-8vw; top:-4vw; background:radial-gradient(circle at 70% 40%, var(--brand-2), transparent 60%)}
+    .blob.three{left:20vw; bottom:-14vw; background:radial-gradient(circle at 50% 50%, #22d3ee, transparent 60%); opacity:.12}
 
-    body {
-      margin: 0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      line-height: 1.65;
-      color: var(--txt);
-      background: var(--pageBG);
-      overflow-x: hidden;
-      position: relative;
+    header{
+      position:sticky; top:0; backdrop-filter:saturate(140%) blur(10px);
+      background:linear-gradient(180deg, rgba(6,10,24,.75), rgba(6,10,24,.45) 40%, rgba(6,10,24,0));
+      border-bottom:1px solid rgba(148,163,184,.08);
+      z-index:40;
     }
+    .container{max-width:1100px; margin:0 auto; padding:0 20px}
+    .nav{display:flex; align-items:center; justify-content:space-between; gap:14px; height:64px}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.2px}
+    .logo{width:28px; height:28px; border-radius:8px; background:linear-gradient(135deg,var(--brand-1),var(--brand-2)); box-shadow:0 6px 18px rgba(14,165,233,.35)}
+    .brand span{font-family:"Space Grotesk",Inter,sans-serif}
 
-    /* BACKGROUND */
-    .bg {
-      position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      background:
-        radial-gradient(1200px 600px at 10% -10%, rgba(139,92,246,.18), transparent 60%),
-        radial-gradient(900px 600px at 110% 20%, rgba(34,211,238,.16), transparent 60%),
-        linear-gradient(135deg, var(--bg-a), var(--bg-b), var(--bg-c), #0e1b3f);
-      background-size: 220% 220%;
-      animation: bgShift 18s ease-in-out infinite;
-      will-change: background-position;
-      transform: translateZ(0);
-    }
-    @keyframes bgShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    .bg::before,
-    .bg::after { content:""; position:absolute; inset:0; pointer-events:none }
-    .bg::before {
-      background-image:
-        linear-gradient(transparent 0, transparent 31px, rgba(255,255,255,.05) 32px),
-        linear-gradient(90deg, transparent 0, transparent 31px, rgba(255,255,255,.05) 32px);
-      background-size: 32px 32px, 32px 32px;
-      opacity: .55;
-    }
-    .bg::after {
-      background:
-        radial-gradient(600px 380px at 12% 10%, rgba(139,92,246,.28), transparent 60%),
-        radial-gradient(520px 340px at 90% 20%, rgba(34,211,238,.22), transparent 65%),
-        radial-gradient(620px 420px at 85% 92%, rgba(96,165,250,.22), transparent 65%);
-      filter: saturate(120%) blur(.2px);
+    nav a{color:var(--muted); text-decoration:none; margin-left:18px; font-weight:500}
+    nav a:hover{color:var(--text)}
+
+    .btn{display:inline-flex; align-items:center; gap:10px; padding:12px 18px; border-radius:999px; text-decoration:none; font-weight:600; transition:transform .15s ease, box-shadow .2s ease, background .2s ease;}
+    .btn.primary{background:linear-gradient(135deg, var(--brand-1), var(--brand-2)); color:white; box-shadow:0 8px 24px rgba(14,165,233,.25), inset 0 0 0 1px rgba(255,255,255,.08)}
+    .btn.primary:hover{transform:translateY(-1px)}
+    .btn.ghost{background:rgba(148,163,184,.10); color:var(--text); border:1px solid rgba(148,163,184,.18)}
+
+    main{padding:48px 0 64px}
+    .hero{display:grid; grid-template-columns:1.1fr .9fr; gap:34px; align-items:center}
+    @media (max-width:960px){.hero{grid-template-columns:1fr; gap:26px}}
+
+    .card{
+      background:linear-gradient(180deg, rgba(21,31,55,.85), rgba(12,17,34,.85));
+      border:1px solid rgba(148,163,184,.12);
+      box-shadow:var(--shadow);
+      border-radius:var(--radius-3xl);
+      padding:28px;
     }
 
-    .shell {
-      max-width: 1040px;
-      margin: 0 auto;
-      padding: 24px;
-      position: relative;
-      z-index: 1;
-    }
+    .eyebrow{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; font-size:12px; letter-spacing:.2px; background:rgba(14,165,233,.12); color:#bfe7fb; border:1px solid rgba(14,165,233,.3)}
 
-    /* THEME BUTTON */
-    .theme-toggle {
-      border: 1px solid var(--stroke);
-      background: var(--glass);
-      color: var(--txt);
-      padding: 8px 12px;
-      border-radius: 12px;
-      cursor: pointer;
-      backdrop-filter: blur(8px);
-      font-weight: 700;
-      margin-bottom: 16px;
-      transition: transform .12s ease;
-      min-height: 40px;
-    }
-    .theme-toggle:hover { transform: translateY(-1px) }
-    .theme-toggle:active { transform: translateY(0) }
-    .theme-toggle:focus-visible { outline:2px solid var(--neon-2); outline-offset:2px; }
+    h1{font-family:"Space Grotesk",Inter,sans-serif; font-size:clamp(30px, 5vw, 56px); line-height:1.05; margin:14px 0 12px}
+    .lead{font-size:clamp(15px, 2.2vw, 18px); color:var(--muted); margin:0 0 18px}
 
-    /* HERO CARD */
-    .hero {
-      position: relative;
-      background: var(--glass);
-      border: 1px solid var(--stroke);
-      border-radius: var(--radius);
-      backdrop-filter: blur(10px);
-      box-shadow: var(--shadow);
-      padding: clamp(24px, 6vw, 48px);
-      overflow: hidden;
-    }
-    .hero::after {
-      content: "";
-      position: absolute; inset: -20%;
-      background:
-        radial-gradient(40% 30% at 80% 10%, rgba(34,211,238,.12), transparent 60%),
-        radial-gradient(35% 28% at 20% 90%, rgba(139,92,246,.12), transparent 60%);
-      filter: blur(30px) saturate(140%);
-      pointer-events: none;
-      z-index: 0;
-    }
+    .split{display:grid; grid-template-columns:1fr; gap:14px}
+    .split .en{opacity:.9}
 
-    .eyebrow {
-      display:inline-flex; align-items:center; gap:8px;
-      font-size:.9rem; letter-spacing:.08em; text-transform:uppercase;
-      color: var(--muted);
-      background: rgba(255,255,255,.05);
-      border: 1px solid var(--stroke);
-      border-radius: 999px;
-      padding: 6px 10px;
-    }
+    .cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:18px}
 
-    h1.hero-title {
-      margin: 12px 0 10px;
-      font-size: clamp(2rem, 5vw, 3rem);
-      line-height: 1.1;
-      font-weight: 800;
-      background: linear-gradient(90deg, var(--neon-2), var(--neon-1), var(--neon-3));
-      -webkit-background-clip: text; background-clip: text; color: transparent;
+    /* media panel / ilustracja */
+    .media{position:relative; isolation:isolate}
+    .panel{
+      aspect-ratio: 16/10;
+      background: radial-gradient(120% 120% at 10% 10%, rgba(14,165,233,.22), transparent 50%),
+                  radial-gradient(120% 120% at 90% 90%, rgba(139,92,246,.20), transparent 50%),
+                  linear-gradient(180deg, #0f1b33, #0b1224);
+      border:1px solid rgba(148,163,184,.14);
+      border-radius:var(--radius-3xl);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      position:relative;
     }
-    @media (max-width: 560px){
-      h1.hero-title { line-height: 1.15; }
-      .hero { padding: 20px; }
-    }
+    .glow{position:absolute; inset:0; background:radial-gradient(40% 60% at 50% 0%, rgba(255,255,255,.08), transparent 60%)}
+    .ring{position:absolute; inset:-1px; border-radius:inherit; border:1px solid rgba(14,165,233,.28); mask: linear-gradient(#000, transparent 65%);}
+    .panel-inner{position:absolute; inset:0; display:grid; place-items:center; padding:18px}
+    .panel h3{font-family:"Space Grotesk"; margin:0; font-size:clamp(18px,2.6vw,28px)}
+    .panel p{margin:6px 0 0; color:var(--muted); font-size:14px; text-align:center}
 
-    p.hero-kicker {
-      margin: 0 0 18px;
-      color: var(--muted);
-      font-size: clamp(1rem, 2.2vw, 1.15rem);
-    }
+    /* sekcja features */
+    .features{display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin-top:34px}
+    @media (max-width:900px){.features{grid-template-columns:1fr}}
+    .feat{background:linear-gradient(180deg, rgba(21,31,55,.7), rgba(11,18,36,.7)); border:1px solid rgba(148,163,184,.12); border-radius:var(--radius-2xl); padding:18px}
+    .feat h4{margin:4px 0 8px; font-family:"Space Grotesk"}
+    .feat p{margin:0; color:var(--muted); font-size:14px}
 
-    .cta-row {
-      display:flex; flex-wrap:wrap; gap:12px; margin: 18px 0 22px;
-    }
-    .btn {
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      border-radius: 12px; padding: 12px 16px; font-weight: 800; text-decoration:none; cursor:pointer;
-      border:1px solid var(--stroke); background: var(--glass); color: var(--txt);
-      transition: transform .12s ease, box-shadow .12s ease, background .2s ease;
-      min-height: 44px; /* lepsze UX na mobile */
-    }
-    .btn:hover { transform: translateY(-1px) }
-    .btn:active { transform: translateY(0) }
-    .btn:focus-visible { outline:2px solid var(--neon-2); outline-offset:2px; }
-    .btn-primary {
-      background: linear-gradient(135deg, var(--neon-1), var(--neon-2));
-      color: #0b1020; border: 0; box-shadow: var(--shadow);
-    }
-    .btn-ghost { background: rgba(255,255,255,.05) }
-    .btn-ghost:hover { background: rgba(255,255,255,.08) }
+    footer{border-top:1px solid rgba(148,163,184,.08); margin-top:48px}
+    .foot{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:22px 0; color:var(--muted); font-size:14px}
 
-    @media (max-width: 560px){
-      .cta-row .btn { flex:1 1 100%; }
-    }
-
-    /* QUICK BENEFITS – semantic list */
-    .benefits { list-style:none; padding:0; margin:8px 0 0; display:grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-    @media (max-width: 820px){ .benefits { grid-template-columns: 1fr; } }
-    .benefit {
-      display:flex; align-items:flex-start; gap:12px;
-      padding:12px 14px; border:1px solid var(--stroke); border-radius:12px; background: rgba(0,0,0,.08);
-      min-height:96px;
-    }
-    .icon {
-      width:36px; height:36px; border-radius:10px; border:1px solid var(--stroke);
-      background:
-        radial-gradient(120% 120% at 30% 20%, var(--neon-2), transparent 55%),
-        radial-gradient(120% 120% at 70% 80%, var(--neon-1), transparent 55%),
-        var(--card);
-      box-shadow: inset 0 0 10px rgba(255,255,255,.06), 0 0 30px rgba(102,252,241,.18);
-      flex:0 0 36px;
-    }
-    .benefit h3 { margin:0; font-size:1.02rem; font-weight:800; }
-    .benefit p { margin:.15rem 0 0; color: var(--muted); font-size:.98rem; }
-
-    /* CONTENT CARD */
-    .content {
-      margin-top: 28px;
-      background: var(--glass);
-      border: 1px solid var(--stroke);
-      border-radius: var(--radius);
-      backdrop-filter: blur(10px);
-      box-shadow: var(--shadow);
-      padding: 24px;
-    }
-
-    h2 { font-size: 1.4rem; font-weight: 600; margin-top: 1.2rem; margin-bottom: .6rem; color: var(--neon-2); }
-    p { margin-bottom: 1rem; }
-    a { color: var(--neon-2); font-weight: bold; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-
-    footer {
-      margin-top: 26px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    /* Reduced motion preference */
+    /* accessibility */
     @media (prefers-reduced-motion: reduce){
-      .bg { animation: none; }
-      .btn, .theme-toggle { transition: none; }
+      *, *::before, *::after{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important}
     }
-
-    /* Scroll cue */
-    .scroll-cue { margin-top: 6px; background: rgba(255,255,255,.06); }
-    .scroll-cue:hover { background: rgba(255,255,255,.1); }
   </style>
 </head>
 <body>
-  <div class="bg" aria-hidden="true"></div>
+  <!-- dekoracyjne bloby -->
+  <div class="bg-blur" aria-hidden="true">
+    <div class="blob one"></div>
+    <div class="blob two"></div>
+    <div class="blob three"></div>
+  </div>
 
-  <div class="shell">
-    <button class="theme-toggle" id="themeBtn" aria-label="Przełącz motyw">Light / Dark</button>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Trzeźwa z AI <small style="opacity:.65">(Sober with AI)</small></span>
+      </div>
+      <nav>
+        <a href="index.html">Start</a>
+        <a href="about.html">O&nbsp;mnie</a>
+        <a href="policy.html#pl">Polityka prywatności (PL)</a>
+        <a href="policy.html#en">Privacy Policy (EN)</a>
+      </nav>
+    </div>
+  </header>
 
-    <!-- HERO -->
-    <section class="hero" aria-labelledby="hero-title">
-      <span class="eyebrow">Trzeźwość • Technologia • Wsparcie</span>
-      <h1 id="hero-title" class="hero-title">Trzeźwość w erze sztucznej inteligencji</h1>
-      <p class="hero-kicker">
-        Praktyczne narzędzia, codzienna motywacja i spersonalizowane wsparcie – tworzone z myślą o Twojej drodze do równowagi.
-      </p>
-
-      <div class="cta-row">
-        <a class="btn btn-primary" href="#o-projekcie">Zacznij swoją podróż</a>
-        <a class="btn btn-ghost" href="policy.html#pl" title="Polityka prywatności (po polsku)" rel="noopener">📜 Polityka prywatności (PL)</a>
-        <a class="btn btn-ghost" href="policy.html#en" title="Privacy Policy (in English)" rel="noopener">📜 Privacy Policy (EN)</a>
+  <main class="container">
+    <section class="hero">
+      <div class="card">
+        <span class="eyebrow">Zero moralizowania • 100% narzędzi</span>
+        <h1>Trzeźwość wsparta AI — struktura, którą czujesz w kościach.</h1>
+        <p class="lead">Polski projekt społeczny budowany oddolnie. 
+          Zamiast gadek motywacyjnych — konkret: dziennik, protokoły działania, checklisty, wsparcie i myślenie jak GPT (ale po ludzku).
+        </p>
+        <div class="split">
+          <div class="pl">
+            <strong>Po polsku:</strong> narzędzia do samoregulacji, dziennik godzinowy, przystępne instrukcje i wsparcie bez oceniania.
+          </div>
+          <div class="en">
+            <strong>In English:</strong> same tools and ethos. Pragmatic, non‑judgmental, community‑driven.
+          </div>
+        </div>
+        <div class="cta">
+          <a class="btn primary" href="policy.html#pl">Zobacz zasady & politykę</a>
+          <a class="btn ghost" href="about.html">Poznaj inicjatywę</a>
+        </div>
       </div>
 
-      <ul class="benefits" aria-label="Korzyści">
-        <li class="benefit">
-          <div class="icon" aria-hidden="true"></div>
-          <div>
-            <h3>Świadomość</h3>
-            <p>Naucz się rozpoznawać myśli, emocje i schematy – krok po kroku.</p>
+      <div class="media">
+        <div class="panel">
+          <div class="glow"></div>
+          <div class="ring"></div>
+          <div class="panel-inner">
+            <div>
+              <h3>„Sztab” AI do trzeźwości</h3>
+              <p>Minimalny hałas. Maksimum użyteczności: dziennik, check‑listy, protokoły.
+              </p>
+            </div>
           </div>
-        </li>
-        <li class="benefit">
-          <div class="icon" aria-hidden="true"></div>
-          <div>
-            <h3>Motywacja</h3>
-            <p>Wsparcie wtedy, gdy jest najtrudniej – mikro‑cele i rytuały dnia.</p>
-          </div>
-        </li>
-        <li class="benefit">
-          <div class="icon" aria-hidden="true"></div>
-          <div>
-            <h3>Narzędzia AI</h3>
-            <p>Ćwiczenia, dziennik i prompt‑przewodniki – prosto do użycia.</p>
-          </div>
-        </li>
-      </ul>
-
-      <button class="btn scroll-cue" aria-label="Przewiń do sekcji O projekcie" onclick="document.getElementById('o-projekcie').scrollIntoView({behavior:'smooth'})">↓ Zobacz więcej</button>
+        </div>
+      </div>
     </section>
 
-    <!-- CONTENT -->
-    <section class="content" id="o-projekcie" aria-labelledby="about-title">
-      <h2 id="about-title">Technologia w służbie trzeźwości</h2>
-      <p>
-        Witaj na stronie <strong>Trzeźwa z AI</strong> – to miejsce, w którym sztuczna inteligencja wspiera drogę do trzeźwości, rozwoju osobistego i głębokiego poznania siebie.
-      </p>
-      <p>
-        Znajdziesz tu narzędzia, techniki oraz inspirujące historie, które pomagają zachować skupienie, odporność i jasność umysłu każdego dnia.
-      </p>
-      <p>
-        Naszą misją jest prosta idea: wykorzystać AI jako wspierającego towarzysza w drodze do trzeźwości, równowagi psychicznej i wewnętrznej mocy.
-      </p>
-
-      <h2>Empowering Sobriety Through Technology</h2>
-      <p>
-        Welcome to <strong>Sober with AI</strong> – a place where artificial intelligence meets the journey of self‑discovery, recovery, and personal growth.
-      </p>
-      <p>
-        Here, we explore tools, techniques, and inspiring stories that help us stay focused, resilient, and mindful every day.
-      </p>
-      <p>
-        Our mission is simple: to use AI as a supportive companion on the path to sobriety, mental clarity, and self‑empowerment.
-      </p>
+    <section class="features">
+      <div class="feat">
+        <h4>Narzędzia, nie kazania</h4>
+        <p>Checklisty, protokoły, ramy decyzyjne. Zero wstydu, zero „musisz”. Tylko działanie.</p>
+      </div>
+      <div class="feat">
+        <h4>Dziennik godzinowy</h4>
+        <p>Prosty szkielet dnia: stan psychiczny/fizyczny, relacje, rośliny, cele i sukcesy.</p>
+      </div>
+      <div class="feat">
+        <h4>Myślenie jak GPT (po ludzku)</h4>
+        <p>Uczymy struktury pytań, pracy z hipotezami i szybkich pętli feedbacku.</p>
+      </div>
     </section>
 
     <footer>
-      © 2025 Trzeźwa z AI (Sober with AI) • Host: GitHub Pages
+      <div class="foot container">
+        <span>© <span id="y"></span> Trzeźwa z AI — oddolna inicjatywa społeczna.</span>
+        <span><a href="policy.html#pl" style="color:inherit">Polityka prywatności</a></span>
+      </div>
     </footer>
-  </div>
+  </main>
 
   <script>
-    (function(){
-      const meta = document.getElementById('theme-color-meta');
-      const root = document.body;
-      const btn = document.getElementById('themeBtn');
-
-      function applyTheme(t){
-        if(t === 'light'){ root.classList.add('light'); meta.setAttribute('content', '#ffffff'); }
-        else{ root.classList.remove('light'); meta.setAttribute('content', '#0f172a'); }
-        localStorage.setItem('twai-theme', t);
-      }
-
-      const saved = localStorage.getItem('twai-theme');
-      applyTheme(saved || 'dark');
-
-      btn.addEventListener('click', ()=>{
-        const now = root.classList.contains('light') ? 'dark' : 'light';
-        applyTheme(now);
-      });
-    })();
+    // uzupełnij bieżący rok
+    document.getElementById('y').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>

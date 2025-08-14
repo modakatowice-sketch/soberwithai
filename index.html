@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Polityka prywatności – Trzeźwa z AI (Sober with AI) • v1.1</title>
+  <title>Polityka prywatności – Trzeźwa z AI (Sober with AI) • v1.2</title>
 
   <!-- Open Graph / theming -->
   <meta name="theme-color" content="#0f172a" id="theme-color-meta">
@@ -18,7 +18,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
   <style>
-    /* === v1.1 === */
+    /* === v1.2: tło przeniesione do .bg (fixed) – koniec z paskiem przy 67% === */
     :root{
       /* neon palette */
       --bg-a:#0a0f2a; --bg-b:#131b3c; --bg-c:#0b3b6f;
@@ -32,6 +32,7 @@
       --card:#0f172a;
       --shadow:0 20px 40px rgba(0,0,0,.35);
       --radius:18px;
+      --pageBG:#0b122e; /* fallback na body */
     }
 
     /* Light theme tokens (applied when body.light) */
@@ -42,26 +43,36 @@
       --stroke:rgba(0,0,0,.08);
       --card:#ffffff;
       --shadow:0 18px 32px rgba(0,0,0,.08);
+      --pageBG:#ffffff;
     }
 
     *{box-sizing:border-box}
     html,body{height:100%}
     html{scroll-behavior:smooth}
 
-    /* Animated background + aurora blobs */
+    /* Uproszczone tło na body (bez fixed/animacji) – warstwa .bg renderuje właściwy gradient */
     body{
       margin:0;
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       line-height:1.65;
       color:var(--txt);
+      background: var(--pageBG);
+      overflow-x:hidden;
+      position:relative;
+    }
+
+    /* WARSTWA TŁA – fixed, pełny ekran, bez „attachment: fixed” na body */
+    .bg{
+      position:fixed; inset:0; z-index:0; pointer-events:none;
+      /* główny animowany gradient */
       background:
         radial-gradient(1200px 600px at 10% -10%, rgba(139,92,246,.18), transparent 60%),
         radial-gradient(900px 600px at 110% 20%, rgba(34,211,238,.16), transparent 60%),
         linear-gradient(135deg, var(--bg-a), var(--bg-b), var(--bg-c), #0e1b3f);
       background-size: 220% 220%;
       animation: bgShift 18s ease-in-out infinite;
-      overflow-x:hidden;
-      position:relative;
+      will-change: background-position;          /* anty-artefakt */
+      transform: translateZ(0);                  /* anty-artefakt */
     }
     @keyframes bgShift{
       0% { background-position: 0% 50%; }
@@ -69,15 +80,23 @@
       100%{ background-position: 0% 50%; }
     }
 
-    .blob{position:fixed; pointer-events:none; z-index:0; filter: blur(18px) saturate(130%); opacity:.55;}
-    .blob.one{width:520px; height:520px; left:-140px; top:-120px;
-      background: radial-gradient(60% 60% at 50% 50%, rgba(139,92,246,.45), transparent 70%);
-      animation: float1 22s ease-in-out infinite alternate;}
-    .blob.two{width:520px; height:520px; right:-160px; bottom:-140px;
-      background: radial-gradient(60% 60% at 50% 50%, rgba(34,211,238,.38), transparent 70%);
-      animation: float2 24s ease-in-out infinite alternate;}
-    @keyframes float1{from{transform:translateY(0)}to{transform:translateY(12px)}}
-    @keyframes float2{from{transform:translateY(0)}to{transform:translateY(-10px)}}
+    /* siatka + aurora w pseudo-elementach .bg (jedna warstwa – brak szwu) */
+    .bg::before,
+    .bg::after{content:""; position:absolute; inset:0; pointer-events:none}
+    .bg::before{
+      background-image:
+        linear-gradient(transparent 0, transparent 31px, rgba(255,255,255,.05) 32px),
+        linear-gradient(90deg, transparent 0, transparent 31px, rgba(255,255,255,.05) 32px);
+      background-size:32px 32px, 32px 32px;
+      opacity:.55;
+    }
+    .bg::after{
+      background:
+        radial-gradient(600px 380px at 12% 10%, rgba(139,92,246,.28), transparent 60%),
+        radial-gradient(520px 340px at 90% 20%, rgba(34,211,238,.22), transparent 65%),
+        radial-gradient(620px 420px at 85% 92%, rgba(96,165,250,.22), transparent 65%);
+      filter:saturate(120%) blur(.2px);
+    }
 
     .shell{max-width:1120px; margin:0 auto; padding:24px; position:relative; z-index:1}
 
@@ -109,7 +128,13 @@
     .grid{display:grid; grid-template-columns: 280px 1fr; gap:22px; margin-top:10px}
     @media (max-width:940px){.grid{grid-template-columns:1fr}}
 
-    .glass{background: var(--glass); border:1px solid var(--stroke); border-radius:18px; backdrop-filter: blur(10px); box-shadow: var(--shadow)}
+    .glass{
+      background: var(--glass);
+      border:1px solid var(--stroke);
+      border-radius:var(--radius);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+    }
 
     nav.toc{position:sticky; top:16px; padding:16px}
     nav.toc h3{margin:2px 0 12px; font-size:.95rem; text-transform:uppercase; letter-spacing:.3px; color:var(--muted)}
@@ -142,9 +167,8 @@
   </style>
 </head>
 <body>
-  <!-- neon blobs -->
-  <div class="blob one"></div>
-  <div class="blob two"></div>
+  <!-- WARSTWA TŁA (naprawia pasek przy 67% zoomu) -->
+  <div class="bg" aria-hidden="true"></div>
 
   <div class="shell">
     <header class="site-head">
@@ -285,7 +309,7 @@
       </main>
     </div>
 
-    <footer class="page">Wersja 1.1 • &copy; 2025 Trzeźwa z AI (Sober with AI). Wszelkie prawa zastrzeżone. • Host: GitHub Pages</footer>
+    <footer class="page">Wersja 1.2 • &copy; 2025 Trzeźwa z AI (Sober with AI). Wszelkie prawa zastrzeżone. • Host: GitHub Pages</footer>
   </div>
 
   <button class="top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Do góry</button>

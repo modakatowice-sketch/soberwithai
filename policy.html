@@ -3,459 +3,282 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Polityka prywatności – Trzeźwa z AI (Sober with AI) • v1.3</title>
+  <title>Polityka prywatności — Trzeźwa z AI (Sober with AI)</title>
 
-  <!-- Open Graph / theming -->
+  <!-- Meta -->
   <meta name="theme-color" content="#0f172a" id="theme-color-meta">
-  <meta property="og:title" content="Polityka prywatności – Trzeźwa z AI (Sober with AI)">
-  <meta property="og:description" content="Polityka prywatności projektu Trzeźwa z AI (Sober with AI).">
+  <meta property="og:title" content="Polityka prywatności — Trzeźwa z AI (Sober with AI)">
+  <meta property="og:description" content="Polityka prywatności projektu Trzeźwa z AI. Zero śledzenia poza niezbędnym minimum. Twoje dane – Twoje zasady.">
   <meta property="og:type" content="website">
 
-  <!-- Favicon (neon SVG inline) -->
-  <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="%2322d3ee"/><stop offset="1" stop-color="%238b5cf6"/></linearGradient></defs><rect width="128" height="128" rx="28" fill="%230f172a"/><circle cx="44" cy="44" r="26" fill="url(%23g)" opacity=".9"/><circle cx="84" cy="84" r="26" fill="url(%23g)" opacity=".65"/></svg>' />
-
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      /* neon palette */
-      --bg-a:#0a0f2a; --bg-b:#131b3c; --bg-c:#0b3b6f;
-      --neon-1:#8b5cf6; --neon-2:#22d3ee; --neon-3:#60a5fa;
-      --txt:#e6eef7; --muted:#9fb0c7;
-
-      --glass:rgba(255,255,255,.06);
-      --stroke:rgba(255,255,255,.12);
-      --card:#0f172a;
-      --shadow:0 20px 40px rgba(0,0,0,.35);
-      --radius:18px;
-      --pageBG:#0b122e;
-    }
-
-    /* Light theme tokens (applied when body.light) */
-    body.light{
-      --bg-a:#eef4ff; --bg-b:#e7ecff; --bg-c:#dfe7ff;
-      --txt:#0f172a; --muted:#5b667b;
-      --glass:rgba(0,0,0,.04);
-      --stroke:rgba(0,0,0,.08);
-      --card:#ffffff;
-      --shadow:0 18px 32px rgba(0,0,0,.08);
-      --pageBG:#ffffff;
+      --bg-from:#0b1020; /* ciemny granat */
+      --bg-to:#05070e;   /* prawie czarny */
+      --glass:#0f172a;   /* slate-900 */
+      --glass-2:#0b1224; /* ciemniejsza szyba */
+      --text:#e6eef7;    /* jasny */
+      --muted:#9fb3c8;   /* opis */
+      --brand-1:#0ea5e9; /* cyan */
+      --brand-2:#8b5cf6; /* violet */
+      --ring: rgba(14,165,233,.45);
+      --shadow: 0 10px 25px rgba(3,8,20,.6), 0 6px 12px rgba(2,6,23,.4);
+      --radius-2xl: 1.25rem;
+      --radius-3xl: 1.75rem;
     }
 
     *{box-sizing:border-box}
     html,body{height:100%}
-    html{scroll-behavior:smooth}
-
     body{
-      margin:0;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      line-height:1.65;
-      color:var(--txt);
-      background: var(--pageBG);
-      overflow-x:hidden;
-      position:relative;
+      margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      color:var(--text); background:radial-gradient(1200px 800px at 20% -10%, #13203d 0%, rgba(19,32,61,0) 55%),
+                         radial-gradient(900px 600px at 120% 10%, rgba(139,92,246,.20) 0%, rgba(139,92,246,0) 60%),
+                         linear-gradient(180deg, var(--bg-from) 0%, var(--bg-to) 100%);
+      min-height:100%;
     }
 
-    /* Background layer */
-    .bg{
-      position:fixed; inset:0; z-index:0; pointer-events:none;
-      background:
-        radial-gradient(1200px 600px at 10% -10%, rgba(139,92,246,.18), transparent 60%),
-        radial-gradient(900px 600px at 110% 20%, rgba(34,211,238,.16), transparent 60%),
-        linear-gradient(135deg, var(--bg-a), var(--bg-b), var(--bg-c), #0e1b3f);
-      background-size: 220% 220%;
-      animation: bgShift 18s ease-in-out infinite;
-      will-change: background-position;
-      transform: translateZ(0);
-    }
-    @keyframes bgShift{
-      0% { background-position: 0% 50%; }
-      50%{ background-position: 100% 50%; }
-      100%{ background-position: 0% 50%; }
-    }
+    .bg-blur{position:fixed; inset:0; pointer-events:none; z-index:-1; filter:blur(60px) saturate(140%)}
+    .blob{position:absolute; width:38vw; height:38vw; border-radius:9999px; opacity:.18; mix-blend:screen;}
+    .blob.one{left:-10vw; top:-6vw; background:radial-gradient(circle at 30% 30%, var(--brand-1), transparent 60%)}
+    .blob.two{right:-8vw; top:-4vw; background:radial-gradient(circle at 70% 40%, var(--brand-2), transparent 60%)}
+    .blob.three{left:20vw; bottom:-14vw; background:radial-gradient(circle at 50% 50%, #22d3ee, transparent 60%); opacity:.12}
 
-    .bg::before,
-    .bg::after{content:""; position:absolute; inset:0; pointer-events:none}
-    .bg::before{
-      background-image:
-        linear-gradient(transparent 0, transparent 31px, rgba(255,255,255,.05) 32px),
-        linear-gradient(90deg, transparent 0, transparent 31px, rgba(255,255,255,.05) 32px);
-      background-size:32px 32px, 32px 32px;
-      opacity:.55;
+    header{
+      position:sticky; top:0; backdrop-filter:saturate(140%) blur(10px);
+      background:linear-gradient(180deg, rgba(6,10,24,.75), rgba(6,10,24,.45) 40%, rgba(6,10,24,0));
+      border-bottom:1px solid rgba(148,163,184,.08);
+      z-index:40;
     }
-    .bg::after{
-      background:
-        radial-gradient(600px 380px at 12% 10%, rgba(139,92,246,.28), transparent 60%),
-        radial-gradient(520px 340px at 90% 20%, rgba(34,211,238,.22), transparent 65%),
-        radial-gradient(620px 420px at 85% 92%, rgba(96,165,250,.22), transparent 65%);
-      filter:saturate(120%) blur(.2px);
+    .container{max-width:1000px; margin:0 auto; padding:0 18px}
+    .nav{display:flex; align-items:center; justify-content:space-between; gap:14px; height:64px}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.2px}
+    .logo{width:28px; height:28px; border-radius:8px; background:linear-gradient(135deg,var(--brand-1),var(--brand-2)); box-shadow:0 6px 18px rgba(14,165,233,.35)}
+    .brand span{font-family:"Space Grotesk",Inter,sans-serif}
+
+    nav a{color:var(--muted); text-decoration:none; margin-left:18px; font-weight:500}
+    nav a:hover{color:var(--text)}
+
+    main{padding:42px 0 64px}
+
+    .toolbar{display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-bottom:16px}
+    .chip{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; font-size:13px; color:#cfe8fb; background:rgba(14,165,233,.12); border:1px solid rgba(14,165,233,.3)}
+
+    .btn{display:inline-flex; align-items:center; gap:10px; padding:10px 14px; border-radius:999px; text-decoration:none; font-weight:600; transition:transform .15s ease, box-shadow .2s ease, background .2s ease;}
+    .btn.primary{background:linear-gradient(135deg, var(--brand-1), var(--brand-2)); color:white; box-shadow:0 8px 24px rgba(14,165,233,.25), inset 0 0 0 1px rgba(255,255,255,.08)}
+    .btn.primary:hover{transform:translateY(-1px)}
+    .btn.ghost{background:rgba(148,163,184,.10); color:var(--text); border:1px solid rgba(148,163,184,.18)}
+
+    .card{background:linear-gradient(180deg, rgba(21,31,55,.85), rgba(12,17,34,.85)); border:1px solid rgba(148,163,184,.12); border-radius:var(--radius-3xl); box-shadow:var(--shadow); padding:24px}
+    h1{font-family:"Space Grotesk",Inter,sans-serif; font-size:clamp(28px, 5vw, 48px); line-height:1.05; margin:6px 0 16px}
+    .lead{font-size:clamp(15px, 2.2vw, 18px); color:var(--muted); margin:0 0 18px}
+
+    .content{display:grid; gap:18px}
+    .section{background:linear-gradient(180deg, rgba(21,31,55,.65), rgba(11,18,36,.65)); border:1px solid rgba(148,163,184,.12); border-radius:var(--radius-2xl); padding:18px}
+    .section h2{font-family:"Space Grotesk"; margin:0 0 6px; font-size:clamp(20px,2.6vw,26px)}
+    .section h3{margin:10px 0 6px; font-size:clamp(16px,2.2vw,20px)}
+    .section p, .section li{color:var(--muted); line-height:1.65}
+    .section ul{margin:8px 0 0 20px}
+
+    footer{border-top:1px solid rgba(148,163,184,.08); margin-top:48px}
+    .foot{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:22px 0; color:var(--muted); font-size:14px}
+
+    /* Anchors spacing */
+    .anchor{position:relative;}
+    .anchor::before{content:""; display:block; height:70px; margin-top:-70px; visibility:hidden}
+
+    /* mobile polishments */
+    @media (max-width:900px){
+      .container{padding:0 14px}
+      .nav{height:60px}
+      .foot{flex-direction:column; gap:8px; align-items:flex-start}
     }
-
-    .shell{max-width:1120px; margin:0 auto; padding:24px; position:relative; z-index:1}
-
-    /* header */
-    .site-head{
-      display:flex; align-items:center; justify-content:space-between; gap:14px; padding:6px 8px 14px;
-    }
-    .brandbox{display:flex; align-items:center; gap:14px}
-    .logo{
-      width:46px; height:46px; border-radius:12px; border:1px solid var(--stroke);
-      background:
-        radial-gradient(120% 120% at 30% 20%, var(--neon-2), transparent 55%),
-        radial-gradient(120% 120% at 70% 80%, var(--neon-1), transparent 55%),
-        var(--card);
-      box-shadow: inset 0 0 10px rgba(255,255,255,.06), 0 0 30px rgba(102,252,241,.25);
-    }
-    .brand{font-weight:800; letter-spacing:.3px}
-    .subtitle{color:var(--muted); font-size:.95rem}
-
-    .theme-toggle{
-      border:1px solid var(--stroke); background:var(--glass);
-      color:var(--txt); padding:8px 12px; border-radius:12px; cursor:pointer;
-      backdrop-filter: blur(8px); box-shadow: var(--shadow); font-weight:700;
-      text-decoration:none; display:inline-block;
-    }
-    .theme-toggle:hover{transform:translateY(-1px)}
-    .theme-toggle:active{transform:translateY(0)}
-
-    /* layout glass */
-    .grid{display:grid; grid-template-columns: 280px 1fr; gap:22px; margin-top:10px}
-    @media (max-width:940px){.grid{grid-template-columns:1fr}}
-
-    .glass{
-      background: var(--glass);
-      border:1px solid var(--stroke);
-      border-radius:var(--radius);
-      backdrop-filter: blur(10px);
-      box-shadow: var(--shadow);
+    @media (max-width:560px){
+      .toolbar{gap:6px}
+      .btn{padding:9px 12px}
+      .section{padding:14px}
     }
 
-    nav.toc{position:sticky; top:16px; padding:16px}
-    nav.toc h3{margin:2px 0 12px; font-size:.95rem; text-transform:uppercase; letter-spacing:.3px; color:var(--muted)}
-    nav.toc a{display:block; padding:8px 10px; border-radius:12px; text-decoration:none; color:var(--txt); border:1px solid transparent}
-    nav.toc a:hover{background:rgba(255,255,255,.06); border-color:var(--stroke)}
-    nav.toc .sep{height:1px; background:var(--stroke); margin:10px 0}
-
-    main.card{padding:22px 22px 10px}
-    .title{
-      font-weight:800; font-size:1.9rem; line-height:1.2; margin:4px 0 6px;
-      background:linear-gradient(90deg,var(--neon-2),var(--neon-1),var(--neon-3));
-      -webkit-background-clip:text; background-clip:text; color:transparent;
-    }
-    .eff{color:var(--muted); margin:6px 0 18px}
-
-    section{padding:14px 0 6px; border-top:1px solid var(--stroke); margin-top:14px}
-    section:first-of-type{border-top:none; margin-top:0}
-    h2{margin:10px 0 6px; font-size:1.12rem; font-weight:800}
-    ul{margin:8px 0; padding-left:20px}
-    a{color:var(--neon-2)}
-
-    footer.page{color:var(--muted); text-align:center; padding:18px 8px; font-size:.92rem}
-
-    .top{
-      position:fixed; right:18px; bottom:18px; border:0; border-radius:12px; cursor:pointer;
-      padding:10px 12px; font-weight:700; color:#0b1020;
-      background:linear-gradient(135deg,var(--neon-1),var(--neon-2));
-      box-shadow:var(--shadow)
+    @media (prefers-reduced-motion: reduce){
+      *, *::before, *::after{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important}
     }
   </style>
 </head>
 <body>
-  <!-- WARSTWA TŁA -->
-  <div class="bg" aria-hidden="true"></div>
-
-  <div class="shell">
-    <header class="site-head">
-      <div class="brandbox">
-        <div class="logo" aria-hidden="true"></div>
-        <div>
-          <div class="brand">Trzeźwa z AI • Sober with AI</div>
-          <div class="subtitle">Polityka prywatności projektu prowadzonego hobbystycznie (poza działalnością gospodarczą)</div>
-        </div>
-      </div>
-      <div style="display:flex; gap:10px; align-items:center;">
-        <a href="index.html" class="theme-toggle">← Strona główna</a>
-        <button class="theme-toggle" id="themeBtn" aria-label="Przełącz motyw">Light / Dark</button>
-      </div>
-    </header>
-
-    <div class="grid">
-      <!-- SPIS TREŚCI (PL + EN) -->
-      <nav class="toc glass">
-        <h3>Spis treści (PL)</h3>
-        <a href="#s1">1. Administrator</a>
-        <a href="#s2">2. Zakres danych</a>
-        <a href="#s3">3. Cele przetwarzania</a>
-        <a href="#s4">4. Podstawy prawne</a>
-        <a href="#s5">5. Udostępnianie danych</a>
-        <a href="#s6">6. Cookies</a>
-        <a href="#s7">7. Okres przechowywania</a>
-        <a href="#s8">8. Prawa użytkownika</a>
-        <a href="#s9">9. Zabezpieczenia</a>
-        <a href="#s10">10. Wiek użytkowników</a>
-        <a href="#s11">11. Kontakt</a>
-        <a href="#s12">12. Zmiany polityki</a>
-        <div class="sep"></div>
-        <h3>Table of contents (EN)</h3>
-        <a href="#en1">1. Data Controller</a>
-        <a href="#en2">2. Scope of Data</a>
-        <a href="#en3">3. Purposes of Processing</a>
-        <a href="#en4">4. Legal Basis</a>
-        <a href="#en5">5. Data Sharing</a>
-        <a href="#en6">6. Cookies</a>
-        <a href="#en7">7. Data Retention</a>
-        <a href="#en8">8. Your Rights</a>
-        <a href="#en9">9. Security</a>
-        <a href="#en10">10. Users’ Age</a>
-        <a href="#en11">11. Contact</a>
-        <a href="#en12">12. Changes to the Policy</a>
-        <div class="sep"></div>
-        <a href="#top"><small>↑ Powrót na początek</small></a>
-      </nav>
-
-      <!-- TREŚĆ -->
-      <main id="top" class="card glass">
-
-        <!-- ======== WERSJA POLSKA ======== -->
-        <h1 id="pl" class="title">Polityka prywatności – Trzeźwa z AI (Sober with AI)</h1>
-        <p class="eff">Data wejścia w życie: <strong>14 sierpnia 2025 r.</strong></p>
-
-        <section>
-          <p>Niniejsza Polityka prywatności opisuje zasady przetwarzania danych osobowych i wykorzystywania plików cookies w ramach projektu <strong>„Trzeźwa z AI” (Sober with AI)</strong>, prowadzonego hobbystycznie pod pseudonimem <strong>„Trzeźwa z AI”</strong>, niezwiązanego z działalnością gospodarczą. Projekt nie stanowi usługi świadczonej w ramach przedsiębiorstwa.</p>
-        </section>
-
-        <section id="s1">
-          <h2>1. Administrator danych osobowych</h2>
-          <p>Administratorem danych osobowych jest <strong>„Trzeźwa z AI” (Sober with AI)</strong>.<br>
-            📧 Kontakt: <a href="mailto:soberwithai@gmail.com">soberwithai@gmail.com</a></p>
-        </section>
-
-        <section id="s2">
-          <h2>2. Zakres przetwarzanych danych</h2>
-          <ul>
-            <li>adres e-mail podany dobrowolnie w celu kontaktu lub subskrypcji treści,</li>
-            <li>dane podane w treści wiadomości (np. imię, pseudonim),</li>
-            <li>dane techniczne, takie jak adres IP, typ przeglądarki, pliki cookies (o ile są używane).</li>
-          </ul>
-        </section>
-
-        <section id="s3">
-          <h2>3. Cele przetwarzania danych</h2>
-          <ul>
-            <li>odpowiedzi na przesłane zapytania,</li>
-            <li>utrzymanie kontaktu z odbiorcami projektu,</li>
-            <li>analiza statystyk odwiedzin strony/profilu,</li>
-            <li>zapewnienie bezpieczeństwa i prawidłowego działania strony.</li>
-          </ul>
-        </section>
-
-        <section id="s4">
-          <h2>4. Podstawa prawna przetwarzania</h2>
-          <ul>
-            <li><strong>art. 6 ust. 1 lit. a RODO</strong> – zgoda osoby, której dane dotyczą (np. wysyłając e‑mail),</li>
-            <li><strong>art. 6 ust. 1 lit. f RODO</strong> – uzasadniony interes administratora (np. ochrona przed nadużyciami, statystyki).</li>
-          </ul>
-        </section>
-
-        <section id="s5">
-          <h2>5. Udostępnianie danych</h2>
-          <p>Dane nie są sprzedawane ani przekazywane podmiotom trzecim, chyba że:</p>
-          <ul>
-            <li>wymaga tego prawo,</li>
-            <li>użytkownik wyrazi na to zgodę.</li>
-          </ul>
-        </section>
-
-        <section id="s6">
-          <h2>6. Pliki cookies</h2>
-          <p>Strona/profil może wykorzystywać pliki cookies w celu:</p>
-          <ul>
-            <li>poprawy działania strony,</li>
-            <li>analizy statystyk odwiedzin (np. Google Analytics – dostawca Google LLC, USA),</li>
-            <li>zapamiętywania ustawień użytkownika.</li>
-          </ul>
-          <p>Korzystanie z Google Analytics może wiązać się z przekazywaniem danych poza Europejski Obszar Gospodarczy (EOG), w tym do USA, z zachowaniem odpowiednich mechanizmów ochrony danych.</p>
-          <p>Użytkownik może w każdej chwili wyłączyć obsługę cookies w ustawieniach swojej przeglądarki.</p>
-        </section>
-
-        <section id="s7">
-          <h2>7. Czas przechowywania danych</h2>
-          <p>Dane będą przechowywane:</p>
-          <ul>
-            <li>do momentu wycofania zgody,</li>
-            <li>lub przez okres niezbędny do realizacji celu, dla którego zostały zebrane.</li>
-          </ul>
-        </section>
-
-        <section id="s8">
-          <h2>8. Prawa użytkownika</h2>
-          <ul>
-            <li>dostępu do swoich danych,</li>
-            <li>ich sprostowania,</li>
-            <li>usunięcia,</li>
-            <li>ograniczenia przetwarzania,</li>
-            <li>przeniesienia danych,</li>
-            <li>wniesienia sprzeciwu wobec przetwarzania,</li>
-            <li>cofnięcia zgody w dowolnym momencie.</li>
-          </ul>
-        </section>
-
-        <section id="s9">
-          <h2>9. Zabezpieczenia danych</h2>
-          <p>Administrator stosuje odpowiednie środki techniczne i organizacyjne, aby chronić dane osobowe przed utratą, zmianą, nieuprawnionym dostępem lub ujawnieniem.</p>
-        </section>
-
-        <section id="s10">
-          <h2>10. Wiek użytkowników</h2>
-          <p>Treści projektu nie są przeznaczone dla osób poniżej 16 roku życia. Osoby poniżej tego wieku powinny korzystać z treści wyłącznie za zgodą rodzica lub opiekuna prawnego.</p>
-        </section>
-
-        <section id="s11">
-          <h2>11. Kontakt w sprawach prywatności</h2>
-          <p>📧 <a href="mailto:soberwithai@gmail.com">soberwithai@gmail.com</a></p>
-        </section>
-
-        <section id="s12">
-          <h2>12. Zmiany polityki</h2>
-          <p>Polityka prywatności może być aktualizowana w celu dostosowania jej do zmian w prawie lub sposobie działania projektu. O wszelkich zmianach użytkownicy zostaną poinformowani poprzez publikację nowej wersji na stronie/profilu.</p>
-        </section>
-
-        <hr style="margin:40px 0; border:1px solid var(--stroke);" />
-
-        <!-- ======== WERSJA ANGIELSKA ======== -->
-        <h1 id="en" class="title">Privacy Policy – Sober with AI</h1>
-        <p class="eff">Effective date: <strong>August 14, 2025</strong></p>
-
-        <section>
-          <p>This Privacy Policy describes the principles for processing personal data and the use of cookies within the <strong>"Sober with AI"</strong> project, operated non‑commercially under the pseudonym <strong>"Sober with AI"</strong>. This is a personal hobby project and does not constitute a service provided in the course of business.</p>
-        </section>
-
-        <section id="en1">
-          <h2>1. Data Controller</h2>
-          <p>The data controller is <strong>"Sober with AI"</strong>.<br>
-            📧 Contact: <a href="mailto:soberwithai@gmail.com">soberwithai@gmail.com</a></p>
-        </section>
-
-        <section id="en2">
-          <h2>2. Scope of Data Processed</h2>
-          <ul>
-            <li>email address provided voluntarily for contact or content subscription,</li>
-            <li>information contained in the message (e.g., name, pseudonym),</li>
-            <li>technical data such as IP address, browser type, and cookies (if used).</li>
-          </ul>
-        </section>
-
-        <section id="en3">
-          <h2>3. Purposes of Processing</h2>
-          <ul>
-            <li>responding to inquiries,</li>
-            <li>maintaining communication with the project audience,</li>
-            <li>analyzing website/profile visit statistics,</li>
-            <li>ensuring proper website functionality and security.</li>
-          </ul>
-        </section>
-
-        <section id="en4">
-          <h2>4. Legal Basis</h2>
-          <ul>
-            <li><strong>Article 6(1)(a) GDPR</strong> – consent of the data subject (e.g., by sending an email),</li>
-            <li><strong>Article 6(1)(f) GDPR</strong> – legitimate interests of the controller (e.g., abuse prevention, analytics).</li>
-          </ul>
-        </section>
-
-        <section id="en5">
-          <h2>5. Data Sharing</h2>
-          <p>Data will not be sold or shared with third parties unless:</p>
-          <ul>
-            <li>required by law, or</li>
-            <li>you provide explicit consent.</li>
-          </ul>
-        </section>
-
-        <section id="en6">
-          <h2>6. Cookies</h2>
-          <p>The website/profile may use cookies for:</p>
-          <ul>
-            <li>improving website performance,</li>
-            <li>analyzing visit statistics (e.g., Google Analytics – provider: Google LLC, USA),</li>
-            <li>remembering user preferences.</li>
-          </ul>
-          <p>Use of Google Analytics may involve transferring data outside the European Economic Area (EEA), including to the USA, under appropriate data protection mechanisms.</p>
-          <p>You can disable cookies at any time in your browser settings.</p>
-        </section>
-
-        <section id="en7">
-          <h2>7. Data Retention</h2>
-          <p>Data will be stored:</p>
-          <ul>
-            <li>until consent is withdrawn, or</li>
-            <li>for the period necessary to achieve the purpose for which it was collected.</li>
-          </ul>
-        </section>
-
-        <section id="en8">
-          <h2>8. Your Rights</h2>
-          <ul>
-            <li>access your data,</li>
-            <li>rectify it,</li>
-            <li>erase it,</li>
-            <li>restrict processing,</li>
-            <li>data portability,</li>
-            <li>object to processing,</li>
-            <li>withdraw consent at any time.</li>
-          </ul>
-        </section>
-
-        <section id="en9">
-          <h2>9. Security</h2>
-          <p>The controller applies appropriate technical and organizational measures to protect personal data against loss, alteration, unauthorized access, or disclosure.</p>
-        </section>
-
-        <section id="en10">
-          <h2>10. Users’ Age</h2>
-          <p>The project’s content is not intended for persons under the age of 16. Individuals below this age should access the content only with the consent of a parent or legal guardian.</p>
-        </section>
-
-        <section id="en11">
-          <h2>11. Contact</h2>
-          <p>📧 <a href="mailto:soberwithai@gmail.com">soberwithai@gmail.com</a></p>
-        </section>
-
-        <section id="en12">
-          <h2>12. Changes to the Policy</h2>
-          <p>This Privacy Policy may be updated to reflect changes in law or in how the project operates. Any updates will be published as a new version on the website/profile.</p>
-        </section>
-
-      </main>
-    </div>
-
-    <footer class="page">Wersja 1.3 • &copy; 2025 Trzeźwa z AI (Sober with AI). Wszelkie prawa zastrzeżone. • Host: GitHub Pages</footer>
+  <!-- dekoracyjne bloby -->
+  <div class="bg-blur" aria-hidden="true">
+    <div class="blob one"></div>
+    <div class="blob two"></div>
+    <div class="blob three"></div>
   </div>
 
-  <button class="top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Do góry</button>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Trzeźwa z AI <small style="opacity:.65">(Sober with AI)</small></span>
+      </div>
+      <nav>
+        <a href="index.html">Start</a>
+        <a href="about.html">O&nbsp;mnie</a>
+        <a href="#pl">PL</a>
+        <a href="#en">EN</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="toolbar">
+      <span class="chip">Polityka prywatności • Privacy Policy</span>
+      <a class="btn ghost" href="index.html">← Powrót do strony głównej</a>
+      <a class="btn primary" href="#pl">Wersja PL</a>
+      <a class="btn ghost" href="#en">Version EN</a>
+    </div>
+
+    <!-- ========================= PL ========================= -->
+    <section id="pl" class="anchor card">
+      <h1>Polityka prywatności (PL)</h1>
+      <p class="lead">Dbamy o minimum danych i maksimum przejrzystości. Ta strona działa statycznie na GitHub Pages, bez ukrytych trackerów ani marketingu.</p>
+
+      <div class="content">
+        <div class="section">
+          <h2>1. Administrator danych</h2>
+          <p>Administratorem Twoich danych jest projekt <strong>„Trzeźwa z AI (Sober with AI)”</strong> prowadzony hobbystycznie przez osobę fizyczną. Kontakt: poprzez profil „Trzeźwa z AI” (np. Facebook) lub adres e‑mail wskazany na stronie głównej.</p>
+        </div>
+
+        <div class="section">
+          <h2>2. Zakres i źródła danych</h2>
+          <p>W ramach tej witryny nie zbieramy danych osobowych, poza informacjami technicznymi wynikającymi z działania przeglądarki i hostingu (np. adres IP w logach serwera). Nie ma formularzy, newslettera ani systemu kont użytkowników.</p>
+        </div>
+
+        <div class="section">
+          <h2>3. Podstawa prawna (RODO/GDPR)</h2>
+          <ul>
+            <li>Art. 6 ust. 1 lit. f RODO – uzasadniony interes administratora: zapewnienie bezpieczeństwa, diagnostyka błędów, statystyki techniczne hostingu.</li>
+            <li>Jeśli napiszesz do nas wiadomość (np. przez e‑mail/FB), podstawą będzie art. 6 ust. 1 lit. a (zgoda) lub lit. f (korespondencja i odpowiedź).</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>4. Pliki cookies i technologie podobne</h2>
+          <ul>
+            <li>Serwis nie wykorzystuje własnych cookies śledzących.</li>
+            <li>GitHub Pages jako dostawca hostingu może stosować techniczne mechanizmy niezbędne do świadczenia usługi (np. balansowanie ruchu). Szczegóły – w politykach dostawcy hostingu.</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>5. Odbiorcy danych / podmioty przetwarzające</h2>
+          <p>Dane techniczne mogą być przetwarzane przez dostawcę hostingu (GitHub Pages / GitHub, Inc.). Jeżeli korzystasz z linków do zewnętrznych serwisów (np. Facebook, Patronite), zastosowanie mają ich własne polityki prywatności.</p>
+        </div>
+
+        <div class="section">
+          <h2>6. Okres przechowywania</h2>
+          <p>Dane techniczne w logach są przechowywane przez okres niezbędny do zapewnienia bezpieczeństwa i utrzymania serwisu, zgodnie z praktyką dostawcy hostingu.</p>
+        </div>
+
+        <div class="section">
+          <h2>7. Twoje prawa</h2>
+          <ul>
+            <li>dostęp do danych, ich sprostowanie, usunięcie, ograniczenie przetwarzania,</li>
+            <li>sprzeciw wobec przetwarzania opartego na uzasadnionym interesie,</li>
+            <li>skarga do organu nadzorczego (PUODO – uodo.gov.pl) w razie naruszenia.</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>8. Bezpieczeństwo</h2>
+          <p>Serwis działa w modelu statycznym (brak bazy danych i logowania). Dbamy o aktualność plików i minimalizację powierzchni ataku. Mimo to pamiętaj, że transmisja danych w sieci nigdy nie jest w 100% wolna od ryzyka.</p>
+        </div>
+
+        <div class="section">
+          <h2>9. Zmiany dokumentu</h2>
+          <p>Polityka może być aktualizowana, aby odzwierciedlać zmiany w serwisie lub przepisach. Data ostatniej aktualizacji: <span id="lastUpdatedPl"></span>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= EN ========================= -->
+    <section id="en" class="anchor card" style="margin-top:22px">
+      <h1>Privacy Policy (EN)</h1>
+      <p class="lead">We collect the bare minimum and keep things transparent. This website is a static GitHub Pages site – no hidden trackers or marketing pixels.</p>
+
+      <div class="content">
+        <div class="section">
+          <h2>1. Data Controller</h2>
+          <p>The controller is the hobby project <strong>“Trzeźwa z AI (Sober with AI)”</strong>. Contact via the “Trzeźwa z AI” social profile (e.g., Facebook) or the email address shown on the homepage.</p>
+        </div>
+
+        <div class="section">
+          <h2>2. Scope & sources of data</h2>
+          <p>We do not collect personal data on this website, except for technical information coming from your browser and hosting (e.g., IP addresses in server logs). There are no forms, newsletters, or user accounts.</p>
+        </div>
+
+        <div class="section">
+          <h2>3. Legal bases (GDPR)</h2>
+          <ul>
+            <li>Art. 6(1)(f) GDPR – our legitimate interests: security, error diagnostics, hosting technical statistics.</li>
+            <li>If you contact us (email/FB), the basis is Art. 6(1)(a) (consent) or 6(1)(f) (correspondence and replies).</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>4. Cookies & similar tech</h2>
+          <ul>
+            <li>This site does not use first‑party tracking cookies.</li>
+            <li>GitHub Pages (hosting) may use technical mechanisms required to provide the service (e.g., traffic balancing). Please check their privacy policies for details.</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>5. Recipients / processors</h2>
+          <p>Technical data may be processed by the hosting provider (GitHub Pages / GitHub, Inc.). If you follow links to external services (e.g., Facebook, Patronite), their own privacy policies apply.</p>
+        </div>
+
+        <div class="section">
+          <h2>6. Retention</h2>
+          <p>Technical logs are stored only as long as necessary to ensure security and maintain the service, according to the hosting provider’s practices.</p>
+        </div>
+
+        <div class="section">
+          <h2>7. Your rights</h2>
+          <ul>
+            <li>access, rectification, erasure, restriction,</li>
+            <li>objection to processing based on legitimate interests,</li>
+            <li>complaint to the supervisory authority if your rights are infringed.</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>8. Security</h2>
+          <p>This is a static site (no database or login). We keep files updated and the attack surface minimal. Still, data transmission over the Internet can never be 100% risk‑free.</p>
+        </div>
+
+        <div class="section">
+          <h2>9. Changes</h2>
+          <p>This policy may be updated to reflect changes in the site or legislation. Last updated: <span id="lastUpdatedEn"></span>.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="foot container">
+        <span>© <span id="y"></span> Trzeźwa z AI — oddolna inicjatywa społeczna.</span>
+        <span><a href="#pl" style="color:inherit">Polityka (PL)</a> · <a href="#en" style="color:inherit">Policy (EN)</a></span>
+      </div>
+    </footer>
+  </main>
 
   <script>
-    // Theme toggle with persistence + meta theme-color sync
-    (function(){
-      const meta = document.getElementById('theme-color-meta');
-      const root = document.body;
-      const btn = document.getElementById('themeBtn');
-
-      function applyTheme(t){
-        if(t === 'light'){ root.classList.add('light'); meta.setAttribute('content', '#ffffff'); }
-        else{ root.classList.remove('light'); meta.setAttribute('content', '#0f172a'); }
-        localStorage.setItem('twai-theme', t);
-      }
-
-      const saved = localStorage.getItem('twai-theme');
-      applyTheme(saved || 'dark');
-
-      btn.addEventListener('click', ()=>{
-        const now = root.classList.contains('light') ? 'dark' : 'light';
-        applyTheme(now);
-      });
-    })();
+    // bieżący rok i daty aktualizacji
+    document.getElementById('y').textContent = new Date().getFullYear();
+    const today = new Date().toISOString().slice(0,10);
+    document.getElementById('lastUpdatedPl').textContent = today;
+    document.getElementById('lastUpdatedEn').textContent = today;
   </script>
 </body>
 </html>

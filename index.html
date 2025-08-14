@@ -33,11 +33,11 @@
     *{box-sizing:border-box}
     html,body{height:100%}
 
-    /* --- TŁO: wygładzone, bez "paska" --- */
+    /* TŁO: bez “paska” */
     body{
       margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
       color:var(--text);
-      background-color:#0b1020; /* bezpieczny kolor bazowy */
+      background-color:#0b1020;
       background-image:
         radial-gradient(1200px 800px at 20% -10%, rgba(19,32,61,1) 0%, rgba(19,32,61,0) 60%),
         radial-gradient(900px 600px at 120% 10%, rgba(139,92,246,.18) 0%, rgba(139,92,246,0) 65%),
@@ -46,6 +46,8 @@
       background-attachment:fixed;
       background-size:cover;
       min-height:100%;
+      overflow-x:hidden;
+      -webkit-text-size-adjust:100%;
     }
 
     /* dekoracyjne bloby */
@@ -73,4 +75,273 @@
 
     .btn{display:inline-flex; align-items:center; gap:10px; padding:12px 18px; border-radius:999px; text-decoration:none; font-weight:600}
     .btn.primary{background:linear-gradient(135deg, var(--brand-1), var(--brand-2)); color:white}
-    .btn.ghost{background:rgba(148,163,184,.10); color:var(--text); border:1px
+    .btn.ghost{background:rgba(148,163,184,.10); color:var(--text); border:1px solid rgba(148,163,184,.18)}
+
+    main{padding:48px 0 64px}
+    .hero{display:grid; grid-template-columns:1.1fr .9fr; gap:34px; align-items:center}
+    .card{
+      background:linear-gradient(180deg, rgba(21,31,55,.85), rgba(12,17,34,.85));
+      border:1px solid rgba(148,163,184,.12);
+      box-shadow:var(--shadow);
+      border-radius:var(--radius-3xl);
+      padding:28px;
+    }
+    .eyebrow{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; font-size:12px; background:rgba(14,165,233,.12); color:#bfe7fb}
+
+    h1{font-family:"Space Grotesk",Inter,sans-serif; font-size:clamp(30px, 5vw, 56px); margin:14px 0 12px; line-height:1.05}
+    .lead{font-size:clamp(15px, 2.2vw, 18px); color:var(--muted); margin:0 0 18px}
+
+    .split{display:grid; grid-template-columns:1fr; gap:14px}
+    .cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:18px}
+
+    /* panel (cytaty) */
+    .media{position:relative}
+    .panel{
+      aspect-ratio: 16/10;
+      background: radial-gradient(120% 120% at 10% 10%, rgba(14,165,233,.22), transparent 50%),
+                  radial-gradient(120% 120% at 90% 90%, rgba(139,92,246,.20), transparent 50%),
+                  linear-gradient(180deg, #0f1b33, #0b1224);
+      border:1px solid rgba(148,163,184,.14);
+      border-radius:var(--radius-3xl);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      position:relative;
+      cursor:pointer;
+    }
+    .ring{position:absolute; inset:-1px; border-radius:inherit; border:1px solid rgba(14,165,233,.28); mask: linear-gradient(#000, transparent 65%);}
+    .panel-inner{position:absolute; inset:0; display:grid; place-items:center; padding:18px}
+    .quote{max-width:520px; margin:0; text-align:left}
+    .quote blockquote{
+      margin:0; font-family:"Space Grotesk",Inter,sans-serif;
+      font-size:clamp(18px,2.6vw,24px); line-height:1.25; letter-spacing:.2px;
+      text-wrap:balance; hyphens:auto;
+    }
+    .quote figcaption{margin-top:8px; color:var(--muted); font-size:14px}
+
+    /* animacja fade */
+    .fade-in{animation:fade .6s ease both}
+    @keyframes fade{from{opacity:.001; transform:translateY(4px)} to{opacity:1; transform:translateY(0)}}
+
+    /* sekcja features */
+    .features{display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin-top:34px}
+    .feat{background:linear-gradient(180deg, rgba(21,31,55,.7), rgba(11,18,36,.7)); border:1px solid rgba(148,163,184,.12); border-radius:var(--radius-2xl); padding:18px}
+    .feat h4{margin:4px 0 8px; font-family:"Space Grotesk"}
+    .feat p{margin:0; color:var(--muted); font-size:14px}
+
+    footer{border-top:1px solid rgba(148,163,184,.08); margin-top:48px}
+    .foot{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:22px 0; color:var(--muted); font-size:14px; flex-wrap:wrap}
+
+    /* stopka kontaktowa */
+    .contact{
+      background: rgba(2,6,23,.6);
+      backdrop-filter: blur(6px);
+      border-top:1px solid rgba(255,255,255,.08);
+      margin-top: 48px;
+    }
+    .contact .wrap{
+      max-width:1100px; margin:0 auto; padding:20px;
+      display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+    }
+    .contact .links{display:flex; gap:12px; flex-wrap:wrap}
+    .contact .link{
+      display:inline-flex; align-items:center; gap:8px;
+      color:#dbe7ff; text-decoration:none; padding:8px 12px;
+      border-radius:10px; border:1px solid rgba(255,255,255,.08);
+      background: rgba(15,23,42,.5);
+      transition:.12s ease;
+    }
+    .contact .link:hover{transform:translateY(-1px); border-color: rgba(255,255,255,.2)}
+    .contact .brand{color:#e6ecff; display:flex; align-items:center; gap:10px}
+    .contact .brand small{opacity:.7}
+
+    /* Mobile */
+    @media (max-width:960px){
+      .container{padding:0 14px}
+      .hero{grid-template-columns:1fr; gap:20px}
+      .nav{min-height:56px}
+      nav{gap:10px}
+      .panel{aspect-ratio: 16/11}
+    }
+    @media (max-width:560px){
+      main{padding:34px 0 48px}
+      .card{padding:18px}
+      .features{grid-template-columns:1fr; gap:12px}
+      .panel{aspect-ratio: 16/12}
+      .cta .btn{flex:1 1 auto; justify-content:center}
+      .contact .wrap{justify-content:center; text-align:center}
+    }
+
+    /* reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      *, *::before, *::after{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important}
+    }
+  </style>  <!-- ← upewnij się, że TEN TAG ISTNIEJE -->
+</head>
+<body>
+  <!-- dekoracyjne bloby -->
+  <div class="bg-blur" aria-hidden="true">
+    <div class="blob one"></div>
+    <div class="blob two"></div>
+    <div class="blob three"></div>
+  </div>
+
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Trzeźwa z AI <small style="opacity:.65">(Sober with AI)</small></span>
+      </div>
+      <nav>
+        <a href="index.html">Start</a>
+        <a href="about.html">O&nbsp;mnie</a>
+        <a href="policy.html#pl">Polityka prywatności (PL)</a>
+        <a href="policy.html#en">Privacy Policy (EN)</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="card">
+        <span class="eyebrow">Zero moralizowania • 100% narzędzi</span>
+        <h1>Trzeźwość wsparta AI — struktura, którą czujesz w kościach.</h1>
+        <p class="lead">Polski projekt społeczny budowany oddolnie. 
+          Zamiast gadek motywacyjnych — konkret: dziennik, protokoły działania, checklisty, wsparcie i myślenie jak GPT (ale po ludzku).
+        </p>
+        <div class="split">
+          <div class="pl"><strong>Po polsku:</strong> narzędzia do samoregulacji, dziennik godzinowy, przystępne instrukcje i wsparcie bez oceniania.</div>
+          <div class="en"><strong>In English:</strong> same tools and ethos. Pragmatic, non‑judgmental, community‑driven.</div>
+        </div>
+        <div class="cta">
+          <a class="btn primary" href="policy.html#pl">Zobacz zasady & politykę</a>
+          <a class="btn ghost" href="about.html">Poznaj inicjatywę</a>
+        </div>
+      </div>
+
+      <div class="media">
+        <div class="panel" id="quotePanel" title="Kliknij, aby zmienić cytat">
+          <div class="ring" aria-hidden="true"></div>
+          <div class="panel-inner">
+            <figure class="quote fade-in" aria-live="polite">
+              <blockquote id="qText">„Sztab” AI do trzeźwości. Minimalny hałas. Maksimum użyteczności: dziennik, check‑listy, protokoły.</blockquote>
+              <figcaption id="qMeta">— Trzeźwa z AI</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="feat">
+        <h4>Narzędzia, nie kazania</h4>
+        <p>Checklisty, protokoły, ramy decyzyjne. Zero wstydu, zero „musisz”. Tylko działanie.</p>
+      </div>
+      <div class="feat">
+        <h4>Dziennik godzinowy</h4>
+        <p>Prosty szkielet dnia: stan psychiczny/fizyczny, relacje, rośliny, cele i sukcesy.</p>
+      </div>
+      <div class="feat">
+        <h4>Myślenie jak GPT (po ludzku)</h4>
+        <p>Uczymy struktury pytań, pracy z hipotezami i szybkich pętli feedbacku.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Sekcja kontaktowa -->
+  <section class="contact" aria-label="Kontakt i społeczność">
+    <div class="wrap">
+      <div class="brand">
+        <strong>Trzeźwa z AI</strong> <small>(Sober with AI)</small>
+      </div>
+      <div class="links">
+        <a class="link" href="mailto:soberwithai@gmail.com" aria-label="Wyślij e‑mail na soberwithai@gmail.com">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2
+          2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z"/></svg>
+          <span>soberwithai@gmail.com</span>
+        </a>
+
+        <a class="link" href="https://www.facebook.com/profile.php?id=61579408678645" target="_blank" rel="noopener noreferrer" aria-label="Profil Trzeźwa z AI na Facebooku">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <path fill="currentColor" d="M2 10h4v10H2V10zm6 10h7.5a3 3 0 0 0 2.95-2.5l.9-6A3 3 0 0 0 16.4 8H13V6a3 3 0 0 0-3-3h-.2a1 1 0 0 0-1 1l-.3 3.2A3 3 0 0 1 6.5 9H6v9a2 2 0 0 0 2 2Z"/>
+          </svg>
+          <span>Facebook</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot container">
+      <span>© <span id="y"></span> Trzeźwa z AI — oddolna inicjatywa społeczna.</span>
+      <span><a href="policy.html#pl" style="color:inherit">Polityka prywatności</a></span>
+    </div>
+  </footer>
+
+  <script>
+    // Rok w stopce
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Cytaty
+    const QUOTES = [
+      { text: '„Sztab” AI do trzeźwości. Minimalny hałas. Maksimum użyteczności: dziennik, check‑listy, protokoły.', meta: '— Trzeźwa z AI' },
+      { text: 'Nie chodzi o idealną motywację. Chodzi o najbliższy rozsądny krok — teraz.', meta: '— zasada „Next best step”' },
+      { text: 'Struktura wygrywa z siłą woli. Zawsze.', meta: '— ramy działania' },
+      { text: 'Małe zwycięstwa, duże konsekwencje. 24 godziny na raz.', meta: '' },
+      { text: 'Zero wstydu. Zero moralizowania. 100% narzędzi.', meta: '' },
+      { text: 'Dziennik to nie pamiętnik. To mapa decyzji.', meta: '' },
+      { text: 'Najpierw regulacja, potem ambicje. Najpierw sen, potem sprint.', meta: '' },
+      { text: 'Nie musisz chcieć. Wystarczy, że wiesz co zrobić przez 10 minut.', meta: '' },
+      { text: '„Nie mam siły” często znaczy „nie mam planu”. Plan da się zrobić.', meta: '' },
+      { text: 'Jeśli coś jest ważne — uprość to tak, by dało się zrobić dziś.', meta: '' },
+    ];
+
+    function pickNRandom(arr, n) {
+      const copy = arr.slice();
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const t = copy[i]; copy[i] = copy[j]; copy[j] = t;  // poprawny swap
+      }
+      return copy.slice(0, n);
+    }
+
+    const rotation = pickNRandom(QUOTES, 5);
+    let current = 0;
+
+    const qText = document.getElementById('qText');
+    const qMeta = document.getElementById('qMeta');
+    const panel = document.getElementById('quotePanel');
+    const figure = panel.querySelector('.quote');
+
+    function show(i){
+      const q = rotation[i];
+      figure.classList.remove('fade-in');
+      void figure.offsetWidth; // restart animacji
+      qText.textContent = q.text;
+      qMeta.textContent = q.meta || '';
+      figure.classList.add('fade-in');
+    }
+
+    show(current);
+
+    let timer = setInterval(() => {
+      current = (current + 1) % rotation.length;
+      show(current);
+    }, 10000);
+
+    panel.addEventListener('click', () => {
+      current = (current + 1) % rotation.length;
+      show(current);
+      clearInterval(timer);
+      timer = setInterval(() => {
+        current = (current + 1) % rotation.length;
+        show(current);
+      }, 10000);
+    });
+
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      figure.classList.remove('fade-in');
+      clearInterval(timer);
+    }
+  </script>
+</body>
+</html>

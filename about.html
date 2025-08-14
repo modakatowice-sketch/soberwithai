@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>O mnie — Trzeźwa z AI (Sober with AI)</title>
+  <title>O inicjatywie — Trzeźwa z AI (Sober with AI)</title>
 
   <meta name="theme-color" content="#0f172a" id="theme-color-meta">
-  <meta property="og:title" content="O mnie — Trzeźwa z AI (Sober with AI)">
-  <meta property="og:description" content="Kim jesteśmy i dlaczego powstało Trzeźwa z AI. Zero moralizowania — 100% narzędzi.">
+  <meta property="og:title" content="O inicjatywie — Trzeźwa z AI (Sober with AI)">
+  <meta property="og:description" content="Dlaczego powstało Trzeźwa z AI, jak działa i jak zacząć. Zero moralizowania — 100% narzędzi: dziennik, protokoły, checklisty i myślenie jak GPT (po ludzku).">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,6 +19,7 @@
       --glass:#0f172a; --glass-2:#0b1224;
       --text:#e6eef7; --muted:#9fb3c8;
       --brand-1:#0ea5e9; --brand-2:#8b5cf6;
+      --ring: rgba(14,165,233,.45);
       --shadow: 0 10px 25px rgba(3,8,20,.6), 0 6px 12px rgba(2,6,23,.4);
       --radius-2xl: 1.25rem; --radius-3xl: 1.75rem;
     }
@@ -34,6 +35,7 @@
       background-repeat:no-repeat; background-size:cover; background-attachment:fixed;
       min-height:100%; overflow-x:hidden; -webkit-text-size-adjust:100%;
     }
+
     header{
       position:sticky; top:0; backdrop-filter:saturate(140%) blur(10px);
       background:linear-gradient(180deg, rgba(6,10,24,.75), rgba(6,10,24,.45) 40%, rgba(6,10,24,0));
@@ -42,23 +44,52 @@
     .container{max-width:1000px; margin:0 auto; padding:0 18px}
     .nav{display:flex; align-items:center; justify-content:space-between; gap:14px; min-height:64px}
     .brand{display:flex; align-items:center; gap:12px; font-weight:700}
-    .logo{width:28px; height:28px; border-radius:8px; background:linear-gradient(135deg,var(--brand-1),var(--brand-2))}
+    .logo{width:28px; height:28px; border-radius:8px; background:linear-gradient(135deg,var(--brand-1),var(--brand-2)); box-shadow:0 6px 18px rgba(14,165,233,.35)}
     nav a{color:var(--muted); text-decoration:none; margin-left:18px; font-weight:500}
     nav a:hover{color:#fff}
 
-    main{padding:42px 0 64px}
+    main{padding:42px 0 72px}
+
     .card{background:linear-gradient(180deg, rgba(21,31,55,.85), rgba(12,17,34,.85)); border:1px solid rgba(148,163,184,.12); border-radius:var(--radius-3xl); box-shadow:var(--shadow); padding:24px}
-    h1{font-family:"Space Grotesk",Inter,sans-serif; font-size:clamp(28px, 5vw, 48px); line-height:1.05; margin:6px 0 16px}
+    h1,h2,h3,h4{font-family:"Space Grotesk",Inter,sans-serif}
+    h1{font-size:clamp(32px,5vw,56px); line-height:1.05; margin:10px 0 12px}
     .lead{font-size:clamp(15px, 2.2vw, 18px); color:var(--muted); margin:0 0 18px}
 
-    .grid{display:grid; grid-template-columns:1.1fr .9fr; gap:24px}
+    .grid{display:grid; grid-template-columns:1.3fr .7fr; gap:22px}
     .section{background:linear-gradient(180deg, rgba(21,31,55,.65), rgba(11,18,36,.65)); border:1px solid rgba(148,163,184,.12); border-radius:1.1rem; padding:16px}
-    .section h2{font-family:"Space Grotesk"; margin:0 0 8px; font-size:clamp(18px,2.4vw,24px)}
-    .section p, .section li{color:var(--muted); line-height:1.65}
-    .section ul{margin:8px 0 0 20px}
+    .section h2{margin:0 0 8px; font-size:clamp(20px,2.6vw,28px)}
+    .muted{color:var(--muted)}
+    .pill{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; font-size:12px; background:rgba(14,165,233,.12); color:#bfe7fb; border:1px solid rgba(14,165,233,.28)}
+    .kicker{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px}
+
+    .features{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+    .feat{background:linear-gradient(180deg, rgba(21,31,55,.7), rgba(11,18,36,.7)); border:1px solid rgba(148,163,184,.12); border-radius:1rem; padding:14px}
+    .feat h4{margin:4px 0 6px}
+    .feat p{margin:0; color:var(--muted); font-size:14px}
+
+    .list{margin:8px 0 0 20px; color:var(--muted); line-height:1.65}
+    .kbd{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size:.9em; background:rgba(148,163,184,.12); padding:.12em .4em; border-radius:.4em; border:1px solid rgba(148,163,184,.22)}
+    .note{font-size:.95rem; color:#cfe8fb; background:rgba(14,165,233,.10); border:1px solid rgba(14,165,233,.28); padding:10px 12px; border-radius:.8rem}
+
+    /* prosty „timeline” */
+    .timeline{display:grid; gap:10px}
+    .step{display:grid; grid-template-columns:24px 1fr; gap:10px; align-items:start}
+    .dot{width:20px; height:20px; border-radius:999px; background:linear-gradient(135deg,var(--brand-1),var(--brand-2)); box-shadow:0 0 0 2px rgba(255,255,255,.07)}
+    .step h4{margin:0 0 2px}
+    .step p{margin:0; color:var(--muted)}
+
+    /* tabelka dziennika */
+    table.journal{width:100%; border-collapse:separate; border-spacing:0; overflow:hidden; border-radius:.9rem; border:1px solid rgba(148,163,184,.16)}
+    table.journal th, table.journal td{padding:10px 12px; font-size:14px; vertical-align:top}
+    table.journal thead th{background:rgba(148,163,184,.12); text-align:left}
+    table.journal tbody tr:nth-child(odd){background:rgba(148,163,184,.06)}
+
+    details{background:linear-gradient(180deg, rgba(21,31,55,.6), rgba(11,18,36,.6)); border:1px solid rgba(148,163,184,.14); border-radius:.9rem; padding:12px}
+    details+details{margin-top:10px}
+    summary{cursor:pointer; font-weight:600}
 
     /* stopka kontaktowa */
-    .contact{background: rgba(2,6,23,.6); backdrop-filter: blur(6px); border-top:1px solid rgba(255,255,255,.08); margin-top: 48px;}
+    .contact{background: rgba(2,6,23,.6); backdrop-filter: blur(6px); border-top:1px solid rgba(255,255,255,.08); margin-top: 56px;}
     .contact .wrap{max-width:1000px; margin:0 auto; padding:20px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;}
     .contact .links{display:flex; gap:12px; flex-wrap:wrap}
     .contact .link{display:inline-flex; align-items:center; gap:8px; color:#dbe7ff; text-decoration:none; padding:8px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.08); background: rgba(15,23,42,.5); transition:.12s ease;}
@@ -68,15 +99,14 @@
     footer{border-top:1px solid rgba(148,163,184,.08)}
     .foot{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:22px 0; color:#9fb3c8; font-size:14px}
 
-    @media (max-width:900px){
+    @media (max-width:980px){
       .grid{grid-template-columns:1fr}
+      .features{grid-template-columns:1fr; gap:12px}
       .contact .wrap{justify-content:center; text-align:center}
     }
   </style>
 </head>
 <body>
-  <div class="bg-blur" aria-hidden="true"></div>
-
   <header>
     <div class="container nav">
       <div class="brand">
@@ -94,55 +124,160 @@
 
   <main class="container">
     <section class="card">
+      <div class="kicker">
+        <span class="pill">Oddolna inicjatywa</span>
+        <span class="pill">Zero moralizowania</span>
+        <span class="pill">100% narzędzi</span>
+      </div>
       <h1>O inicjatywie</h1>
-      <p class="lead">„Trzeźwa z AI” to projekt oddolny. Zero moralizowania – 100% narzędzi: dziennik, protokoły, checklisty i myślenie jak GPT (po ludzku).</p>
+      <p class="lead">„Trzeźwa z AI” powstała z prostego powodu: <em>struktura wygrywa z siłą woli</em>. Zamiast kazań – dajemy ramy działania: dziennik, protokoły, checklisty i jasny język. Po polsku i po angielsku.</p>
 
       <div class="grid">
+        <!-- kolumna 1 -->
         <div class="section">
-          <h2>Dlaczego powstało?</h2>
-          <p>Bo struktura wygrywa z „silną wolą”. Chciałem dać ludziom ramy, które pomagają zrobić następny rozsądny krok – dziś, a nie „od poniedziałku”.</p>
-          <ul>
-            <li>dziennik godzinowy z prostym szkieletem,</li>
-            <li>procedury (protokoły) na trudne momenty,</li>
-            <li>narzędzia do samoregulacji i pracy z myślami.</li>
+          <h2>Manifest w trzech zdaniach</h2>
+          <ul class="list">
+            <li>Nie musisz „czuć mocy”. Wystarczy najbliższy rozsądny krok na dziś.</li>
+            <li>Małe zwycięstwa kumulują się – 24 godziny na raz.</li>
+            <li>Struktura (ramy, nawyki, protokoły) > motywacyjne zrywy.</li>
           </ul>
+
+          <div class="features" style="margin-top:14px">
+            <div class="feat">
+              <h4>1) Narzędzia</h4>
+              <p>Dziennik godzinowy, checklisty, ramy decyzyjne. Konkrety do użycia dziś.</p>
+            </div>
+            <div class="feat">
+              <h4>2) Protokół na „kryzys”</h4>
+              <p>Krótka sekwencja działań, gdy robi się trudno. Zero wstydu – 100% praktyki.</p>
+            </div>
+            <div class="feat">
+              <h4>3) Myślenie jak GPT</h4>
+              <p>Język kroków, hipotez i szybkiego feedbacku – po ludzku, nie technicznie.</p>
+            </div>
+          </div>
         </div>
 
+        <!-- kolumna 2 -->
         <div class="section">
-          <h2>Jak korzystać?</h2>
-          <p>Zacznij od małych rzeczy: 10 minut dziennie. Wpis w dzienniku, jedna checklist, jeden krok. Systematyczność > perfekcja.</p>
-          <p>Kontakt w sprawie współtworzenia / sugestii: <a href="mailto:soberwithai@gmail.com">soberwithai@gmail.com</a> lub <a href="https://www.facebook.com/profile.php?id=61579408678645" target="_blank" rel="noopener">Facebook</a>.</p>
+          <h2>Jak zacząć (5 prostych kroków)</h2>
+          <div class="timeline">
+            <div class="step">
+              <div class="dot" aria-hidden="true"></div>
+              <div>
+                <h4>Krok 1 – 10 minut</h4>
+                <p>Weź kartkę / notatnik. Zapisz trzy stany: ciało, głowa, relacje.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="dot"></div>
+              <div>
+                <h4>Krok 2 – jeden cel</h4>
+                <p>„Jeśli tylko to dziś zrobię, dzień uznam za wygrany”. Konkretnie i skromnie.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="dot"></div>
+              <div>
+                <h4>Krok 3 – protokół 10′</h4>
+                <p>Gdy trudniej – uruchom szybki protokół (poniżej). Bez negocjacji.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="dot"></div>
+              <div>
+                <h4>Krok 4 – „pętla zwrotna”</h4>
+                <p>Po zadaniu 2 krótkie pytania: co zadziałało? co zmienić jutro?</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="dot"></div>
+              <div>
+                <h4>Krok 5 – wspólnota</h4>
+                <p>Nie samemu: napisz do nas (<a href="mailto:soberwithai@gmail.com">soberwithai@gmail.com</a>) lub na <a href="https://www.facebook.com/profile.php?id=61579408678645" target="_blank" rel="noopener">Facebooku</a>.</p>
+              </div>
+            </div>
+          </div>
+          <p class="note" style="margin-top:12px">Pro tip: przypnij dziennik do paska zadań w telefonie/kompie. 2–3 krótkie wejścia dziennie wystarczą.</p>
         </div>
       </div>
-    </section>
-  </main>
 
-  <!-- stopka kontaktowa -->
-  <section class="contact" aria-label="Kontakt i społeczność">
-    <div class="wrap">
-      <div class="brand"><strong>Trzeźwa z AI</strong> <small>(Sober with AI)</small></div>
-      <div class="links">
-        <a class="link" href="mailto:soberwithai@gmail.com" aria-label="Wyślij e‑mail">
-          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z"/></svg>
-          <span>soberwithai@gmail.com</span>
-        </a>
-        <a class="link" href="https://www.facebook.com/profile.php?id=61579408678645" target="_blank" rel="noopener" aria-label="Profil na Facebooku">
-          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M2 10h4v10H2V10zm6 10h7.5a3 3 0 0 0 2.95-2.5l.9-6A3 3 0 0 0 16.4 8H13V6a3 3 0 0 0-3-3h-.2a1 1 0 0 0-1 1l-.3 3.2A3 3 0 0 1 6.5 9H6v9a2 2 0 0 0 2 2Z"/></svg>
-          <span>Facebook</span>
-        </a>
+      <!-- DZIENNIK -->
+      <div class="section" style="margin-top:18px">
+        <h2>Dziennik godzinowy – szkielet</h2>
+        <p class="muted">Lekki szablon do kopiowania. Zacznij od jednego dnia – wpis co 3–4h, bez perfekcji.</p>
+        <div style="overflow:auto; margin-top:8px">
+          <table class="journal" aria-label="Przykładowy dziennik">
+            <thead>
+              <tr><th>Godzina</th><th>Stan (ciało / głowa / relacje)</th><th>Co robię / co dalej</th><th>Sukces</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>07:00</td><td>Sen 6h, spięcie 6/10</td><td>Woda + śniadanie. 10′ spacer.</td><td>Wstałem bez scrolla.</td></tr>
+              <tr><td>11:00</td><td>Energia 7/10, myśli rozbiegane</td><td><span class="kbd">Pomodoro ×1</span> na 1 ważną rzecz.</td><td>+25 min głębokiej pracy.</td></tr>
+              <tr><td>15:00</td><td>Głód, lekka złość</td><td>Posiłek + 5′ oddech (4-7-8).</td><td>Nie sięgnąłem po „rozpraszacz”.</td></tr>
+              <tr><td>20:00</td><td>Spokój 6/10, kontakt z bliską osobą</td><td>Krótki spacer + przygotowanie jutra.</td><td>Jedna rzecz „dla siebie”.</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
-  </section>
 
-  <footer>
-    <div class="foot container">
-      <span>© <span id="y"></span> Trzeźwa z AI — oddolna inicjatywa społeczna.</span>
-      <span><a href="policy.html#pl" style="color:inherit">Polityka prywatności</a></span>
-    </div>
-  </footer>
+      <!-- PROTOKOŁY -->
+      <div class="section" style="margin-top:18px">
+        <h2>Protokoły na trudne momenty</h2>
+        <details open>
+          <summary>Kryzys nagły (10 minut)</summary>
+          <ul class="list">
+            <li>1′ – woda + 10 wolnych oddechów.</li>
+            <li>2′ – karta „co czuję? gdzie w ciele?” (3 słowa).</li>
+            <li>3′ – mikro‑ruch: 20 przysiadów / szybki spacer po mieszkaniu.</li>
+            <li>4′ – telefon do „zaufanej osoby” / wiadomość „jest trudno, jestem trzeźwy/a”.</li>
+            <li>0′ – wracam do najbliższego zadania z listy (≤10′).</li>
+          </ul>
+        </details>
+        <details>
+          <summary>Wieczorny reset (7 minut)</summary>
+          <ul class="list">
+            <li>2′ – krótkie podsumowanie dnia (co 1 rzecz zadziałała?).</li>
+            <li>2′ – plan na jutro: 1 główny cel + 1 backup.</li>
+            <li>3′ – uspokojenie układu nerwowego (oddech / ciepły prysznic / rozciąganie).</li>
+          </ul>
+        </details>
+        <details>
+          <summary>Kontakt społeczny bez wstydu</summary>
+          <p class="muted">Gotowiec wiadomości: „Hej, jest mi trudno. Chcę zostać trzeźw_a. Możesz być ze mną przez 10 minut? Nie potrzebuję rad, tylko obecności.”</p>
+        </details>
+      </div>
 
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
+      <!-- NARZĘDZIA -->
+      <div class="section" style="margin-top:18px">
+        <h2>Narzędziownik</h2>
+        <div class="features">
+          <div class="feat">
+            <h4>Checklist „Dzień na dobry”</h4>
+            <p>Woda, posiłek, światło dzienne, 10′ poruszenia, jeden cel dnia.</p>
+          </div>
+          <div class="feat">
+            <h4>Ramy decyzyjne</h4>
+            <p>„Jeśli X, to Y” (konkretny plan reakcji) + „Next best step”.</p>
+          </div>
+          <div class="feat">
+            <h4>Myślenie jak GPT</h4>
+            <p>Formułowanie pytań, hipotez, krótkie pętle feedbacku – po ludzku.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="section" style="margin-top:18px">
+        <h2>FAQ – krótkie odpowiedzi</h2>
+        <details>
+          <summary>Czy potrzebuję „silnej woli”, żeby zacząć?</summary>
+          <p class="muted">Nie. Potrzebujesz struktury na najbliższe 10 minut i bezpiecznego wsparcia.</p>
+        </details>
+        <details>
+          <summary>Co jeśli „zawalę” dzień?</summary>
+          <p class="muted">Wracasz do dziennika następnego dnia. Bez kar, bez nadrabiania. Jeden krok.</p>
+        </details>
+        <details>
+          <summary>Jak łączyć to z terapią / grupą wsparcia?</summary>
+          <p class="muted">Traktuj projekt jako <em>narzędzia dnia codziennego</em>. Może uzupe

@@ -7,22 +7,25 @@
   <title>O mnie — Trzeźwa z AI (Sober with AI)</title>
   <meta name="theme-color" content="#0f172a">
   <meta property="og:title" content="O mnie — Trzeźwa z AI (Sober with AI)">
-  <meta property="og:description" content="Poznaj ideę projektu Trzeźwa z AI — zero moralizowania, maksimum narzędzi i wsparcia.">
+  <meta property="og:description" content="Kim jestem, skąd pomysł na Trzeźwą z AI i co znajdziesz w projekcie: narzędzia bez moralizowania, struktura i wsparcie.">
   <meta property="og:type" content="website">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
     :root{
-      --bg-from:#0b1020; --bg-to:#05070e; --glass:#0f172a; --glass-2:#0b1224;
-      --text:#e6eef7; --muted:#9fb3c8; --brand-1:#0ea5e9; --brand-2:#8b5cf6;
-      --ring: rgba(14,165,233,.45);
+      --bg-from:#0b1020; --bg-to:#05070e;
+      --glass:#0f172a; --glass-2:#0b1224;
+      --text:#e6eef7; --muted:#9fb3c8;
+      --brand-1:#0ea5e9; --brand-2:#8b5cf6;
       --shadow: 0 10px 25px rgba(3,8,20,.6), 0 6px 12px rgba(2,6,23,.4);
       --radius-2xl: 1.25rem; --radius-3xl: 1.75rem;
     }
     *{box-sizing:border-box} html,body{height:100%}
     body{
-      margin:0; font-family:Inter,system-ui,sans-serif; color:var(--text);
+      margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:var(--text);
       background:radial-gradient(1200px 800px at 20% -10%, #13203d 0%, rgba(19,32,61,0) 55%),
                  radial-gradient(900px 600px at 120% 10%, rgba(139,92,246,.20) 0%, rgba(139,92,246,0) 60%),
                  linear-gradient(180deg, var(--bg-from) 0%, var(--bg-to) 100%);
@@ -33,23 +36,68 @@
     .blob.one{left:-10vw; top:-6vw; background:radial-gradient(circle at 30% 30%, var(--brand-1), transparent 60%)}
     .blob.two{right:-8vw; top:-4vw; background:radial-gradient(circle at 70% 40%, var(--brand-2), transparent 60%)}
     .blob.three{left:20vw; bottom:-14vw; background:radial-gradient(circle at 50% 50%, #22d3ee, transparent 60%); opacity:.12}
+
     header{position:sticky; top:0; backdrop-filter:saturate(140%) blur(10px);
       background:linear-gradient(180deg, rgba(6,10,24,.75), rgba(6,10,24,.45) 40%, rgba(6,10,24,0));
       border-bottom:1px solid rgba(148,163,184,.08); z-index:40;}
-    .container{max-width:900px; margin:0 auto; padding:0 20px}
-    .nav{display:flex; align-items:center; justify-content:space-between; height:64px}
+    .container{max-width:1000px; margin:0 auto; padding:0 18px}
+    .nav{display:flex; align-items:center; justify-content:space-between; gap:14px; height:64px}
     .brand{display:flex; align-items:center; gap:12px; font-weight:700}
     .logo{width:28px; height:28px; border-radius:8px; background:linear-gradient(135deg,var(--brand-1),var(--brand-2))}
     nav a{color:var(--muted); text-decoration:none; margin-left:18px; font-weight:500}
     nav a:hover{color:var(--text)}
+
     main{padding:48px 0 64px}
-    h1{font-family:"Space Grotesk"; font-size:clamp(28px,5vw,46px); margin-bottom:12px}
-    p.lead{color:var(--muted); font-size:18px; margin-top:0}
+    h1{font-family:"Space Grotesk"; font-size:clamp(28px,5vw,46px); margin:0 0 8px}
+    p.lead{color:var(--muted); font-size:18px; margin:0 0 18px}
+
     .card{background:linear-gradient(180deg, rgba(21,31,55,.85), rgba(12,17,34,.85));
       border:1px solid rgba(148,163,184,.12); border-radius:var(--radius-3xl);
-      box-shadow:var(--shadow); padding:28px; margin-top:20px}
+      box-shadow:var(--shadow); padding:24px}
+
+    /* sekcje */
+    .grid-2{display:grid; grid-template-columns:1.2fr .8fr; gap:18px; align-items:start}
+    .pillars{display:grid; grid-template-columns:repeat(2,1fr); gap:12px}
+    .pill{background:linear-gradient(180deg, rgba(21,31,55,.7), rgba(11,18,36,.7));
+      border:1px solid rgba(148,163,184,.12); border-radius:16px; padding:14px}
+    .pill h3{font-family:"Space Grotesk"; margin:0 0 6px; font-size:20px}
+    .pill p{margin:0; color:var(--muted)}
+    .list{margin:0; padding-left:18px; color:var(--muted)}
+    .list li{margin:6px 0}
+
+    .section{margin-top:22px}
+    .section h2{font-family:"Space Grotesk"; margin:0 0 8px; font-size:26px}
+    .section .sub{color:var(--muted); margin:0 0 14px}
+
+    /* oś czasu */
+    .timeline{display:grid; gap:10px}
+    .t-item{display:grid; grid-template-columns:110px 1fr; gap:12px; align-items:start}
+    .t-time{color:#bfe7fb; background:rgba(14,165,233,.12); border:1px solid rgba(14,165,233,.3);
+      padding:6px 10px; border-radius:999px; font-size:12px; width:max-content}
+    .t-card{background:linear-gradient(180deg, rgba(21,31,55,.65), rgba(11,18,36,.65));
+      border:1px solid rgba(148,163,184,.12); border-radius:14px; padding:12px}
+    .t-card strong{display:block; margin-bottom:4px}
+
+    /* FAQ */
+    details{background:linear-gradient(180deg, rgba(21,31,55,.65), rgba(11,18,36,.65));
+      border:1px solid rgba(148,163,184,.12); border-radius:14px; padding:12px}
+    details+details{margin-top:10px}
+    summary{cursor:pointer; font-weight:600; font-family:"Space Grotesk"}
+    details p{color:var(--muted); margin:8px 0 0}
+
+    /* stopka */
     footer{border-top:1px solid rgba(148,163,184,.08); margin-top:48px}
-    .foot{display:flex; align-items:center; justify-content:space-between; padding:22px 0; color:var(--muted); font-size:14px}
+    .foot{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:22px 0; color:var(--muted); font-size:14px}
+
+    /* mobile */
+    @media (max-width:920px){
+      .container{padding:0 14px}
+      .nav{height:60px}
+      .grid-2{grid-template-columns:1fr; gap:14px}
+      .pillars{grid-template-columns:1fr}
+      .t-item{grid-template-columns:1fr}
+      .t-time{margin-bottom:6px}
+    }
   </style>
 </head>
 <body>
@@ -58,9 +106,13 @@
     <div class="blob two"></div>
     <div class="blob three"></div>
   </div>
+
   <header>
     <div class="container nav">
-      <div class="brand"><div class="logo"></div><span>Trzeźwa z AI</span></div>
+      <div class="brand">
+        <div class="logo"></div>
+        <span>Trzeźwa z AI</span>
+      </div>
       <nav>
         <a href="index.html">Start</a>
         <a href="about.html">O&nbsp;mnie</a>
@@ -69,22 +121,124 @@
       </nav>
     </div>
   </header>
+
   <main class="container">
-    <h1>O mnie</h1>
-    <p class="lead">Dlaczego powstało „Trzeźwa z AI” i jaka jest jego misja.</p>
-    <div class="card">
-      <p>„Trzeźwa z AI” to projekt powstały z potrzeby stworzenia miejsca wolnego od moralizowania i stygmatyzacji.
-      Moja droga do trzeźwości była pełna wyzwań — odkryłam, że brakuje narzędzi, które są proste, konkretne i działają w codziennym życiu.</p>
-      <p>W tym projekcie łączę doświadczenie własnej zmiany z możliwościami sztucznej inteligencji: dziennik godzinowy, checklisty, protokoły działania i wsparcie, które bazuje na zrozumieniu, a nie ocenianiu.</p>
-      <p>Każdy może tu znaleźć strukturę i inspirację, niezależnie od tego, czy chodzi o wyjście z nałogu, czy po prostu o lepszą organizację życia.</p>
-    </div>
+    <!-- HERO -->
+    <section class="section">
+      <h1>O mnie</h1>
+      <p class="lead">Dlaczego powstało „Trzeźwa z AI” i jaka jest misja projektu.</p>
+
+      <div class="grid-2">
+        <div class="card">
+          <p>„Trzeźwa z AI” powstała z potrzeby stworzenia miejsca wolnego od moralizowania i stygmatyzacji.
+          Moja droga do trzeźwości była pełna wyzwań — brakowało narzędzi, które są proste, konkretne
+          i działają w codzienności.</p>
+          <p>Łączę doświadczenie własnej zmiany z możliwościami sztucznej inteligencji:
+          <strong>dziennik godzinowy</strong>, <strong>checklisty</strong>, <strong>protokoły działania</strong> i wsparcie, które bazuje na zrozumieniu, a nie ocenianiu.</p>
+          <p>Każdy może tu znaleźć strukturę i inspirację — czy chodzi o wyjście z nałogu, czy po prostu o lepszą organizację życia.</p>
+        </div>
+
+        <div class="pillars">
+          <div class="pill">
+            <h3>Bez moralizowania</h3>
+            <p>Zero wstydu. Skupiamy się na tym, co da się zrobić dziś — w 10‑minutowych krokach.</p>
+          </div>
+          <div class="pill">
+            <h3>Narzędzia, nie slogany</h3>
+            <p>Proste formatki, powtarzalne procedury i jasne ramy decyzyjne.</p>
+          </div>
+          <div class="pill">
+            <h3>Praktyka > teoria</h3>
+            <p>Codzienne pętle: obserwacja → decyzja → działanie → refleksja.</p>
+          </div>
+          <div class="pill">
+            <h3>Transparentność</h3>
+            <p>Statyczna strona, brak kont użytkowników, minimum danych. Twoje tempo — Twoje zasady.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CO ZNAJDZIESZ -->
+    <section class="section">
+      <h2>Co znajdziesz w projekcie</h2>
+      <p class="sub">Rzeczy do użycia od razu, nie „kiedyś”.</p>
+      <div class="card">
+        <ul class="list">
+          <li><strong>Dziennik godzinowy</strong> – prosty szkielet dnia (samoregulacja, sen, relacje, cele, sukcesy).</li>
+          <li><strong>Checklisty</strong> – szybkie listy na poranki, kryzysy, „głód” i trudne wieczory.</li>
+          <li><strong>Protokoły</strong> – gotowe scenariusze na konkretne sytuacje + warianty awaryjne.</li>
+          <li><strong>„Myślenie jak GPT” (po ludzku)</strong> – jak zadawać sobie dobre pytania i pracować z hipotezami.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- OŚ CZASU -->
+    <section class="section">
+      <h2>Krótka oś czasu</h2>
+      <div class="timeline">
+        <div class="t-item">
+          <span class="t-time">2024 →</span>
+          <div class="t-card">
+            <strong>Pierwsze notatki i szablony</strong>
+            Powstają prototypy dziennika i checklist — zaczynam je testować na sobie.
+          </div>
+        </div>
+        <div class="t-item">
+          <span class="t-time">I poł. 2025</span>
+          <div class="t-card">
+            <strong>Publiczna wersja „0.1”</strong>
+            Udostępniam pierwszą wersję strony na GitHub Pages. Zaczynają spływać uwagi od ludzi w podobnej drodze.
+          </div>
+        </div>
+        <div class="t-item">
+          <span class="t-time">Dalej</span>
+          <div class="t-card">
+            <strong>Rozwój narzędzi</strong>
+            Dopieszczanie protokołów, mini‑przewodniki w PL/EN i więcej przykładów „z życia”.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section">
+      <h2>FAQ</h2>
+      <details>
+        <summary>Czy zbierasz jakieś moje dane?</summary>
+        <p>Nie prowadzę kont ani newslettera. Strona działa statycznie na GitHub Pages. Szczegóły w <a href="policy.html#pl">polityce prywatności</a>.</p>
+      </details>
+      <details>
+        <summary>Czy to terapia albo program 12 kroków?</summary>
+        <p>Nie. To zestaw praktycznych narzędzi i struktur. Możesz łączyć je z terapią lub innym programem — jeśli chcesz.</p>
+      </details>
+      <details>
+        <summary>Jak mogę pomóc?</summary>
+        <p>Podziel się opinią, zgłoś błąd lub pomysł (linki poniżej). Każdy feedback pomaga zrobić lepsze narzędzia.</p>
+      </details>
+    </section>
+
+    <!-- KONTAKT / WSPARCIE -->
+    <section class="section">
+      <h2>Kontakt i wsparcie</h2>
+      <div class="card" style="display:flex; flex-wrap:wrap; gap:10px">
+        <a class="pill" href="#" style="text-decoration:none"><h3 style="margin:0;font-size:16px">Facebook</h3><p style="margin:4px 0 0">Napisz wiadomość</p></a>
+        <a class="pill" href="#" style="text-decoration:none"><h3 style="margin:0;font-size:16px">E‑mail</h3><p style="margin:4px 0 0">hello@soberwithai.example</p></a>
+        <a class="pill" href="#" style="text-decoration:none"><h3 style="margin:0;font-size:16px">Patronite</h3><p style="margin:4px 0 0">Wesprzyj rozwój narzędzi</p></a>
+      </div>
+      <p class="sub" style="margin-top:10px">Podmienimy linki, gdy tylko podasz właściwe adresy.</p>
+    </section>
   </main>
+
   <footer>
     <div class="foot container">
-      <span>© <span id="y"></span> Trzeźwa z AI</span>
+      <span>© <span id="y"></span> Trzeźwa z AI — oddolna inicjatywa społeczna.</span>
       <span><a href="policy.html#pl" style="color:inherit">Polityka prywatności</a></span>
     </div>
   </footer>
-  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

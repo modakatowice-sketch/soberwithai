@@ -1,4 +1,56 @@
 
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>O mnie — Trzeźwa z AI (Sober with AI)</title>
+  <meta name="theme-color" content="#0f172a">
+  <meta property="og:title" content="O mnie — Trzeźwa z AI (Sober with AI)">
+  <meta property="og:description" content="Poznaj ideę projektu Trzeźwa z AI — zero moralizowania, maksimum narzędzi i wsparcia.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg-from:#0b1020; --bg-to:#05070e; --glass:#0f172a; --glass-2:#0b1224;
+      --text:#e6eef7; --muted:#9fb3c8; --brand-1:#0ea5e9; --brand-2:#8b5cf6;
+      --ring: rgba(14,165,233,.45);
+      --shadow: 0 10px 25px rgba(3,8,20,.6), 0 6px 12px rgba(2,6,23,.4);
+      --radius-2xl: 1.25rem; --radius-3xl: 1.75rem;
+    }
+    *{box-sizing:border-box} html,body{height:100%}
+    body{
+      margin:0; font-family:Inter,system-ui,sans-serif; color:var(--text);
+      background:radial-gradient(1200px 800px at 20% -10%, #13203d 0%, rgba(19,32,61,0) 55%),
+                 radial-gradient(900px 600px at 120% 10%, rgba(139,92,246,.20) 0%, rgba(139,92,246,0) 60%),
+                 linear-gradient(180deg, var(--bg-from) 0%, var(--bg-to) 100%);
+      min-height:100%;
+    }
+    .bg-blur{position:fixed; inset:0; pointer-events:none; z-index:-1; filter:blur(60px) saturate(140%)}
+    .blob{position:absolute; width:38vw; height:38vw; border-radius:9999px; opacity:.18; mix-blend:screen;}
+    .blob.one{left:-10vw; top:-6vw; background:radial-gradient(circle at 30% 30%, var(--brand-1), transparent 60%)}
+    .blob.two{right:-8vw; top:-4vw; background:radial-gradient(circle at 70% 40%, var(--brand-2), transparent 60%)}
+    .blob.three{left:20vw; bottom:-14vw; background:radial-gradient(circle at 50% 50%, #22d3ee, transparent 60%); opacity:.12}
+    header{position:sticky; top:0; backdrop-filter:saturate(140%) blur(10px);
+      background:linear-gradient(180deg, rgba(6,10,24,.75), rgba(6,10,24,.45) 40%, rgba(6,10,24,0));
+      border-bottom:1px solid rgba(148,163,184,.08); z-index:40;}
+    .container{max-width:900px; margin:0 auto; padding:0 20px}
+    .nav{display:flex; align-items:center; justify-content:space-between; height:64px}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:700}
+    .logo{width:28px; height:28px; border-radius:8px; background:linear-gradient(135deg,var(--brand-1),var(--brand-2))}
+    nav a{color:var(--muted); text-decoration:none; margin-left:18px; font-weight:500}
+    nav a:hover{color:var(--text)}
+    main{padding:48px 0 64px}
+    h1{font-family:"Space Grotesk"; font-size:clamp(28px,5vw,46px); margin-bottom:12px}
+    p.lead{color:var(--muted); font-size:18px; margin-top:0}
+    .card{background:linear-gradient(180deg, rgba(21,31,55,.85), rgba(12,17,34,.85));
+      border:1px solid rgba(148,163,184,.12); border-radius:var(--radius-3xl);
+      box-shadow:var(--shadow); padding:28px; margin-top:20px}
+    footer{border-top:1px solid rgba(148,163,184,.08); margin-top:48px}
+    .foot{display:flex; align-items:center; justify-content:space-between; padding:22px 0; color:var(--muted); font-size:14px}
+  </style>
 </head>
 <body>
   <div class="bg-blur" aria-hidden="true">
@@ -21,7 +73,7 @@
     <h1>O mnie</h1>
     <p class="lead">Dlaczego powstało „Trzeźwa z AI” i jaka jest jego misja.</p>
     <div class="card">
-      <p>„Trzeźwa z AI” to projekt powstały z potrzeby stworzenia miejsca wolnego od moralizowania i stygmatyzacji. 
+      <p>„Trzeźwa z AI” to projekt powstały z potrzeby stworzenia miejsca wolnego od moralizowania i stygmatyzacji.
       Moja droga do trzeźwości była pełna wyzwań — odkryłam, że brakuje narzędzi, które są proste, konkretne i działają w codziennym życiu.</p>
       <p>W tym projekcie łączę doświadczenie własnej zmiany z możliwościami sztucznej inteligencji: dziennik godzinowy, checklisty, protokoły działania i wsparcie, które bazuje na zrozumieniu, a nie ocenianiu.</p>
       <p>Każdy może tu znaleźć strukturę i inspirację, niezależnie od tego, czy chodzi o wyjście z nałogu, czy po prostu o lepszą organizację życia.</p>

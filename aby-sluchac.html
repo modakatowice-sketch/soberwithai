@@ -14,123 +14,157 @@
   <meta property="og:site_name" content="Trzeźwa z AI">
   <meta property="og:locale" content="pl_PL">
 
-  <!-- Font -->
+  <!-- Fonts (spójne z index.html) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg:#0b1020;
-      --panel:#0f172a;
-      --text:#e6eef7;
-      --muted:#b6c2d6;
-      --line:rgba(255,255,255,.08);
-      --brand:#60a5fa;
-      --accent:#a78bfa;
-      --good:#34d399;
-      --warn:#fbbf24;
+      --bg-from:#0b1020; --bg-to:#05070e;
+      --glass:#0f172a; --glass-2:#0b1224;
+      --text:#e6eef7; --muted:#9fb3c8;
+      --brand-1:#0ea5e9; --brand-2:#8b5cf6;
+      --ring: rgba(14,165,233,.45);
+      --shadow: 0 10px 25px rgba(3,8,20,.6), 0 6px 12px rgba(2,6,23,.4);
+      --radius-2xl: 1.25rem; --radius-3xl: 1.75rem;
     }
+
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:'Inter',system-ui,Segoe UI,Roboto,Arial,sans-serif}
-    a{color:#93c5fd;text-decoration:underline}
-    .page{
-      min-height:100svh;
-      position:relative;
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      color:var(--text);
+      background-color:#0b1020;
+      background-image:
+        radial-gradient(1200px 800px at 20% -10%, rgba(19,32,61,1) 0%, rgba(19,32,61,0) 60%),
+        radial-gradient(900px 600px at 120% 10%, rgba(139,92,246,.18) 0%, rgba(139,92,246,0) 65%),
+        linear-gradient(180deg, #0b1020 0%, #070b17 55%, #05070e 100%);
+      background-repeat:no-repeat;
+      background-attachment:fixed;
+      background-size:cover;
+      min-height:100%;
       overflow-x:hidden;
+      -webkit-text-size-adjust:100%;
     }
-    /* layered background (jak na policy.html) */
-    .bg-layers:before,
-    .bg-layers:after{
-      content:""; position:fixed; inset:-20%;
-      pointer-events:none; z-index:-1;
-      background:
-        radial-gradient(1200px 500px at -10% -10%, rgba(32,76,148,.18), transparent 40%),
-        radial-gradient(900px 400px at 120% -10%, rgba(147,51,234,.14), transparent 40%),
-        radial-gradient(900px 400px at -20% 110%, rgba(16,185,129,.12), transparent 35%);
-      filter:saturate(110%);
+
+    /* dekoracyjne bloby (jak na stronie głównej) */
+    .bg-blur{position:fixed; inset:0; pointer-events:none; z-index:-1; filter:blur(60px) saturate(140%);} 
+    .blob{position:absolute; width:38vw; height:38vw; border-radius:9999px; opacity:.18; mix-blend:screen;}
+    .blob.one{left:-10vw; top:-6vw; background:radial-gradient(circle at 30% 30%, var(--brand-1), transparent 60%)}
+    .blob.two{right:-8vw; top:-4vw; background:radial-gradient(circle at 70% 40%, var(--brand-2), transparent 60%)}
+    .blob.three{left:20vw; bottom:-14vw; background:radial-gradient(circle at 50% 50%, #22d3ee, transparent 60%); opacity:.12}
+
+    header{
+      position:sticky; top:0; backdrop-filter:saturate(140%) blur(10px);
+      background:linear-gradient(180deg, rgba(6,10,24,.75), rgba(6,10,24,.45) 40%, rgba(6,10,24,0));
+      border-bottom:1px solid rgba(148,163,184,.08);
+      z-index:40;
     }
-    .container{max-width:960px;margin:0 auto;padding:24px 20px 60px}
-    .nav{
-      display:flex;align-items:center;gap:12px;justify-content:space-between;
-      border-bottom:1px solid var(--line);padding:14px 0 16px
-    }
-    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px}
-    .brand .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#a78bfa)}
-    .back{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--text);text-decoration:none;font-size:14px}
-    .back:hover{border-color:rgba(255,255,255,.18)}
-    .hero{
-      padding:28px 0 10px;
-    }
-    h1{
-      font-size:clamp(28px,4vw,44px);line-height:1.1;margin:10px 0 8px;font-weight:800;
-      letter-spacing:.2px;
-    }
-    .meta{
-      color:var(--muted);font-size:14px;display:flex;gap:12px;flex-wrap:wrap
-    }
-    .article{
-      margin-top:22px;background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00));
-      border:1px solid var(--line);border-radius:18px;padding:22px 18px;
-    }
-    .article p{line-height:1.7;margin:12px 0}
-    h2{
-      font-size:clamp(20px,2.6vw,28px);margin:26px 0 10px;font-weight:800;
-      scroll-margin-top:90px;
-    }
-    .toc{
-      background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:14px;padding:14px 14px 10px;margin:8px 0 22px
-    }
-    .toc b{display:block;margin-bottom:8px}
-    .toc a{display:inline-block;margin:6px 10px 6px 0}
+    .container{max-width:1100px; margin:0 auto; padding:0 20px}
+    .nav{display:flex; align-items:center; justify-content:space-between; gap:14px; min-height:64px; flex-wrap:wrap}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.2px}
+    .logo{width:28px; height:28px; border-radius:8px; background:linear-gradient(135deg,var(--brand-1),var(--brand-2)); box-shadow:0 6px 18px rgba(14,165,233,.35)}
+    .brand span{font-family:"Space Grotesk",Inter,sans-serif}
+
+    .btn{display:inline-flex; align-items:center; gap:10px; padding:10px 16px; border-radius:999px; text-decoration:none; font-weight:600}
+    .btn.primary{background:linear-gradient(135deg, var(--brand-1), var(--brand-2)); color:white}
+    .btn.ghost{background:rgba(148,163,184,.10); color:var(--text); border:1px solid rgba(148,163,184,.18)}
+
+    main{padding:34px 0 64px}
+
+    /* karta jak w index.html */
     .card{
-      background:rgba(17,24,39,.6);border:1px solid var(--line);border-radius:14px;padding:14px 14px 10px;margin:14px 0
+      background:linear-gradient(180deg, rgba(21,31,55,.85), rgba(12,17,34,.85));
+      border:1px solid rgba(148,163,184,.12);
+      box-shadow:var(--shadow);
+      border-radius:var(--radius-3xl);
+      padding:28px;
     }
-    .card .tag{
-      display:inline-flex;align-items:center;gap:8px;
-      font-size:12px;font-weight:600;letter-spacing:.3px;
-      padding:6px 10px;border-radius:999px;margin-bottom:6px;border:1px solid var(--line)
+
+    /* typografia artykułu */
+    .article{max-width:760px; margin:0 auto; line-height:1.75; letter-spacing:.1px; hyphens:auto; overflow-wrap:anywhere;}
+    .article h1{font-family:"Space Grotesk",Inter,sans-serif; font-size:clamp(28px, 4.6vw, 42px); line-height:1.12; margin:2px 0 6px}
+    .meta{color:var(--muted); font-size:14px; margin-bottom:8px}
+
+    .article h2, .article h3{
+      font-family:"Space Grotesk",Inter,sans-serif; line-height:1.22; margin:24px 0 10px;
+    }
+    .article h2{font-size:clamp(20px, 2.6vw, 28px)}
+    .article h3{font-size:clamp(18px, 2.2vw, 22px)}
+
+    .article p{margin:0 0 1.1em; color:#cfe0f5}
+    .article strong{color:#fff}
+    .article em{color:#d9e8ff}
+    .article a{color:#8bd5ff; text-decoration:underline; text-underline-offset:3px; text-decoration-color:rgba(139,213,255,.55)}
+    .article a:hover{ text-decoration-color:rgba(139,213,255,.9)}
+
+    /* spis treści */
+    .toc{
+      background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08);
+      border-radius:14px; padding:14px 14px 10px; margin:8px 0 22px
+    }
+    .toc b{display:block; margin-bottom:8px}
+    .toc a{display:inline-block; margin:6px 10px 6px 0}
+
+    /* callouty/sekcje pomocnicze */
+    .section-card{
+      background:rgba(17,24,39,.6); border:1px solid rgba(255,255,255,.08);
+      border-radius:14px; padding:14px 14px 10px; margin:14px 0
+    }
+    .tag{
+      display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:600; letter-spacing:.3px;
+      padding:6px 10px; border-radius:999px; margin-bottom:6px; border:1px solid rgba(255,255,255,.08)
     }
     .tag.stop{background:rgba(239,68,68,.10)}
     .tag.redirect{background:rgba(59,130,246,.10)}
     .tag.body{background:rgba(16,185,129,.10)}
+
     ul,ol{padding-left:20px}
-    .tip{border-left:3px solid var(--brand);padding-left:12px;margin:12px 0;color:#dbeafe}
-    .foot{
-      border-top:1px solid var(--line);margin-top:26px;padding-top:16px;color:var(--muted);font-size:13px
-    }
-    @media (min-width:880px){
-      .article{padding:28px 26px}
+    .tip{border-left:3px solid var(--brand-1); padding-left:12px; margin:12px 0; color:#dbeafe}
+
+    .foot{border-top:1px solid rgba(255,255,255,.08); margin-top:26px; padding-top:16px; color:var(--muted); font-size:13px}
+
+    /* Mobile */
+    @media (max-width:560px){
+      main{padding:26px 0 48px}
+      .card{padding:20px}
+      .article{font-size:16px; line-height:1.8}
     }
   </style>
 </head>
 <body>
-<div class="page bg-layers">
-  <div class="container">
-    <!-- NAV -->
-    <div class="nav">
-      <div class="brand"><span class="dot"></span> Trzeźwa z AI</div>
-      <a class="back" href="index.html" aria-label="Wróć na stronę główną">⬅︎ Powrót</a>
-    </div>
+  <!-- dekoracyjne bloby -->
+  <div class="bg-blur" aria-hidden="true">
+    <div class="blob one"></div>
+    <div class="blob two"></div>
+    <div class="blob three"></div>
+  </div>
 
-    <!-- HERO -->
-    <header class="hero" id="top">
-      <h1>Aby słuchać, kiedy Twój mózg Cię woła</h1>
-      <div class="meta">
-        <span>Artykuł</span>
-        <span>•</span>
-        <span>czas czytania: ok. 7 min</span>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Trzeźwa z AI</span>
       </div>
-    </header>
+      <nav>
+        <a class="btn ghost" href="index.html" aria-label="Wróć na stronę główną">⬅︎ Powrót</a>
+      </nav>
+    </div>
+  </header>
 
-    <!-- ARTICLE -->
-    <main class="article">
+  <main class="container">
+    <article class="card article" id="top">
+      <h1>Aby słuchać, kiedy Twój mózg Cię woła</h1>
+      <div class="meta">Artykuł • czas czytania: ok. 7 min</div>
+
       <nav class="toc" aria-label="Spis treści">
         <b>Spis treści</b>
         <a href="#wstep">Wstęp</a>
         <a href="#rozpoznanie">Rozpoznanie to dopiero początek</a>
         <a href="#zatrzymanie">Zatrzymanie – „Stop, to jest ten moment”</a>
         <a href="#przekierowanie">Przekierowanie uwagi – „Daruj, zwracaj”</a>
-        <a href="#ciało">Praca z ciałem – „Oddech i zimna woda”</a>
+        <a href="#cialo">Praca z ciałem – „Oddech i zimna woda”</a>
         <a href="#podsumowanie">Podsumowanie</a>
       </nav>
 
@@ -146,73 +180,77 @@
         <p>Sama świadomość, że mózg wysyła sygnał ostrzegawczy, jest jak usłyszenie dzwonka telefonu. Ale co z tego, jeśli go nie odbierzesz? Ja zrozumiałam, że moment zauważenia to dopiero początek – a prawdziwą zmianę przynosi dopiero reakcja.</p>
         <p>Kiedy widziałam, że mój mózg próbuje wciągnąć mnie w stary schemat, miałam przygotowany zestaw narzędzi. Nie czekałam, aż „samo minie”, bo wiedziałam, że wtedy to schemat wygra. Zamiast tego robiłam trzy rzeczy:</p>
         <ol>
-          <li><b>Zatrzymanie</b> – dosłownie. Zatrzymać to, co się robi. Usiąść, zamknąć oczy i powiedzieć sobie: „To jest ten moment. Nie idź dalej.”</li>
-          <li><b>Przekierowanie uwagi</b> – dać mózgowi coś innego: rozmowa, zapis na papierze, szybki plan działania (np. z pomocą GPT).</li>
-          <li><b>Praca z ciałem</b> – spacer, zimna woda, oddech. Wysłać układowi nerwowemu komunikat: „Jesteś bezpieczny.”</li>
+          <li><strong>Zatrzymanie</strong> – dosłownie. Zatrzymać to, co się robi. Usiąść, zamknąć oczy i powiedzieć sobie w myślach lub na głos: „To jest ten moment. Nie idź dalej.” Taki krótki komunikat potrafi przeciąć rozwijający się schemat, zanim nabierze rozpędu.</li>
+          <li><strong>Przekierowanie uwagi</strong> – zamiast pozwalać myśli rosnąć, dać mózgowi coś innego. Może to być rozmowa z zaufanym człowiekiem, zapisanie wszystkiego na papierze albo skorzystanie z narzędzia, które podsunie gotowy plan działania, jak GPT. Chodzi o szybkie wypełnienie przestrzeni w głowie nowym bodźcem, zanim stary schemat zdąży przejąć kontrolę.</li>
+          <li><strong>Praca z ciałem</strong> – bo mózg to nie wszystko. Spacer, zimna woda na nadgarstki, ćwiczenia oddechowe – cokolwiek, co wysyła układowi nerwowemu komunikat: „Jesteś bezpieczny. Nie musisz wracać do starych dróg.” Fizyczne wyciszenie organizmu często jest kluczem do odzyskania jasności myślenia.</li>
         </ol>
-        <p class="tip">Z czasem te narzędzia warto mieć „pod ręką”, by sięgać po nie automatycznie, w pierwszych sekundach alarmu.</p>
+        <p class="tip">Z czasem nauczyłam się, że te narzędzia trzeba mieć „pod ręką” – tak, by w momencie alarmu sięgać po nie automatycznie, a nie dopiero wtedy, gdy jest już za późno.</p>
       </section>
 
       <section id="zatrzymanie" aria-labelledby="zatrzymanie-h">
         <h2 id="zatrzymanie-h">Zatrzymanie – „Stop, to jest ten moment”</h2>
-        <div class="card">
+        <div class="section-card">
           <div class="tag stop">Wentyl 1: Zatrzymanie</div>
-          <p>Pierwszy wentyl bezpieczeństwa uruchamia się w chwili, gdy w głowie lub ciele pojawia się pierwszy sygnał alarmowy: napięcie, bezprzyczynowa irytacja, poczucie pustki, znużenie, a nawet zbyt intensywna ekscytacja pchająca do natychmiastowego działania.</p>
-          <p>Największy błąd? Pozwolić temu płynąć dalej. Mózg traktuje brak reakcji jak otwarte drzwi: „Świetnie, kontynuujemy ten scenariusz.” Po kilku minutach schemat rusza z kopyta.</p>
-          <p><b>Jak przerwać?</b> Odłóż telefon, zamknij laptopa, wyłącz ekran, odsuń się od bodźca. Powiedz: <i>„To jest ten moment. Nie idź dalej.”</i> Zrób 3 powolne oddechy, rozluźnij barki, skup wzrok na jednym punkcie.</p>
-          <p><i>Okno reakcji</i> wynosi zwykle 3–5 sekund – tyle mamy, zanim impuls przełączy mózg w autopilota. Zatrzymanie działa jak awaryjny hamulec i daje korze przedczołowej szansę przejąć stery.</p>
+          <p>Pierwszy wentyl bezpieczeństwa uruchamia się w chwili, gdy w głowie lub ciele pojawia się pierwszy sygnał alarmowy. Może to być nagły przypływ napięcia, irytacja bez powodu, poczucie pustki, znużenie, a czasem nawet zbyt intensywna ekscytacja, która pcha do natychmiastowego działania. To drobny moment, który łatwo zlekceważyć, bo wydaje się „jeszcze niczym poważnym”.</p>
+          <p>Największy błąd na tym etapie to pozwolić sytuacji płynąć dalej. Mózg traktuje brak reakcji jak otwarte drzwi: „Świetnie, kontynuujemy ten scenariusz.” I zanim minie kilka minut, schemat jest już uruchomiony – myśli nabierają tempa, ciało reaguje automatycznie, a świadomość ustępuje miejsca starym nawykom.</p>
+          <p>Dlatego zatrzymanie polega na natychmiastowym przecięciu tej ścieżki. Może to być odłożenie telefonu, zamknięcie laptopa, wyłączenie telewizora, odsunięcie się od miejsca, które wywołało impuls. Ważne, by fizycznie przerwać kontakt z tym, co uruchomiło proces.</p>
+          <p>Pomaga też werbalizacja – powiedzenie w myślach lub na głos: „To jest ten moment. Nie idź dalej.” Ten prosty komunikat działa jak odpięcie kabla od gniazdka – natychmiast odcina dopływ „paliwa” do schematu. W tym krótkim oknie można wprowadzić element uspokojenia: trzy powolne, świadome wdechy i wydechy, skupienie wzroku na jednym punkcie, rozluźnienie barków.</p>
+          <p>Badania nad hamowaniem poznawczym pokazują, że człowiek ma średnio od 3 do 5 sekund na reakcję, zanim impuls przełączy mózg w tryb automatycznego działania – to tzw. okno reakcji. Jeśli w tym czasie wprowadzimy przerwanie lub zmianę, szansa na „rozbrojenie” schematu rośnie wielokrotnie. Zatrzymanie działa wtedy jak awaryjny hamulec – daje korze przedczołowej szansę na przejęcie kontroli nad decyzją, zanim zrobi to stary nawyk.</p>
+          <p>Zatrzymanie nie usuwa problemu jak gumka do ścierania, ale daje coś bezcennego – czas i przestrzeń na świadomą decyzję, zanim mózg przełączy się na autopilota. To moment, w którym możliwe staje się wybranie innej drogi, zanim schemat zdąży przejąć kontrolę.</p>
         </div>
       </section>
 
       <section id="przekierowanie" aria-labelledby="przekierowanie-h">
         <h2 id="przekierowanie-h">Przekierowanie uwagi – „Daruj, zwracaj”</h2>
-        <div class="card">
+        <div class="section-card">
           <div class="tag redirect">Wentyl 2: Przekierowanie</div>
-          <p>Po zatrzymaniu umysł dalej „dymi”. Nie próbuj zakazywać sobie myśli – to zwykle dolewa oliwy. Zamiast tłumić, <b>nadaj impulsowi nowy kierunek</b>.</p>
-          <p>Wybierz bodziec angażujący pamięć roboczą: krótka rozmowa, spisanie odczuć, szybki plan z pomocą asystenta AI. Przeglądanie sociali odpada – to często kolejne pułapki.</p>
-          <p><b>Lista sprawdzonych przekierowań:</b> 10-minutowy szybki spacer; 20 skojarzeń w notesie; mikro-zadanie wymagające skupienia (złożenie prania, porządek w szufladzie).</p>
-          <p>Mechanika jest prosta: pojemność uwagi jest ograniczona. Zajmij ją świadomie – wtedy stary impuls traci pas transmisyjny.</p>
+          <p>Drugi wentyl bezpieczeństwa uruchamia się zaraz po zatrzymaniu – wtedy, gdy umysł wciąż jest pod wpływem impulsu, ale jeszcze nie zdążył go zamienić w działanie. To moment, w którym najtrudniej jest „nie myśleć o tym, o czym się myśli” – bo każdy, kto próbował, wie, że samo zakazanie sobie myśli działa jak dolewanie oliwy do ognia.</p>
+          <p>Przekierowanie nie polega więc na tłumieniu impulsu, ale na nadaniu mu nowego kierunku. Mózg potrzebuje wtedy bodźca, który będzie na tyle angażujący, by odciąć go od źródła schematu i zająć jego zasoby przetwarzania. To jak skręcenie kierownicą w boczną uliczkę – nie zatrzymuje całkowicie jazdy, ale prowadzi w inne miejsce.</p>
+          <p>Może to być rozmowa z zaufaną osobą, zapisanie wszystkich odczuć na papierze lub w pliku, albo skorzystanie z narzędzi, które reagują w czasie rzeczywistym – takich jak GPT. Szybka wymiana myśli z asystentem AI może dostarczyć gotowych mini-planów, ćwiczeń oddechowych czy pytań, które przenoszą myślenie na zupełnie inną ścieżkę. Kluczem jest, by bodziec nie był przypadkowy – przeglądanie mediów społecznościowych rzadko działa, bo może wręcz uruchomić kolejne schematy.</p>
+          <p>Z perspektywy neurobiologii, przekierowanie uwagi wykorzystuje zjawisko kontroli uwagi. Mózg ma ograniczoną pojemność roboczą – w praktyce oznacza to, że jeśli zasypiemy go nowymi, wymagającymi przetworzenia informacjami, stary impuls traci „pas transmisyjny”. Dzięki temu kora przedczołowa (centrum racjonalnych decyzji) ma większą szansę utrzymać kontrolę, zamiast oddać pole reakcji automatycznej.</p>
+          <p>Warto przygotować sobie listę sprawdzonych przekierowań – rzeczy, które wiadomo, że działają. Może to być 10-minutowy spacer w szybkim tempie, wyjęcie notesu i zapisanie 20 kolejnych skojarzeń, jakie przychodzą do głowy, albo natychmiastowe wykonanie prostej czynności wymagającej skupienia (np. złożenie prania, przestawienie książek według koloru). Przekierowanie uwagi to nie jest ucieczka od problemu – to zmiana scenariusza w krytycznym momencie, zanim reżyserem sytuacji stanie się schemat.</p>
         </div>
       </section>
 
-      <section id="ciało" aria-labelledby="ciało-h">
-        <h2 id="ciało-h">Praca z ciałem – „Oddech i zimna woda”</h2>
-        <div class="card">
+      <section id="cialo" aria-labelledby="cialo-h">
+        <h2 id="cialo-h">Praca z ciałem – „Oddech i zimna woda”</h2>
+        <div class="section-card">
           <div class="tag body">Wentyl 3: Ciało</div>
-          <p>Schematy „wchodzą w ciało”: szybsze tętno, płytki oddech, ucisk w klatce, spocone dłonie. To tryb walki/ucieczki. Dopóki ciało jest w alarmie, mózg będzie szukał szybkiego ukojenia.</p>
+          <p>Trzeci wentyl bezpieczeństwa to zadbanie o ciało w momencie, gdy impuls już uruchomił reakcję fizjologiczną. Schematy nie działają wyłącznie w głowie – odciskają się na całym organizmie. Przyspieszone bicie serca, płytki oddech, ucisk w klatce piersiowej, spocone dłonie – to sygnały, że układ nerwowy przeszedł w tryb walki lub ucieczki. Dopóki ciało jest w stanie alarmu, mózg będzie instynktownie szukał szybkiego ukojenia – nawet jeśli oznacza to powrót do starego nawyku.</p>
+          <p>Praca z ciałem polega na wysłaniu do mózgu sygnału: „Jesteś bezpieczny.” Najprostsze sposoby to:</p>
           <ul>
-            <li><b>Chłodzenie</b>: nadgarstki/kark pod zimną wodą 1–2 min.</li>
-            <li><b>Oddech 4–7–8</b>: wdech 4 s, wstrzymanie 7 s, wydech 8 s.</li>
-            <li><b>Ruch</b>: krótki spacer, rozciąganie, 20 przysiadów.</li>
-            <li><b>Uziemienie 5–4–3–2–1</b>: zmysły jako kotwice w „tu i teraz”.</li>
+            <li><strong>Chłodzenie ciała</strong> – trzymanie nadgarstków lub karku pod zimną wodą przez 1–2 minuty.</li>
+            <li><strong>Ćwiczenia oddechowe</strong> – np. metoda 4–7–8 (wdech nosem przez 4 sekundy, wstrzymanie oddechu na 7 sekund, wydech ustami przez 8 sekund).</li>
+            <li><strong>Ruch fizyczny</strong> – krótki spacer, szybkie rozciąganie, seria przysiadów lub pompek.</li>
+            <li><strong>Uziemienie sensoryczne</strong> – skupienie uwagi na pięciu rzeczach, które można zobaczyć, czterech, których można dotknąć, trzech, które można usłyszeć, dwóch, które można powąchać i jednej, którą można posmakować.</li>
           </ul>
-          <p>To angażuje nerw błędny i układ przywspółczulny. Gdy ciało mięknie, wraca jasność decyzji.</p>
+          <p>Z punktu widzenia nauki, te metody działają, ponieważ angażują nerw błędny – kluczową część układu przywspółczulnego, odpowiedzialnego za uspokajanie organizmu po stresie. Fizyczne obniżenie napięcia mięśni i spowolnienie tętna potrafi znacząco zmniejszyć intensywność impulsu i umożliwia ponowne włączenie racjonalnego myślenia.</p>
+          <p>Praca z ciałem to nie „dodatek” do pracy z głową, ale równorzędny element procesu. Kiedy ciało wraca do stanu równowagi, myśli przestają biec w stronę natychmiastowej gratyfikacji, a pojawia się przestrzeń na świadome decyzje.</p>
         </div>
       </section>
 
       <section id="podsumowanie" aria-labelledby="podsumowanie-h">
         <h2 id="podsumowanie-h">Podsumowanie – codzienna praktyka czujności</h2>
-        <p>Schematy nie znikają, ale można im odebrać władzę. Kluczowe są <b>pierwsze sekundy</b>: zatrzymanie → przekierowanie → ciało. Proste narzędzia, codzienna praktyka.</p>
+        <p>Schematy nie znikają całkowicie. Mogą czekać w uśpieniu tygodniami, a potem próbować wrócić w najmniej spodziewanym momencie. Kluczem nie jest więc ich całkowite wyeliminowanie, ale odebranie im władzy – a to dzieje się wtedy, gdy reaguje się w pierwszych sekundach.</p>
+        <p>Trzy wentyle bezpieczeństwa – zatrzymanie, przekierowanie uwagi i praca z ciałem – to nie są skomplikowane procedury, ale codzienne narzędzia, które warto mieć zawsze „pod ręką”. Z czasem stają się automatyczne, a mózg uczy się, że istnieją inne, zdrowsze drogi reagowania na napięcie.</p>
 
-        <div class="card">
+        <div class="section-card">
           <div class="tag" style="background:rgba(96,165,250,.12)">🔍 Ciekawostka neurobiologiczna</div>
-          <p>Powtarzanie zdrowych reakcji wzmacnia nowe ścieżki (neuroplastyczność). Z czasem impulsy starych nawyków pojawiają się rzadziej i są słabsze.</p>
+          <p>Badania nad neuroplastycznością mózgu pokazują, że powtarzanie zdrowych reakcji dosłownie „przebudowuje” sieci neuronowe. Ścieżki związane z dawnym schematem stają się coraz słabsze, a nowe – coraz silniejsze. To dlatego po kilku miesiącach stosowania wentyli można zauważyć, że impulsy starych nawyków pojawiają się rzadziej i są mniej intensywne.</p>
         </div>
 
-        <div class="card">
+        <div class="section-card">
           <div class="tag" style="background:rgba(167,139,250,.12)">🔍 Ciekawostka psychologiczna</div>
-          <p><i>Efekt mikrodecyzji</i>: każda mała, świadoma reakcja dokłada cegiełkę do muru między Tobą a starym schematem. Ten mur rośnie codziennie.</p>
+          <p>Psycholodzy mówią o tzw. „efekcie mikrodecyzji” – każda mała, świadoma reakcja na impuls to jak cegiełka w murze między nami a starym schematem. Mur ten rośnie codziennie, nawet jeśli pojedyncza cegła wydaje się niewielka.</p>
         </div>
 
-        <p>„Słuchanie mózgu” to nie jednorazowy akt, tylko nawyk czujności. Konsekwencja staje się fundamentem wolności.</p>
+        <p>„Słuchanie mózgu”, gdy woła, to nie jednorazowy akt uważności – to praktyka, która z dnia na dzień staje się coraz bardziej naturalna. I właśnie ta konsekwencja jest prawdziwym fundamentem wolności od starych schematów.</p>
 
         <div class="foot">
           <span>© Trzeźwa z AI — możesz linkować, cytować z podaniem źródła.</span>
         </div>
       </section>
-    </main>
-  </div>
-</div>
+    </article>
+  </main>
 </body>
 </html>
-

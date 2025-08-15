@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aby słuchać, kiedy Twój mózg Cię woła — Trzeźwa z AI</title>
+
+  <!-- SEO / Social -->
+  <meta name="theme-color" content="#0f172a" id="theme-color-meta">
+  <meta name="description" content="Trzy wentyle bezpieczeństwa: zatrzymanie, przekierowanie uwagi i praca z ciałem. Jak słuchać mózgu, gdy wracają stare schematy." />
+  <meta property="og:title" content="Aby słuchać, kiedy Twój mózg Cię woła — Trzeźwa z AI">
+  <meta property="og:description" content="Narzędziowa, neuro-logiczna instrukcja: jak rozpoznać alarm i zareagować w pierwszych sekundach, zanim schemat przejmie stery.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Trzeźwa z AI">
+  <meta property="og:locale" content="pl_PL">
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0b1020;
+      --panel:#0f172a;
+      --text:#e6eef7;
+      --muted:#b6c2d6;
+      --line:rgba(255,255,255,.08);
+      --brand:#60a5fa;
+      --accent:#a78bfa;
+      --good:#34d399;
+      --warn:#fbbf24;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:'Inter',system-ui,Segoe UI,Roboto,Arial,sans-serif}
+    a{color:#93c5fd;text-decoration:underline}
+    .page{
+      min-height:100svh;
+      position:relative;
+      overflow-x:hidden;
+    }
+    /* layered background (jak na policy.html) */
+    .bg-layers:before,
+    .bg-layers:after{
+      content:""; position:fixed; inset:-20%;
+      pointer-events:none; z-index:-1;
+      background:
+        radial-gradient(1200px 500px at -10% -10%, rgba(32,76,148,.18), transparent 40%),
+        radial-gradient(900px 400px at 120% -10%, rgba(147,51,234,.14), transparent 40%),
+        radial-gradient(900px 400px at -20% 110%, rgba(16,185,129,.12), transparent 35%);
+      filter:saturate(110%);
+    }
+    .container{max-width:960px;margin:0 auto;padding:24px 20px 60px}
+    .nav{
+      display:flex;align-items:center;gap:12px;justify-content:space-between;
+      border-bottom:1px solid var(--line);padding:14px 0 16px
+    }
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px}
+    .brand .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#a78bfa)}
+    .back{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--text);text-decoration:none;font-size:14px}
+    .back:hover{border-color:rgba(255,255,255,.18)}
+    .hero{
+      padding:28px 0 10px;
+    }
+    h1{
+      font-size:clamp(28px,4vw,44px);line-height:1.1;margin:10px 0 8px;font-weight:800;
+      letter-spacing:.2px;
+    }
+    .meta{
+      color:var(--muted);font-size:14px;display:flex;gap:12px;flex-wrap:wrap
+    }
+    .article{
+      margin-top:22px;background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00));
+      border:1px solid var(--line);border-radius:18px;padding:22px 18px;
+    }
+    .article p{line-height:1.7;margin:12px 0}
+    h2{
+      font-size:clamp(20px,2.6vw,28px);margin:26px 0 10px;font-weight:800;
+      scroll-margin-top:90px;
+    }
+    .toc{
+      background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:14px;padding:14px 14px 10px;margin:8px 0 22px
+    }
+    .toc b{display:block;margin-bottom:8px}
+    .toc a{display:inline-block;margin:6px 10px 6px 0}
+    .card{
+      background:rgba(17,24,39,.6);border:1px solid var(--line);border-radius:14px;padding:14px 14px 10px;margin:14px 0
+    }
+    .card .tag{
+      display:inline-flex;align-items:center;gap:8px;
+      font-size:12px;font-weight:600;letter-spacing:.3px;
+      padding:6px 10px;border-radius:999px;margin-bottom:6px;border:1px solid var(--line)
+    }
+    .tag.stop{background:rgba(239,68,68,.10)}
+    .tag.redirect{background:rgba(59,130,246,.10)}
+    .tag.body{background:rgba(16,185,129,.10)}
+    ul,ol{padding-left:20px}
+    .tip{border-left:3px solid var(--brand);padding-left:12px;margin:12px 0;color:#dbeafe}
+    .foot{
+      border-top:1px solid var(--line);margin-top:26px;padding-top:16px;color:var(--muted);font-size:13px
+    }
+    @media (min-width:880px){
+      .article{padding:28px 26px}
+    }
+  </style>
+</head>
+<body>
+<div class="page bg-layers">
+  <div class="container">
+    <!-- NAV -->
+    <div class="nav">
+      <div class="brand"><span class="dot"></span> Trzeźwa z AI</div>
+      <a class="back" href="index.html" aria-label="Wróć na stronę główną">⬅︎ Powrót</a>
+    </div>
+
+    <!-- HERO -->
+    <header class="hero" id="top">
+      <h1>Aby słuchać, kiedy Twój mózg Cię woła</h1>
+      <div class="meta">
+        <span>Artykuł</span>
+        <span>•</span>
+        <span>czas czytania: ok. 7 min</span>
+      </div>
+    </header>
+
+    <!-- ARTICLE -->
+    <main class="article">
+      <nav class="toc" aria-label="Spis treści">
+        <b>Spis treści</b>
+        <a href="#wstep">Wstęp</a>
+        <a href="#rozpoznanie">Rozpoznanie to dopiero początek</a>
+        <a href="#zatrzymanie">Zatrzymanie – „Stop, to jest ten moment”</a>
+        <a href="#przekierowanie">Przekierowanie uwagi – „Daruj, zwracaj”</a>
+        <a href="#ciało">Praca z ciałem – „Oddech i zimna woda”</a>
+        <a href="#podsumowanie">Podsumowanie</a>
+      </nav>
+
+      <section id="wstep" aria-labelledby="wstep-h">
+        <h2 id="wstep-h">Wstęp</h2>
+        <p>Czasem myślimy, że nasz mózg to cichy obserwator, który reaguje dopiero wtedy, gdy wydarzy się coś dużego. Tymczasem on nieustannie wysyła sygnały – subtelne, niekiedy niemal niewidoczne – próbując ostrzec nas, że wchodzimy na znajomy grunt. Grunt, który może prowadzić do schematów, z których tak ciężko było nam się wyrwać.</p>
+        <p>Długo żyłam w przekonaniu, że schematy pojawiają się nagle, jak burza z piorunami. Dziś wiem, że to nieprawda. One przychodzą powoli, cicho, często w przebraniu czegoś zupełnie niewinnego. Jedna myśl, jedno skojarzenie, jedno miejsce – i mechanizm, który kiedyś rządził moim życiem, już próbuje wrócić.</p>
+        <p>W tym tekście opowiem o tym, jak nauczyłam się słuchać mojego mózgu. Jak odróżniam zwykłe zachcianki od tych myśli, które są sygnałem alarmowym. I dlaczego ta umiejętność jest jedną z najważniejszych, jakie można zdobyć w drodze do wolności od starych nawyków.</p>
+      </section>
+
+      <section id="rozpoznanie" aria-labelledby="rozpoznanie-h">
+        <h2 id="rozpoznanie-h">Rozpoznanie to dopiero początek</h2>
+        <p>Sama świadomość, że mózg wysyła sygnał ostrzegawczy, jest jak usłyszenie dzwonka telefonu. Ale co z tego, jeśli go nie odbierzesz? Ja zrozumiałam, że moment zauważenia to dopiero początek – a prawdziwą zmianę przynosi dopiero reakcja.</p>
+        <p>Kiedy widziałam, że mój mózg próbuje wciągnąć mnie w stary schemat, miałam przygotowany zestaw narzędzi. Nie czekałam, aż „samo minie”, bo wiedziałam, że wtedy to schemat wygra. Zamiast tego robiłam trzy rzeczy:</p>
+        <ol>
+          <li><b>Zatrzymanie</b> – dosłownie. Zatrzymać to, co się robi. Usiąść, zamknąć oczy i powiedzieć sobie: „To jest ten moment. Nie idź dalej.”</li>
+          <li><b>Przekierowanie uwagi</b> – dać mózgowi coś innego: rozmowa, zapis na papierze, szybki plan działania (np. z pomocą GPT).</li>
+          <li><b>Praca z ciałem</b> – spacer, zimna woda, oddech. Wysłać układowi nerwowemu komunikat: „Jesteś bezpieczny.”</li>
+        </ol>
+        <p class="tip">Z czasem te narzędzia warto mieć „pod ręką”, by sięgać po nie automatycznie, w pierwszych sekundach alarmu.</p>
+      </section>
+
+      <section id="zatrzymanie" aria-labelledby="zatrzymanie-h">
+        <h2 id="zatrzymanie-h">Zatrzymanie – „Stop, to jest ten moment”</h2>
+        <div class="card">
+          <div class="tag stop">Wentyl 1: Zatrzymanie</div>
+          <p>Pierwszy wentyl bezpieczeństwa uruchamia się w chwili, gdy w głowie lub ciele pojawia się pierwszy sygnał alarmowy: napięcie, bezprzyczynowa irytacja, poczucie pustki, znużenie, a nawet zbyt intensywna ekscytacja pchająca do natychmiastowego działania.</p>
+          <p>Największy błąd? Pozwolić temu płynąć dalej. Mózg traktuje brak reakcji jak otwarte drzwi: „Świetnie, kontynuujemy ten scenariusz.” Po kilku minutach schemat rusza z kopyta.</p>
+          <p><b>Jak przerwać?</b> Odłóż telefon, zamknij laptopa, wyłącz ekran, odsuń się od bodźca. Powiedz: <i>„To jest ten moment. Nie idź dalej.”</i> Zrób 3 powolne oddechy, rozluźnij barki, skup wzrok na jednym punkcie.</p>
+          <p><i>Okno reakcji</i> wynosi zwykle 3–5 sekund – tyle mamy, zanim impuls przełączy mózg w autopilota. Zatrzymanie działa jak awaryjny hamulec i daje korze przedczołowej szansę przejąć stery.</p>
+        </div>
+      </section>
+
+      <section id="przekierowanie" aria-labelledby="przekierowanie-h">
+        <h2 id="przekierowanie-h">Przekierowanie uwagi – „Daruj, zwracaj”</h2>
+        <div class="card">
+          <div class="tag redirect">Wentyl 2: Przekierowanie</div>
+          <p>Po zatrzymaniu umysł dalej „dymi”. Nie próbuj zakazywać sobie myśli – to zwykle dolewa oliwy. Zamiast tłumić, <b>nadaj impulsowi nowy kierunek</b>.</p>
+          <p>Wybierz bodziec angażujący pamięć roboczą: krótka rozmowa, spisanie odczuć, szybki plan z pomocą asystenta AI. Przeglądanie sociali odpada – to często kolejne pułapki.</p>
+          <p><b>Lista sprawdzonych przekierowań:</b> 10-minutowy szybki spacer; 20 skojarzeń w notesie; mikro-zadanie wymagające skupienia (złożenie prania, porządek w szufladzie).</p>
+          <p>Mechanika jest prosta: pojemność uwagi jest ograniczona. Zajmij ją świadomie – wtedy stary impuls traci pas transmisyjny.</p>
+        </div>
+      </section>
+
+      <section id="ciało" aria-labelledby="ciało-h">
+        <h2 id="ciało-h">Praca z ciałem – „Oddech i zimna woda”</h2>
+        <div class="card">
+          <div class="tag body">Wentyl 3: Ciało</div>
+          <p>Schematy „wchodzą w ciało”: szybsze tętno, płytki oddech, ucisk w klatce, spocone dłonie. To tryb walki/ucieczki. Dopóki ciało jest w alarmie, mózg będzie szukał szybkiego ukojenia.</p>
+          <ul>
+            <li><b>Chłodzenie</b>: nadgarstki/kark pod zimną wodą 1–2 min.</li>
+            <li><b>Oddech 4–7–8</b>: wdech 4 s, wstrzymanie 7 s, wydech 8 s.</li>
+            <li><b>Ruch</b>: krótki spacer, rozciąganie, 20 przysiadów.</li>
+            <li><b>Uziemienie 5–4–3–2–1</b>: zmysły jako kotwice w „tu i teraz”.</li>
+          </ul>
+          <p>To angażuje nerw błędny i układ przywspółczulny. Gdy ciało mięknie, wraca jasność decyzji.</p>
+        </div>
+      </section>
+
+      <section id="podsumowanie" aria-labelledby="podsumowanie-h">
+        <h2 id="podsumowanie-h">Podsumowanie – codzienna praktyka czujności</h2>
+        <p>Schematy nie znikają, ale można im odebrać władzę. Kluczowe są <b>pierwsze sekundy</b>: zatrzymanie → przekierowanie → ciało. Proste narzędzia, codzienna praktyka.</p>
+
+        <div class="card">
+          <div class="tag" style="background:rgba(96,165,250,.12)">🔍 Ciekawostka neurobiologiczna</div>
+          <p>Powtarzanie zdrowych reakcji wzmacnia nowe ścieżki (neuroplastyczność). Z czasem impulsy starych nawyków pojawiają się rzadziej i są słabsze.</p>
+        </div>
+
+        <div class="card">
+          <div class="tag" style="background:rgba(167,139,250,.12)">🔍 Ciekawostka psychologiczna</div>
+          <p><i>Efekt mikrodecyzji</i>: każda mała, świadoma reakcja dokłada cegiełkę do muru między Tobą a starym schematem. Ten mur rośnie codziennie.</p>
+        </div>
+
+        <p>„Słuchanie mózgu” to nie jednorazowy akt, tylko nawyk czujności. Konsekwencja staje się fundamentem wolności.</p>
+
+        <div class="foot">
+          <span>© Trzeźwa z AI — możesz linkować, cytować z podaniem źródła.</span>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+</body>
+</html>
+

@@ -3,70 +3,86 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sober with AI — Baza artykułów</title>
+  <title>Baza artykułów — Sober with AI</title>
 
+  <meta name="theme-color" content="#0f172a" id="theme-color-meta">
+  <meta property="og:title" content="Baza artykułów — Sober with AI">
+  <meta property="og:description" content="Lista artykułów i publikacji w projekcie Sober with AI.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
       margin: 0;
-      padding: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
-
     header {
-      background-color: #0f172a;
+      background: rgba(0,0,0,0.4);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+    .btn-back {
+      background-color: #3b82f6;
       color: white;
-      padding: 10px 0;
-      text-align: center;
-    }
-
-    main {
-      padding: 20px;
-      max-width: 800px;
-      margin: auto;
-    }
-
-    h1 {
-      text-align: center;
-      color: #333;
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    li {
-      background-color: white;
-      margin-bottom: 10px;
-      padding: 15px;
-      border-radius: 5px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    a {
-      text-decoration: none;
-      color: #0f172a;
-      font-weight: bold;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    /* Styl guzika powrotu */
-    .back-button {
-      display: inline-block;
-      padding: 8px 14px;
-      margin-bottom: 20px;
-      background-color: #0f172a;
-      color: white;
+      padding: 0.5rem 1rem;
       text-decoration: none;
       border-radius: 6px;
-      font-size: 14px;
+      font-weight: bold;
+      transition: background 0.3s;
     }
-    .back-button:hover {
-      background-color: #1e293b;
+    .btn-back:hover {
+      background-color: #2563eb;
+    }
+    main {
+      flex: 1;
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    .article-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    .article-card h2 {
+      margin-top: 0;
+      color: #facc15;
+    }
+    .article-card p {
+      line-height: 1.6;
+    }
+    .btn-read {
+      display: inline-block;
+      margin-top: 1rem;
+      background-color: #10b981;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .btn-read:hover {
+      background-color: #059669;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      background: rgba(0,0,0,0.3);
     }
   </style>
 </head>
@@ -74,16 +90,26 @@
 
   <header>
     <h1>Baza artykułów</h1>
+    <a href="index.html" class="btn-back">← Wróć do strony głównej</a>
   </header>
 
   <main>
-    <a href="index.html" class="back-button">← Wróć do strony głównej</a>
+    <div class="article-card">
+      <h2>Aby słuchać, kiedy Twój mózg Cię woła</h2>
+      <p>O tym, jak rozpoznawać subtelne sygnały ostrzegawcze i nie wpaść w stare schematy myślowe. Narzędzia i wskazówki dla osób w procesie zmiany.</p>
+      <a href="aby-sluchac.html" class="btn-read">Czytaj artykuł</a>
+    </div>
 
-    <ul>
-      <li><a href="aby-sluchac.html">Aby słuchać, kiedy Twój mózg Cię woła</a></li>
-      <li><a href="szury-ai.html">Szury AI</a></li>
-    </ul>
+    <div class="article-card">
+      <h2>Szury AI — fakty, mity i absurdy</h2>
+      <p>Krytyczne spojrzenie na teorie spiskowe wokół sztucznej inteligencji. Jak odróżnić rzetelną analizę od internetowego folkloru.</p>
+      <a href="szury-ai.html" class="btn-read">Czytaj artykuł</a>
+    </div>
   </main>
+
+  <footer>
+    © 2025 Sober with AI. Wszelkie prawa zastrzeżone.
+  </footer>
 
 </body>
 </html>

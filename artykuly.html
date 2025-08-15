@@ -5,111 +5,257 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Baza artykułów — Sober with AI</title>
 
+  <!-- Meta -->
   <meta name="theme-color" content="#0f172a" id="theme-color-meta">
   <meta property="og:title" content="Baza artykułów — Sober with AI">
-  <meta property="og:description" content="Lista artykułów i publikacji w projekcie Sober with AI.">
+  <meta property="og:description" content="Wszystkie artykuły projektu Sober with AI w jednym miejscu. Zero moralizowania — 100% narzędzi.">
+
+  <!-- Fonts (spójne z index.html) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #0f172a, #1e293b);
-      color: white;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
+    /* ====== RESET & TOKENS ====== */
+    :root{
+      --bg-1:#0b1222; /* tło głębokie */
+      --bg-2:#101a31; /* tło sekcji */
+      --txt:#e8eef9;
+      --muted:#a8b5d1;
+      --accent:#5bb8ff;
+      --accent-2:#8b5cf6;  /* fiolet z index.html */
+      --ok:#22c55e;
+      --card: rgba(15, 23, 42, 0.65); /* glass */
+      --card-border: rgba(148, 163, 184, 0.18);
+      --radius: 22px;
+      --shadow: 0 10px 30px rgba(2,6,23,.35);
+      --shadow-soft: 0 6px 20px rgba(2,6,23,.25);
+      --container: clamp(320px, 92vw, 1150px);
     }
-    header {
-      background: rgba(0,0,0,0.4);
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--txt);
+      background:
+        radial-gradient(1200px 800px at 15% -10%, rgba(91,184,255,.18), transparent 60%),
+        radial-gradient(900px 600px at 85% 10%, rgba(139,92,246,.20), transparent 55%),
+        linear-gradient(180deg, #0b1222 0%, #0d1528 100%);
+      background-attachment: fixed;
     }
-    header h1 {
-      margin: 0;
-      font-size: 1.5rem;
+    a{color:inherit;text-decoration:none}
+
+    /* ====== NAV ====== */
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(13,21,40,.75), rgba(13,21,40,.35));
+      border-bottom:1px solid var(--card-border);
     }
-    .btn-back {
-      background-color: #3b82f6;
-      color: white;
-      padding: 0.5rem 1rem;
-      text-decoration: none;
-      border-radius: 6px;
-      font-weight: bold;
-      transition: background 0.3s;
+    .nav__in{max-width:var(--container); margin:0 auto; padding:14px 18px; display:flex; align-items:center; gap:14px}
+    .brand{
+      display:flex; align-items:center; gap:10px; padding:8px 12px;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px solid var(--card-border); border-radius:14px;
     }
-    .btn-back:hover {
-      background-color: #2563eb;
+    .brand-dot{
+      width:14px; height:14px; border-radius:50%;
+      background: radial-gradient(circle at 35% 35%, #9be3ff, #4aa8ff 55%, #2563eb);
+      box-shadow:0 0 18px rgba(80,160,255,.6), inset 0 0 10px rgba(255,255,255,.25);
     }
-    main {
-      flex: 1;
-      max-width: 1000px;
-      margin: 2rem auto;
-      padding: 0 1rem;
+    .nav__spacer{flex:1}
+    .nav a.link{padding:10px 12px; border-radius:12px; color:var(--muted)}
+    .nav a.link:hover{background:rgba(255,255,255,.06); color:var(--txt)}
+
+    /* ====== HERO ====== */
+    .hero{max-width:var(--container); margin:34px auto 0; padding:0 18px 8px;}
+    .hero__card{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px solid var(--card-border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:24px;
+      display:flex; align-items:center; justify-content:space-between; gap:18px;
     }
-    .article-card {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    .hero h1{
+      font-size:clamp(28px, 4.4vw, 46px);
+      line-height:1.08; margin:0 0 8px 0;
     }
-    .article-card h2 {
-      margin-top: 0;
-      color: #facc15;
+    .badge{
+      display:inline-block; font-weight:700; font-size:12px; letter-spacing:.3px;
+      padding:8px 12px; border-radius:999px; color:#001427;
+      background: linear-gradient(90deg, #5bb8ff, #8b5cf6);
+      box-shadow:0 6px 16px rgba(91,184,255,.35);
     }
-    .article-card p {
-      line-height: 1.6;
+    .hero p{margin:8px 0 0; color:var(--muted)}
+    .hero .back{
+      white-space:nowrap; padding:10px 14px; border-radius:12px;
+      background:rgba(255,255,255,.06); border:1px solid var(--card-border);
     }
-    .btn-read {
-      display: inline-block;
-      margin-top: 1rem;
-      background-color: #10b981;
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s;
+    .hero .back:hover{background:rgba(255,255,255,.1)}
+
+    /* ====== TOOLS BAR ====== */
+    .tools{max-width:var(--container); margin:18px auto 0; padding:0 18px 10px;}
+    .tools__card{
+      background:var(--card); border:1px solid var(--card-border); border-radius:var(--radius);
+      box-shadow:var(--shadow-soft); padding:16px; display:flex; flex-wrap:wrap; gap:12px; align-items:center;
     }
-    .btn-read:hover {
-      background-color: #059669;
+    .search{flex:1; min-width:240px; display:flex; gap:10px}
+    .search input{
+      flex:1; padding:12px 14px; border-radius:14px; border:1px solid var(--card-border);
+      background:rgba(255,255,255,.05); color:var(--txt); outline:none;
     }
-    footer {
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-      background: rgba(0,0,0,0.3);
+    .chip{
+      padding:9px 12px; border-radius:999px; border:1px solid var(--card-border);
+      background:rgba(255,255,255,.06); color:var(--muted); cursor:pointer; user-select:none;
     }
+    .chip.active{color:#001427; background:linear-gradient(90deg, #5bb8ff, #8b5cf6)}
+    .sort{
+      padding:10px 12px; border-radius:12px; border:1px solid var(--card-border);
+      background:rgba(255,255,255,.06); color:var(--muted);
+    }
+
+    /* ====== GRID ====== */
+    .grid{max-width:var(--container); margin:18px auto 80px; padding:0 18px; display:grid; gap:16px;
+      grid-template-columns:repeat(1, 1fr);
+    }
+    @media (min-width:720px){ .grid{grid-template-columns:repeat(2, 1fr);} }
+
+    .card{
+      display:flex; flex-direction:column; gap:12px;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px solid var(--card-border); border-radius:var(--radius);
+      box-shadow:var(--shadow-soft); padding:18px;
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .card:hover{ transform: translateY(-2px); box-shadow:0 12px 28px rgba(2,6,23,.35); }
+    .card h3{margin:0; font-size:clamp(18px,2vw,22px)}
+    .card p{margin:0; color:var(--muted)}
+    .meta{display:flex; flex-wrap:wrap; gap:8px; color:var(--muted); font-size:12px}
+    .tag{padding:6px 10px; border-radius:999px; border:1px solid var(--card-border); background:rgba(255,255,255,.06)}
+    .btn{
+      align-self:flex-start; margin-top:6px;
+      padding:10px 14px; border-radius:12px; font-weight:600;
+      background:linear-gradient(90deg, #22c55e, #16a34a); color:#03200e; border:none; cursor:pointer;
+    }
+    .btn:hover{filter:brightness(1.05)}
+    footer{font-size:12px; color:#cbd5e1; opacity:.9; text-align:center; padding:22px}
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Baza artykułów</h1>
-    <a href="index.html" class="btn-back">← Wróć do strony głównej</a>
-  </header>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav__in">
+      <div class="brand">
+        <div class="brand-dot"></div>
+        <strong>Sober with AI</strong>
+      </div>
+      <div class="nav__spacer"></div>
+      <a class="link" href="index.html">Start</a>
+      <a class="link" href="o-inicjatywie.html">O mnie</a>
+      <a class="link" href="policy.html#pl">Polityka (PL)</a>
+      <a class="link" href="policy.html#en">Privacy (EN)</a>
+    </div>
+  </nav>
 
-  <main>
-    <div class="article-card">
-      <h2>Aby słuchać, kiedy Twój mózg Cię woła</h2>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__card">
+      <div>
+        <span class="badge">Zero moralizowania • 100% narzędzi</span>
+        <h1>Baza artykułów</h1>
+        <p>Wszystkie teksty w jednym miejscu — klarowny układ, szybkie wyszukiwanie i filtry.</p>
+      </div>
+      <a class="back" href="index.html">← Wróć do strony głównej</a>
+    </div>
+  </section>
+
+  <!-- TOOLS -->
+  <section class="tools">
+    <div class="tools__card">
+      <div class="search">
+        <input id="q" type="search" placeholder="Szukaj po tytule lub opisie…" aria-label="Szukaj">
+      </div>
+      <div class="chip" data-tag="wszystko">Wszystko</div>
+      <div class="chip" data-tag="psychologia">Psychologia</div>
+      <div class="chip" data-tag="ai">AI</div>
+      <div class="chip" data-tag="narzędzia">Narzędzia</div>
+      <select id="sort" class="sort" aria-label="Sortowanie">
+        <option value="new">Najnowsze</option>
+        <option value="az">Tytuł A→Z</option>
+        <option value="za">Tytuł Z→A</option>
+      </select>
+    </div>
+  </section>
+
+  <!-- GRID -->
+  <main class="grid" id="grid">
+    <!-- ====== DANE ARTYKUŁÓW ====== -->
+    <article class="card" data-title="Aby słuchać, kiedy Twój mózg Cię woła" data-desc="Jak rozpoznawać subtelne sygnały i nie wpadać w stare schematy. Narzędzia i wskazówki." data-tags="psychologia narzędzia" data-date="2025-08-14">
+      <h3>Aby słuchać, kiedy Twój mózg Cię woła</h3>
       <p>O tym, jak rozpoznawać subtelne sygnały ostrzegawcze i nie wpaść w stare schematy myślowe. Narzędzia i wskazówki dla osób w procesie zmiany.</p>
-      <a href="aby-sluchac.html" class="btn-read">Czytaj artykuł</a>
-    </div>
+      <div class="meta">
+        <span class="tag">Psychologia</span><span class="tag">Narzędzia</span><span class="tag">2025-08-14</span>
+      </div>
+      <a class="btn" href="artykuly/aby-sluchac.html">Czytaj artykuł</a>
+    </article>
 
-    <div class="article-card">
-      <h2>Szury AI — fakty, mity i absurdy</h2>
+    <article class="card" data-title="Szury AI — fakty, mity i absurdy" data-desc="Krytyczne spojrzenie na teorie spiskowe wokół sztucznej inteligencji." data-tags="ai edukacja" data-date="2025-08-15">
+      <h3>Szury AI — fakty, mity i absurdy</h3>
       <p>Krytyczne spojrzenie na teorie spiskowe wokół sztucznej inteligencji. Jak odróżnić rzetelną analizę od internetowego folkloru.</p>
-      <a href="szury-ai.html" class="btn-read">Czytaj artykuł</a>
-    </div>
+      <div class="meta">
+        <span class="tag">AI</span><span class="tag">Edukacja</span><span class="tag">2025-08-15</span>
+      </div>
+      <a class="btn" href="artykuly/szury-ai.html">Czytaj artykuł</a>
+    </article>
+
+    <!-- ====== DODAJ KOLEJNE ARTYKUŁY KOPIUJĄC BLOK <article> ====== -->
   </main>
 
-  <footer>
-    © 2025 Sober with AI. Wszelkie prawa zastrzeżone.
-  </footer>
+  <footer>© 2025 Sober with AI. Wszelkie prawa zastrzeżone.</footer>
 
+  <script>
+    // proste wyszukiwanie + tagi + sort
+    const q = document.getElementById('q');
+    const grid = document.getElementById('grid');
+    const chips = [...document.querySelectorAll('.chip')];
+    const sortSel = document.getElementById('sort');
+    let activeTag = 'wszystko';
+
+    function match(article){
+      const t = (article.dataset.title + ' ' + article.dataset.desc).toLowerCase();
+      const tags = article.dataset.tags.toLowerCase();
+      const textOk = t.includes(q.value.trim().toLowerCase());
+      const tagOk = activeTag==='wszystko' ? true : tags.split(' ').includes(activeTag);
+      return textOk && tagOk;
+    }
+    function render(){
+      const items = [...grid.children];
+      // filtr
+      items.forEach(a => a.style.display = match(a) ? '' : 'none');
+      // sort
+      const visible = items.filter(a => a.style.display !== 'none');
+      visible.sort((a,b)=>{
+        const mode = sortSel.value;
+        if(mode==='new') return (b.dataset.date||'').localeCompare(a.dataset.date||'');
+        if(mode==='az')  return (a.dataset.title||'').localeCompare(b.dataset.title||'');
+        if(mode==='za')  return (b.dataset.title||'').localeCompare(a.dataset.title||'');
+        return 0;
+      }).forEach(el=>grid.appendChild(el));
+    }
+    q.addEventListener('input', render);
+    sortSel.addEventListener('change', render);
+    chips.forEach(c=>c.addEventListener('click', ()=>{
+      chips.forEach(x=>x.classList.remove('active'));
+      c.classList.add('active');
+      activeTag = c.dataset.tag;
+      render();
+    }));
+    // start
+    chips[0].classList.add('active');
+    render();
+  </script>
 </body>
 </html>

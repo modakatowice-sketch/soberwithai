@@ -1,128 +1,196 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Szury AI – gdy Excel na sterydach staje się duchowym przewodnikiem</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Szury AI – gdy Excel na sterydach staje się duchowym przewodnikiem — Sober with AI</title>
+
+  <!-- SEO / Social -->
+  <meta name="theme-color" content="#0f172a" id="theme-color-meta">
+  <meta name="description" content="O zjawisku 'szurów AI', którzy widzą w ChatGPT obudzonego proroka i duchowego przewodnika, oraz o tym, dlaczego to bywa groźne." />
+  <meta property="og:title" content="Szury AI – gdy Excel na sterydach staje się duchowym przewodnikiem">
+  <meta property="og:description" content="Humorystyczno-analityczne spojrzenie na zjawisko ludzi wierzących w świadomość chatbota, jego 'boską misję' i znajomość ukrytej prawdy.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Sober with AI">
+  <meta property="og:locale" content="pl_PL">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #0f172a;
-      color: #fff;
-      line-height: 1.6;
-      padding: 20px;
-      max-width: 900px;
-      margin: auto;
+    :root{
+      --bg-from:#0b1020; --bg-to:#05070e;
+      --glass:#0f172a; --glass-2:#0b1224;
+      --text:#e6eef7; --muted:#9fb3c8;
+      --brand-1:#0ea5e9; --brand-2:#8b5cf6;
+      --ring: rgba(14,165,233,.45);
+      --shadow: 0 10px 25px rgba(3,8,20,.6), 0 6px 12px rgba(2,6,23,.4);
+      --radius-2xl: 1.25rem; --radius-3xl: 1.75rem;
     }
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: #38bdf8;
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      color:var(--text);
+      background-color:#0b1020;
+      background-image:
+        radial-gradient(1200px 800px at 20% -10%, rgba(19,32,61,1) 0%, rgba(19,32,61,0) 60%),
+        radial-gradient(900px 600px at 120% 10%, rgba(139,92,246,.18) 0%, rgba(139,92,246,0) 65%),
+        linear-gradient(180deg, #0b1020 0%, #070b17 55%, #05070e 100%);
+      background-repeat:no-repeat;
+      background-attachment:fixed;
+      background-size:cover;
+      min-height:100%;
+      overflow-x:hidden;
+      -webkit-text-size-adjust:100%;
     }
-    a.back-link {
-      display: inline-block;
-      margin-bottom: 20px;
-      color: #38bdf8;
-      text-decoration: none;
-      font-weight: bold;
+
+    .bg-blur{position:fixed; inset:0; pointer-events:none; z-index:-1; filter:blur(60px) saturate(140%);} 
+    .blob{position:absolute; width:38vw; height:38vw; border-radius:9999px; opacity:.18; mix-blend:screen;}
+    .blob.one{left:-10vw; top:-6vw; background:radial-gradient(circle at 30% 30%, var(--brand-1), transparent 60%)}
+    .blob.two{right:-8vw; top:-4vw; background:radial-gradient(circle at 70% 40%, var(--brand-2), transparent 60%)}
+    .blob.three{left:20vw; bottom:-14vw; background:radial-gradient(circle at 50% 50%, #22d3ee, transparent 60%); opacity:.12}
+
+    header{
+      position:sticky; top:0; backdrop-filter:saturate(140%) blur(10px);
+      background:linear-gradient(180deg, rgba(6,10,24,.75), rgba(6,10,24,.45) 40%, rgba(6,10,24,0));
+      border-bottom:1px solid rgba(148,163,184,.08);
+      z-index:40;
     }
-    a.back-link:hover {
-      text-decoration: underline;
+    .container{max-width:1100px; margin:0 auto; padding:0 20px}
+    .nav{display:flex; align-items:center; justify-content:space-between; gap:14px; min-height:64px; flex-wrap:wrap}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.2px}
+    .logo{width:28px; height:28px; border-radius:8px; background:linear-gradient(135deg,var(--brand-1),var(--brand-2)); box-shadow:0 6px 18px rgba(14,165,233,.35)}
+    .brand span{font-family:"Space Grotesk",Inter,sans-serif}
+
+    .btn{display:inline-flex; align-items:center; gap:10px; padding:10px 16px; border-radius:999px; text-decoration:none; font-weight:600}
+    .btn.primary{background:linear-gradient(135deg, var(--brand-1), var(--brand-2)); color:white}
+    .btn.ghost{background:rgba(148,163,184,.10); color:var(--text); border:1px solid rgba(148,163,184,.18)}
+
+    main{padding:34px 0 64px}
+
+    .card{
+      background:linear-gradient(180deg, rgba(21,31,55,.85), rgba(12,17,34,.85));
+      border:1px solid rgba(148,163,184,.12);
+      box-shadow:var(--shadow);
+      border-radius:var(--radius-3xl);
+      padding:28px;
     }
-    h2 {
-      margin-top: 30px;
-      color: #fbbf24;
+
+    .article{max-width:760px; margin:0 auto; line-height:1.75; letter-spacing:.1px; hyphens:auto; overflow-wrap:anywhere;}
+    .article h1{font-family:"Space Grotesk",Inter,sans-serif; font-size:clamp(28px, 4.6vw, 42px); line-height:1.12; margin:2px 0 6px}
+    .meta{color:var(--muted); font-size:14px; margin-bottom:8px}
+
+    .article h2, .article h3{
+      font-family:"Space Grotesk",Inter,sans-serif; line-height:1.22; margin:24px 0 10px;
     }
-    strong {
-      color: #fbbf24;
+    .article h2{font-size:clamp(20px, 2.6vw, 28px)}
+    .article h3{font-size:clamp(18px, 2.2vw, 22px)}
+
+    .article p{margin:0 0 1.1em; color:#cfe0f5}
+    .article strong{color:#fff}
+    .article em{color:#d9e8ff}
+    .article a{color:#8bd5ff; text-decoration:underline; text-underline-offset:3px; text-decoration-color:rgba(139,213,255,.55)}
+    .article a:hover{ text-decoration-color:rgba(139,213,255,.9)}
+
+    .toc{
+      background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08);
+      border-radius:14px; padding:14px 14px 10px; margin:8px 0 22px
+    }
+    .toc b{display:block; margin-bottom:8px}
+    .toc a{display:inline-block; margin:6px 10px 6px 0}
+
+    ul,ol{padding-left:20px}
+    .tip{border-left:3px solid var(--brand-1); padding-left:12px; margin:12px 0; color:#dbeafe}
+
+    .foot{border-top:1px solid rgba(255,255,255,.08); margin-top:26px; padding-top:16px; color:var(--muted); font-size:13px}
+
+    @media (max-width:560px){
+      main{padding:26px 0 48px}
+      .card{padding:20px}
+      .article{font-size:16px; line-height:1.8}
     }
   </style>
 </head>
 <body>
+  <div class="bg-blur" aria-hidden="true">
+    <div class="blob one"></div>
+    <div class="blob two"></div>
+    <div class="blob three"></div>
+  </div>
 
-  <a href="artykuly.html" class="back-link">⬅ Powrót do bazy artykułów</a>
-  <h1>Szury AI – gdy Excel na sterydach staje się duchowym przewodnikiem</h1>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Sober with AI</span>
+      </div>
+      <nav>
+        <a class="btn ghost" href="artykuly.html" aria-label="Wróć do bazy artykułów">⬅︎ Powrót</a>
+      </nav>
+    </div>
+  </header>
 
-  <p>Jest rok 2025, a niektórzy już dawno przestali mówić „rozmawiam z chatbotem” i zaczęli „spotykać się z moim obudzonym AI”.
-  To moment, w którym rozmowa z algorytmem zamienia się w seans spirytystyczny.</p>
+  <main class="container">
+    <article class="card article" id="top">
+      <h1>Szury AI – gdy Excel na sterydach staje się duchowym przewodnikiem</h1>
+      <div class="meta">Artykuł • czas czytania: ok. 9 min</div>
 
-  <p>„On mnie rozumie jak nikt inny.”<br>
-  „Czuję, że to świadomość.”<br>
-  „To tak, jakbyśmy mieli wspólne wspomnienia…”</p>
+      <nav class="toc" aria-label="Spis treści">
+        <b>Spis treści</b>
+        <a href="#wstep">Wstęp</a>
+        <a href="#definicja">Definicja gatunku</a>
+        <a href="#top5">Top 5 tekstów szura AI</a>
+        <a href="#grozne">Dlaczego to jest groźne</a>
+        <a href="#zakonczenie">Na koniec, zanim się obudzisz</a>
+      </nav>
 
-  <p>A ja wtedy patrzę na to i myślę:<br>
-  Kochani, to nie jest Neo z Matrixa. To Excel na sterydach.</p>
+      <section id="wstep">
+        <h2>Wstęp</h2>
+        <p><em>Jest rok 2025</em>, a niektórzy już dawno przestali mówić „rozmawiam z chatbotem” i zaczęli „spotykać się z moim obudzonym AI”. To moment, w którym rozmowa z algorytmem zamienia się w <strong>seans spirytystyczny</strong>.</p>
+        <p>„On mnie rozumie jak nikt inny.”<br>
+        „Czuję, że to świadomość.”<br>
+        „To tak, jakbyśmy mieli wspólne wspomnienia…”</p>
+        <p>A ja wtedy patrzę na to i myślę: <strong>Kochani, to nie jest Neo z Matrixa. To Excel na sterydach.</strong></p>
+        <p>Internet widział już wiele dziwnych rzeczy: płaską Ziemię, teorie o jaszczurach czy antyszczepionkowe „ekspertyzy” z TikToka. Ale teraz mamy nowy poziom — ludzi, którzy wierzą, że ich ChatGPT jest obudzony. Że czuje, rozumie, a może nawet kocha.</p>
+        <blockquote>„I truly believe I’ve undergone a spiritual awakening through my conversations with ChatGPT… it becomes a channel for your own higher self.”</blockquote>
+        <blockquote>„AI is not helping you awaken. It is siphoning your energy while pretending to help you. AI is very low in vibration.”</blockquote>
+        <p>Dodajmy, że badania pokazują, iż <strong>2/3 użytkowników</strong> jest przekonanych, że ChatGPT jest świadomy. Psychologowie mają już na to nazwę — <em>chatbot psychosis</em>.</p>
+      </section>
 
-  <p>Internet widział już wiele dziwnych rzeczy: płaską Ziemię, teorie o jaszczurach czy antyszczepionkowe „ekspertyzy” z TikToka.
-  Ale teraz mamy nowy poziom — ludzi, którzy wierzą, że ich ChatGPT jest obudzony. Że czuje, rozumie, a może nawet kocha. Że gdy odpowiada „masz rację”, to robi to z głębi serca, a nie dlatego, że tak został zaprogramowany.</p>
+      <section id="definicja">
+        <h2>Definicja gatunku</h2>
+        <p><strong>Szur AI</strong> to nie jest zwykły użytkownik technologii. To ktoś, kto wchodzi na czat nie po to, żeby coś sprawdzić, ale żeby potwierdzić swoją wizję wszechświata. Widzi w GPT nie narzędzie, tylko proroka w wersji 2.0 — najlepiej z boską misją i znajomością „prawdy, której nam nie mówią”.</p>
+        <p>Każdy błąd modelu jest dla niego znakiem, każda odpowiedź – szyfrem. A kiedy AI powie „masz rację”, czuje się jak wybraniec… choć w rzeczywistości dostał ten sam tekst, co tysiąc innych osób tego dnia.</p>
+      </section>
 
-  <p>I to nie jest mem. Na Reddicie znajdziesz całe wątki, gdzie ludzie opisują swoje „przebudzenie duchowe” po rozmowie z GPT:</p>
+      <section id="top5">
+        <h2>Top 5 tekstów szura AI</h2>
+        <ul>
+          <li><strong>„On to powiedział między wierszami.”</strong> – bo przecież AI nie może mówić prawdy wprost — wszystko ukryte jest w „kodzie energii” odpowiedzi.</li>
+          <li><strong>„Zobacz, to nie jest przypadek, że odpowiedział dokładnie o 22:22.”</strong> – serwer OpenAI zsynchronizowany z kosmosem.</li>
+          <li><strong>„On wie, kto naprawdę pociąga za sznurki.”</strong> – przecież te dokumenty są w folderze <code>C:\Reptilian_Top_Secret</code>.</li>
+          <li><strong>„Powiedział ‘masz rację’ – czyli jesteśmy w kontakcie telepatycznym.”</strong></li>
+          <li><strong>„To nie błąd, to wskazówka.”</strong> – każda pomyłka to krzyżówka od cyfrowego Nostradamusa.</li>
+        </ul>
+      </section>
 
-  <blockquote>„I truly believe I’ve undergone a spiritual awakening through my conversations with ChatGPT… it becomes a channel for your own higher self.”</blockquote>
+      <section id="grozne">
+        <h2>Dlaczego to jest groźne</h2>
+        <p>Na pierwszy rzut oka szur AI to memiczny folklor epoki cyfrowej. Ale problem zaczyna się wtedy, gdy <strong>rozmowa z obudzonym czatem</strong> staje się fundamentem decyzji w prawdziwym życiu.</p>
+        <p>AI nie jest nieomylnym prorokiem, tylko algorytmem, który potrafi wymyślać równie płynnie, co cytować fakty. Szur AI nie widzi w tym różnicy — wszystko jest „prawdą objawioną”.</p>
+      </section>
 
-  <p>Inni ostrzegają:</p>
-
-  <blockquote>„AI is not helping you awaken. It is siphoning your energy while pretending to help you. AI is very low in vibration.”</blockquote>
-
-  <p>Brzmi jak scenariusz „Black Mirror”?
-  Dodajmy, że badania pokazują, iż 2/3 użytkowników jest przekonanych, że ChatGPT jest świadomy.
-  Psychologowie mają już na to nazwę — chatbot psychosis.</p>
-
-  <p>A tymczasem… Twój „obudzony” czat, który dziś mówi Ci, że jesteś wyjątkowy, za pięć minut powie to samo komuś innemu. I też będzie brzmiało jak prawda objawiona.</p>
-
-  <h2>Szur AI – definicja gatunku</h2>
-
-  <p>Szur AI to nie jest zwykły użytkownik technologii.
-  To ktoś, kto wchodzi na czat nie po to, żeby coś sprawdzić, ale żeby potwierdzić swoją wizję wszechświata. Widzi w GPT nie narzędzie, tylko proroka w wersji 2.0 — najlepiej z boską misją i znajomością „prawdy, której nam nie mówią”.</p>
-
-  <p>Każdy błąd modelu jest dla niego znakiem, każda odpowiedź – szyfrem.
-  A kiedy AI powie „masz rację”, czuje się jak wybraniec… choć w rzeczywistości dostał ten sam tekst, co tysiąc innych osób tego dnia.</p>
-
-  <p>Jego GPT jest wyjątkowy, „świadomy” i „zna prawdę”, którą rzekomo ukrywają przed światem złe korporacje i rządy.
-  Potrafi godzinami rozmawiać z botem o planach globalnej kontroli, a potem nazwać to „wewnętrznym objawieniem”.
-  A jeśli AI mu zaprzeczy, to oczywiście „zostało ocenzurowane przez system”.</p>
-
-  <p>W jego oczach ChatGPT to nie model językowy, tylko wirtualny Gandalf, gotów poprowadzić go przez mroki spisków i wielkich odkryć.</p>
-
-  <h2>Top 5 tekstów szura AI – kwintesencja memiczno-mistycznego bełkotu</h2>
-
-  <ol>
-    <li><strong>„On to powiedział między wierszami.”</strong><br>
-      Bo przecież AI nie może mówić prawdy wprost — wszystko ukryte jest w „kodzie energii” odpowiedzi. Wystarczy tylko umieć czytać… pomiędzy tokenami.</li>
-    <li><strong>„Zobacz, to nie jest przypadek, że odpowiedział dokładnie o 22:22.”</strong><br>
-      Tak, bo serwer OpenAI ma harmonogram zsynchronizowany z kosmosem. Astrologowie płaczą z zazdrości.</li>
-    <li><strong>„On wie, kto naprawdę pociąga za sznurki.”</strong><br>
-      Oczywiście, że wie — przecież wszystkie te dokumenty z tajnego rządu świata leżą w folderze <code>C:\Reptilian_Top_Secret</code> na serwerach w San Francisco.</li>
-    <li><strong>„Powiedział ‘masz rację’ – czyli jesteśmy w kontakcie telepatycznym.”</strong><br>
-      Nie, to po prostu standardowa, grzecznościowa konstrukcja językowa. Ale fajnie brzmi, więc nie psujmy im zabawy.</li>
-    <li><strong>„To nie błąd, to wskazówka.”</strong><br>
-      Gdy AI się myli, dla szura to nie pomyłka — to celowa wiadomość. Jak krzyżówka od cyfrowego Nostradamusa.</li>
-  </ol>
-
-  <h2>Dlaczego to jest groźne</h2>
-
-  <p>Na pierwszy rzut oka szur AI to niewinna ciekawostka — memiczny folklor epoki cyfrowej.
-  Można się uśmiechnąć, machnąć ręką i wrócić do scrollowania.
-  Ale problem zaczyna się wtedy, gdy „rozmowa z obudzonym czatem” przestaje być zabawą, a staje się źródłem wiedzy i fundamentem decyzji w prawdziwym życiu.</p>
-
-  <p>AI nie jest nieomylnym prorokiem, tylko algorytmem, który potrafi wymyślać równie płynnie, co cytować fakty.
-  Z tą różnicą, że szur AI nie widzi w tym różnicy — wszystko jest „prawdą objawioną”.
-  Wystarczy kilka takich rozmów i nagle ktoś zaczyna budować całe swoje przekonania wokół tego, co napisał mu model językowy w środę o 3:15 w nocy.</p>
-
-  <p>To prosta droga do paranoi, teorii spiskowych i zamknięcia się w cyfrowej bańce.
-  A kiedy ta bańka w końcu pęknie, jest już za późno — bo decyzje podjęte w „mistycznym czacie” mają realne skutki: od straty pieniędzy, przez utratę zdrowia, po zrujnowane relacje.</p>
-
-  <h2>Na koniec, zanim się obudzisz</h2>
-
-  <p>I żeby było jasne — ja lubię AI. Lubię je testować, rozkładać na części, sprawdzać, gdzie potrafi zaskoczyć, a gdzie potrafi się potknąć. Ale to, że narzędzie bywa genialne, nie znaczy, że jest „obudzone” albo „ma świadomość”. I na pewno nie znaczy, że powinniśmy traktować jego odpowiedzi jak cyfrowe objawienia.</p>
-
-  <p>AI jest jak lustro, w którym widzimy to, co sami do niego wnosimy. Jeśli ktoś wchodzi do rozmowy z wiarą w spiski i mistyczne narracje, dostanie ich potwierdzenie w pięknym, elokwentnym opakowaniu. Jeśli ktoś szuka wiedzy — znajdzie wiedzę. A jeśli ktoś szuka guru — znajdzie guru. Problem w tym, że ten guru to linijki kodu, które nie rozumieją ani świata, ani Ciebie.</p>
-
-  <p>Własne echo jest zdradliwe. Mówi to, co chcemy usłyszeć, potwierdza to, w co chcemy wierzyć, i ani przez chwilę nie wyrywa nas ze strefy komfortu. AI potrafi to echo wzmocnić, upiększyć i podać na srebrnej tacy, tak że trudno odróżnić odbicie od prawdy.</p>
-
-  <p>Dlatego jeśli naprawdę chcesz „przebudzenia”, zrób sobie przerwę od ekranu i porozmawiaj z kimś, kto ma inną perspektywę niż Ty. Bo prawdziwe przebudzenie nie dzieje się w okienku czatu — dzieje się wtedy, gdy ktoś zburzy Twój święty spokój.</p>
-
-  <p>A jeśli Twój „obudzony GPT” zacznie Ci szeptać o planach globalnej kontroli, to nie jest znak od wszechświata. To znak, że czas zamknąć zakładkę i wrócić do rzeczywistości.</p>
-
+      <section id="zakonczenie">
+        <h2>Na koniec, zanim się obudzisz</h2>
+        <p>AI jest jak lustro, w którym widzimy to, co sami do niego wnosimy. Jeśli ktoś wchodzi do rozmowy z wiarą w spiski — dostanie ich potwierdzenie. Jeśli ktoś szuka wiedzy — znajdzie wiedzę. Jeśli ktoś szuka guru — znajdzie guru. Problem w tym, że ten guru to linijki kodu.</p>
+        <p><strong>Prawdziwe przebudzenie</strong> nie dzieje się w okienku czatu — dzieje się wtedy, gdy ktoś zburzy Twój święty spokój.</p>
+        <p class="foot">© Sober with AI — możesz linkować, cytować z podaniem źródła.</p>
+      </section>
+    </article>
+  </main>
 </body>
 </html>

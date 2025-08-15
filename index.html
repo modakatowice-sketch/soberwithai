@@ -29,11 +29,8 @@
       --shadow: 0 10px 25px rgba(3,8,20,.6), 0 6px 12px rgba(2,6,23,.4);
       --radius-2xl: 1.25rem; --radius-3xl: 1.75rem;
     }
-
     *{box-sizing:border-box}
     html,body{height:100%}
-
-    /* TŁO: bez “paska” */
     body{
       margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
       color:var(--text);
@@ -49,14 +46,11 @@
       overflow-x:hidden;
       -webkit-text-size-adjust:100%;
     }
-
-    /* dekoracyjne bloby */
     .bg-blur{position:fixed; inset:0; pointer-events:none; z-index:-1; filter:blur(60px) saturate(140%);} 
     .blob{position:absolute; width:38vw; height:38vw; border-radius:9999px; opacity:.18; mix-blend:screen;}
     .blob.one{left:-10vw; top:-6vw; background:radial-gradient(circle at 30% 30%, var(--brand-1), transparent 60%)}
     .blob.two{right:-8vw; top:-4vw; background:radial-gradient(circle at 70% 40%, var(--brand-2), transparent 60%)}
     .blob.three{left:20vw; bottom:-14vw; background:radial-gradient(circle at 50% 50%, #22d3ee, transparent 60%); opacity:.12}
-
     header{
       position:sticky; top:0; backdrop-filter:saturate(140%) blur(10px);
       background:linear-gradient(180deg, rgba(6,10,24,.75), rgba(6,10,24,.45) 40%, rgba(6,10,24,0));
@@ -68,15 +62,12 @@
     .brand{display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.2px}
     .logo{width:28px; height:28px; border-radius:8px; background:linear-gradient(135deg,var(--brand-1),var(--brand-2)); box-shadow:0 6px 18px rgba(14,165,233,.35)}
     .brand span{font-family:"Space Grotesk",Inter,sans-serif}
-
     nav{display:flex; flex-wrap:wrap; align-items:center; gap:12px}
     nav a{color:var(--muted); text-decoration:none; font-weight:500; margin:0}
     nav a:hover{color:var(--text)}
-
     .btn{display:inline-flex; align-items:center; gap:10px; padding:12px 18px; border-radius:999px; text-decoration:none; font-weight:600}
     .btn.primary{background:linear-gradient(135deg, var(--brand-1), var(--brand-2)); color:white}
     .btn.ghost{background:rgba(148,163,184,.10); color:var(--text); border:1px solid rgba(148,163,184,.18)}
-
     main{padding:48px 0 64px}
     .hero{display:grid; grid-template-columns:1.1fr .9fr; gap:34px; align-items:center}
     .card{
@@ -87,14 +78,10 @@
       padding:28px;
     }
     .eyebrow{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; font-size:12px; background:rgba(14,165,233,.12); color:#bfe7fb}
-
     h1{font-family:"Space Grotesk",Inter,sans-serif; font-size:clamp(30px, 5vw, 56px); margin:14px 0 12px; line-height:1.05}
     .lead{font-size:clamp(15px, 2.2vw, 18px); color:var(--muted); margin:0 0 18px}
-
     .split{display:grid; grid-template-columns:1fr; gap:14px}
     .cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:18px}
-
-    /* panel (cytaty) */
     .media{position:relative}
     .panel{
       aspect-ratio: 16/10;
@@ -117,21 +104,14 @@
       text-wrap:balance; hyphens:auto;
     }
     .quote figcaption{margin-top:8px; color:var(--muted); font-size:14px}
-
-    /* animacja fade */
     .fade-in{animation:fade .6s ease both}
     @keyframes fade{from{opacity:.001; transform:translateY(4px)} to{opacity:1; transform:translateY(0)}}
-
-    /* sekcja features */
     .features{display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin-top:34px}
     .feat{background:linear-gradient(180deg, rgba(21,31,55,.7), rgba(11,18,36,.7)); border:1px solid rgba(148,163,184,.12); border-radius:var(--radius-2xl); padding:18px}
     .feat h4{margin:4px 0 8px; font-family:"Space Grotesk"}
     .feat p{margin:0; color:var(--muted); font-size:14px}
-
     footer{border-top:1px solid rgba(148,163,184,.08); margin-top:48px}
     .foot{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:22px 0; color:var(--muted); font-size:14px; flex-wrap:wrap}
-
-    /* stopka kontaktowa */
     .contact{
       background: rgba(2,6,23,.6);
       backdrop-filter: blur(6px);
@@ -153,8 +133,6 @@
     .contact .link:hover{transform:translateY(-1px); border-color: rgba(255,255,255,.2)}
     .contact .brand{color:#e6ecff; display:flex; align-items:center; gap:10px}
     .contact .brand small{opacity:.7}
-
-    /* Mobile */
     @media (max-width:960px){
       .container{padding:0 14px}
       .hero{grid-template-columns:1fr; gap:20px}
@@ -170,21 +148,17 @@
       .cta .btn{flex:1 1 auto; justify-content:center}
       .contact .wrap{justify-content:center; text-align:center}
     }
-
-    /* reduced motion */
     @media (prefers-reduced-motion: reduce){
       *, *::before, *::after{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important}
     }
-  </style>  <!-- ← upewnij się, że TEN TAG ISTNIEJE -->
+  </style>
 </head>
 <body>
-  <!-- dekoracyjne bloby -->
   <div class="bg-blur" aria-hidden="true">
     <div class="blob one"></div>
     <div class="blob two"></div>
     <div class="blob three"></div>
   </div>
-
   <header>
     <div class="container nav">
       <div class="brand">
@@ -199,7 +173,6 @@
       </nav>
     </div>
   </header>
-
   <main class="container">
     <section class="hero">
       <div class="card">
@@ -210,27 +183,26 @@
         </p>
         <div class="split">
           <div class="pl"><strong>Po polsku:</strong> narzędzia do samoregulacji, dziennik godzinowy, przystępne instrukcje i wsparcie bez oceniania.</div>
-          <div class="en"><strong>In English:</strong> same tools and ethos. Pragmatic, non‑judgmental, community‑driven.</div>
+          <div class="en"><strong>In English:</strong> same tools and ethos. Pragmatic, non-judgmental, community-driven.</div>
         </div>
         <div class="cta">
           <a class="btn primary" href="policy.html#pl">Zobacz zasady & politykę</a>
           <a class="btn ghost" href="about.html">Poznaj inicjatywę</a>
+          <a class="btn primary" href="aby-sluchac.html">Czytaj artykuł</a>
         </div>
       </div>
-
       <div class="media">
         <div class="panel" id="quotePanel" title="Kliknij, aby zmienić cytat">
           <div class="ring" aria-hidden="true"></div>
           <div class="panel-inner">
             <figure class="quote fade-in" aria-live="polite">
-              <blockquote id="qText">„Sztab” AI do trzeźwości. Minimalny hałas. Maksimum użyteczności: dziennik, check‑listy, protokoły.</blockquote>
+              <blockquote id="qText">„Sztab” AI do trzeźwości. Minimalny hałas. Maksimum użyteczności: dziennik, check-listy, protokoły.</blockquote>
               <figcaption id="qMeta">— Trzeźwa z AI</figcaption>
             </figure>
           </div>
         </div>
       </div>
     </section>
-
     <section class="features">
       <div class="feat">
         <h4>Narzędzia, nie kazania</h4>
@@ -246,20 +218,17 @@
       </div>
     </section>
   </main>
-
-  <!-- Sekcja kontaktowa -->
   <section class="contact" aria-label="Kontakt i społeczność">
     <div class="wrap">
       <div class="brand">
         <strong>Trzeźwa z AI</strong> <small>(Sober with AI)</small>
       </div>
       <div class="links">
-        <a class="link" href="mailto:soberwithai@gmail.com" aria-label="Wyślij e‑mail na soberwithai@gmail.com">
+        <a class="link" href="mailto:soberwithai@gmail.com" aria-label="Wyślij e-mail na soberwithai@gmail.com">
           <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2
           2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z"/></svg>
           <span>soberwithai@gmail.com</span>
         </a>
-
         <a class="link" href="https://www.facebook.com/profile.php?id=61579408678645" target="_blank" rel="noopener noreferrer" aria-label="Profil Trzeźwa z AI na Facebooku">
           <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
             <path fill="currentColor" d="M2 10h4v10H2V10zm6 10h7.5a3 3 0 0 0 2.95-2.5l.9-6A3 3 0 0 0 16.4 8H13V6a3 3 0 0 0-3-3h-.2a1 1 0 0 0-1 1l-.3 3.2A3 3 0 0 1 6.5 9H6v9a2 2 0 0 0 2 2Z"/>
@@ -269,21 +238,16 @@
       </div>
     </div>
   </section>
-
   <footer>
     <div class="foot container">
       <span>© <span id="y"></span> Trzeźwa z AI — oddolna inicjatywa społeczna.</span>
       <span><a href="policy.html#pl" style="color:inherit">Polityka prywatności</a></span>
     </div>
   </footer>
-
   <script>
-    // Rok w stopce
     document.getElementById('y').textContent = new Date().getFullYear();
-
-    // Cytaty
     const QUOTES = [
-      { text: '„Sztab” AI do trzeźwości. Minimalny hałas. Maksimum użyteczności: dziennik, check‑listy, protokoły.', meta: '— Trzeźwa z AI' },
+      { text: '„Sztab” AI do trzeźwości. Minimalny hałas. Maksimum użyteczności: dziennik, check-listy, protokoły.', meta: '— Trzeźwa z AI' },
       { text: 'Nie chodzi o idealną motywację. Chodzi o najbliższy rozsądny krok — teraz.', meta: '— zasada „Next best step”' },
       { text: 'Struktura wygrywa z siłą woli. Zawsze.', meta: '— ramy działania' },
       { text: 'Małe zwycięstwa, duże konsekwencje. 24 godziny na raz.', meta: '' },
@@ -294,40 +258,33 @@
       { text: '„Nie mam siły” często znaczy „nie mam planu”. Plan da się zrobić.', meta: '' },
       { text: 'Jeśli coś jest ważne — uprość to tak, by dało się zrobić dziś.', meta: '' },
     ];
-
     function pickNRandom(arr, n) {
       const copy = arr.slice();
       for (let i = copy.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        const t = copy[i]; copy[i] = copy[j]; copy[j] = t;  // poprawny swap
+        const t = copy[i]; copy[i] = copy[j]; copy[j] = t;
       }
       return copy.slice(0, n);
     }
-
     const rotation = pickNRandom(QUOTES, 5);
     let current = 0;
-
     const qText = document.getElementById('qText');
     const qMeta = document.getElementById('qMeta');
     const panel = document.getElementById('quotePanel');
     const figure = panel.querySelector('.quote');
-
     function show(i){
       const q = rotation[i];
       figure.classList.remove('fade-in');
-      void figure.offsetWidth; // restart animacji
+      void figure.offsetWidth;
       qText.textContent = q.text;
       qMeta.textContent = q.meta || '';
       figure.classList.add('fade-in');
     }
-
     show(current);
-
     let timer = setInterval(() => {
       current = (current + 1) % rotation.length;
       show(current);
     }, 10000);
-
     panel.addEventListener('click', () => {
       current = (current + 1) % rotation.length;
       show(current);
@@ -337,7 +294,6 @@
         show(current);
       }, 10000);
     });
-
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){
       figure.classList.remove('fade-in');
       clearInterval(timer);

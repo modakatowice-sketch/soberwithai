@@ -2,75 +2,88 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Baza artykułów — Sober with AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sober with AI — Baza artykułów</title>
+
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #0f172a;
-      color: #fff;
+      background-color: #f4f4f4;
       margin: 0;
-      padding: 20px;
+      padding: 0;
     }
+
+    header {
+      background-color: #0f172a;
+      color: white;
+      padding: 10px 0;
+      text-align: center;
+    }
+
+    main {
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+
     h1 {
       text-align: center;
-      margin-bottom: 30px;
+      color: #333;
     }
-    .article-list {
-      max-width: 900px;
-      margin: 0 auto;
+
+    ul {
+      list-style: none;
+      padding: 0;
     }
-    .article {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 15px 20px;
-      border-radius: 10px;
-      margin-bottom: 15px;
+
+    li {
+      background-color: white;
+      margin-bottom: 10px;
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    .article a {
-      color: #38bdf8;
-      font-size: 1.3em;
+
+    a {
       text-decoration: none;
+      color: #0f172a;
+      font-weight: bold;
     }
-    .article a:hover {
+
+    a:hover {
       text-decoration: underline;
     }
-    .date {
-      font-size: 0.9em;
-      color: #94a3b8;
-      margin-bottom: 8px;
+
+    /* Styl guzika powrotu */
+    .back-button {
+      display: inline-block;
+      padding: 8px 14px;
+      margin-bottom: 20px;
+      background-color: #0f172a;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 14px;
     }
-    p {
-      margin: 0;
+    .back-button:hover {
+      background-color: #1e293b;
     }
   </style>
 </head>
 <body>
 
-  <h1>Baza artykułów — Sober with AI</h1>
+  <header>
+    <h1>Baza artykułów</h1>
+  </header>
 
-  <div class="article-list">
+  <main>
+    <a href="index.html" class="back-button">← Wróć do strony głównej</a>
 
-    <div class="article">
-      <a href="szury-ai.html">Szury AI – gdy Excel na sterydach staje się duchowym przewodnikiem</a>
-      <div class="date">15 sierpnia 2025</div>
-      <p>Ironia, sarkazm i fakty o ludziach wierzących, że ich czat jest „obudzony”.</p>
-    </div>
-    
-    <div class="article">
-      <a href="https://modakatowice-sketch.github.io/soberwithai/aby-sluchac.html">
-        Aby słuchać, kiedy Twój mózg Cię woła
-      </a>
-      <div class="date">Sierpień 2025</div>
-      <p>O tym, jak rozpoznawać subtelne sygnały, które mózg wysyła, zanim wpadniesz w stare schematy.</p>
-    </div>
-
-    <div class="article">
-      <a href="inny-artykul.html">Tytuł kolejnego artykułu</a>
-      <div class="date">Data publikacji</div>
-      <p>Krótkie streszczenie, które zachęci do kliknięcia.</p>
-    </div>
-
-  </div>
+    <ul>
+      <li><a href="aby-sluchac.html">Aby słuchać, kiedy Twój mózg Cię woła</a></li>
+      <li><a href="szury-ai.html">Szury AI</a></li>
+    </ul>
+  </main>
 
 </body>
 </html>

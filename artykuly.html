@@ -80,13 +80,17 @@
     }
     .hero h1{
       font-size:clamp(28px, 4.4vw, 46px);
-      line-height:1.08; margin:0 0 8px 0;
+      line-height:1.08;
+      margin:14px 0 10px 0;   /* więcej miejsca pod badge */
     }
     .badge{
       display:inline-block; font-weight:700; font-size:12px; letter-spacing:.3px;
       padding:8px 12px; border-radius:999px; color:#001427;
       background: linear-gradient(90deg, #5bb8ff, #8b5cf6);
       box-shadow:0 6px 16px rgba(91,184,255,.35);
+      position: relative;
+      top: -6px;              /* delikatnie wyżej */
+      margin-bottom: 12px;    /* odsuwa od H1 */
     }
     .hero p{margin:8px 0 0; color:var(--muted)}
     .hero .back{
